@@ -2,11 +2,23 @@ nav{
     position: fixed;
     top: 0;
     left: 0;
+    
 
     width: 100%;
-    background-color: #62caa6;
-    opacity: 0.8;
-    padding: 10px 50px;
+    height: 32px;
+    background-color: rgb(245,245,247);
+    /*opacity: 0.8;*/
+    padding: 10px 0px;
+
+    display: flex;
+    align-items: center;
+
+    backdrop-filter: blur(10px);
+}
+
+#page_content{
+    width: 82%;
+    margin: 0 auto;
 }
 
 #main_content{
@@ -16,7 +28,17 @@ nav{
 .navLink{
     text-decoration: none;
     color: black;
-    margin: 0 10px;
+    
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navLinkContanier_right{
+    display: inline-flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    
 }
 
 .currentPageLink{
@@ -24,7 +46,7 @@ nav{
 }
 
 .menuLink{
-    text-decoration: solid;
+    text-decoration: underline;
     color: #626a76;
     font-size: 10px;
 }

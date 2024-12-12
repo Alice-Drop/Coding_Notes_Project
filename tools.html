@@ -9,43 +9,43 @@
 
 </head>
 <body>
-    <nav>
-    
-        <span><img src="" alt="icon " height="32px"></span>
-        <span>AliceDrop的笔记共享</span>
 
-        <span>
-            <a href="/qt.html" class="navLink">通用</a>
-        </span>
-
-        <span>
-            <a href="/qt.html" class="navLink"></a>
-        </span>
-
-        <span>
-            <a href="/qt.html" class="navLink">在线小工具</a>
-        </span>
-                    
+    <div id="page_content">
+        <nav>
         
-    </nav>
+            <span><img src="" alt="icon " height="32px"></span>
+            <span>AliceDrop的笔记共享</span>
 
-    <div id="main_content">
+            <span>
+                <a href="/qt.html" class="navLink">通用</a>
+            </span>
 
-        <div id="tools_menu" class="inline">
-            <h4>列表</h4>
-            <div>
-                <span><a href="tools/Schulte Grid/index.html" target="" class="menuLink">舒尔特方格 注意力训练</a></span>
-            </div>
+            <span>
+                <a href="/qt.html" class="navLink"></a>
+            </span>
+
+            <span>
+                <a href="/qt.html" class="navLink">在线小工具</a>
+            </span>
+                        
+            
+        </nav>
+
+        <div id="main_content">
+
+            <iframe src="" frameborder="0"></iframe>
+            
+
+            
         </div>
-
-        
+    
     </div>
        
     <script>
         // 目前已上传的工具的数据
         let tools_list = [
             {
-                name: "Schulte Grid",
+                name: "舒尔特方格 注意力训练",
                 minimum_width: "350px",
                 minimum_height: "660px",
                 href: "tools/Schulte Grid/index.html"
@@ -53,31 +53,48 @@
         ];
         window.onload = drawList();
 
+
         function drawList(){
             let tools_menu = document.createElement("div");
             tools_menu.setAttribute("style", `
                 border: 1px dotted #ccc;
                 border-radius: 5px;
-                width: 100px;
+                width: 150px;
+                min-height: 120px;
             `)
             let list_title = document.createElement("h4")
             list_title.innerText = "工具列表"
+            list_title.setAttribute("style", "margin: 5px;")
             tools_menu.appendChild(list_title)
-
+            
+            let widgets_container = document.createElement("ul")
+            widgets_container.setAttribute("style", `
+                padding-inline-start: 20px;
+                margin-right: 10px;
+            `);
+            tools_menu.appendChild(widgets_container)
 
 
             for (let item of tools_list){
-                let widget = document.createElement("a");
-                widget.innerText = item["name"]
-                widget.setAttribute("target", "_blank")
-                widget.setAttribute("href", item["href"])
-                widget.classList.add("menuLink")
-                tools_menu.appendChild(widget)
+                let link = document.createElement("a");
+                link.innerText = item["name"];
+                link.setAttribute("target", "_blank");
+                link.setAttribute("href", item["href"]);
+                link.classList.add("menuLink");
+
+                let widget = document.createElement("li")
+                widget.appendChild(link)
+                widgets_container.appendChild(widget);
 
             }
             
             let main_content = document.getElementById("main_content");
-            main_content.appendChild(tools_menu)
+            main_content.appendChild(tools_menu);
+            
+        }
+
+        function isScreenWideEnough(){
+
         }
 
     </script>
