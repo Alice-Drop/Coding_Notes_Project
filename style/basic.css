@@ -34,8 +34,9 @@ nav{
     align-items: center;
 }
 
-.curren_navLink{
-    color: #51b2d6;
+.current_navLink{
+    color: rgb(204, 54,78);
+    font-weight: 600;
 }
 
 .navLinkContanier_right{
