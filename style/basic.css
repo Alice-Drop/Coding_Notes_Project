@@ -34,6 +34,10 @@ nav{
     align-items: center;
 }
 
+.curren_navLink{
+    color: #51b2d6;
+}
+
 .navLinkContanier_right{
     display: inline-flex;
     justify-content: flex-end;
