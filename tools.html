@@ -9,35 +9,78 @@
 
 </head>
 <body>
+    <nav>
+    
+        <span><img src="" alt="icon " height="32px"></span>
+        <span>AliceDrop的笔记共享</span>
 
-    <span><img src="" alt="icon " height="32px"></span>
-    <span>AliceDrop的笔记共享</span>
+        <span>
+            <a href="/qt.html" class="navLink">通用</a>
+        </span>
 
-    <span>
-        <a href="/qt.html">通用</a>
-    </span>
+        <span>
+            <a href="/qt.html" class="navLink"></a>
+        </span>
 
-    <span>
-        <a href="/qt.html"></a>
-    </span>
-
-    <span>
-        <a href="/qt.html">在线小工具</a>
-    </span>
-
+        <span>
+            <a href="/qt.html" class="navLink">在线小工具</a>
+        </span>
+                    
+        
+    </nav>
 
     <div id="main_content">
 
-        <div id="tools_menu">
+        <div id="tools_menu" class="inline">
             <h4>列表</h4>
             <div>
-                <span><a href="tools/Schulte Grid/index.html" target="">舒尔特方格注意力训练</a></span>
+                <span><a href="tools/Schulte Grid/index.html" target="" class="menuLink">舒尔特方格 注意力训练</a></span>
             </div>
         </div>
 
-        <iframe src="" frameborder="0"></iframe>
+        
     </div>
-                
+       
+    <script>
+        // 目前已上传的工具的数据
+        let tools_list = [
+            {
+                name: "Schulte Grid",
+                minimum_width: "350px",
+                minimum_height: "660px",
+                href: "tools/Schulte Grid/index.html"
+            }
+        ];
+        window.onload = drawList();
+
+        function drawList(){
+            let tools_menu = document.createElement("div");
+            tools_menu.setAttribute("style", `
+                border: 1px dotted #ccc;
+                border-radius: 5px;
+                width: 100px;
+            `)
+            let list_title = document.createElement("h4")
+            list_title.innerText = "工具列表"
+            tools_menu.appendChild(list_title)
+
+
+
+            for (let item of tools_list){
+                let widget = document.createElement("a");
+                widget.innerText = item["name"]
+                widget.setAttribute("target", "_blank")
+                widget.setAttribute("href", item["href"])
+                widget.classList.add("menuLink")
+                tools_menu.appendChild(widget)
+
+            }
+            
+            let main_content = document.getElementById("main_content");
+            main_content.appendChild(tools_menu)
+        }
+
+    </script>
     
 </body>
 </html>

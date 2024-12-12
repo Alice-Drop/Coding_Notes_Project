@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>舒尔特表格</title>
+    <title>舒尔特方格</title>
     <style>
         *{
             user-select: none;
@@ -114,11 +114,12 @@
 <body onload="refreshSheet(true)">
     <div id="app">
         <div id="main_content">
-            <h2>舒尔特表格测试 H5 </h2>
+            <h2>舒尔特方格测试 H5 <span><img src="img/puzzled.svg" alt="" height="20px" onclick="showDetail()"></span></h2>
             <p>
                 点击开始按钮，开始测试。<br>
-                用手指依次点击数字1到25，同时朗读出声。<br>
-                完成后会给出所用时间，时间越短越好。
+                用手指依次点击数字1到25.<br>
+                完成后会给出所用时间，越短越好。<br>
+                
             </p>
             <p id="console"></p>
 
@@ -375,11 +376,13 @@
                 testing_result.innerText = `用时：${(duration/1000).toFixed(3)}秒`
                 
 
-                
-                
-
             }, 1000);
             
+        }
+
+        function showDetail(){
+            // 介绍舒尔特方格。目前简单点先拿alert代替弹窗
+            alert("舒尔特方格可以用于测试注意力水平，也有训练注意力的功能。")
         }
 
     </script>

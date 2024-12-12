@@ -13,11 +13,27 @@ nav{
     margin-top: 55px;
 }
 
-a{
+.navLink{
     text-decoration: none;
     color: black;
+    margin: 0 10px;
 }
 
 .currentPageLink{
     color: #51b2d6;
+}
+
+.menuLink{
+    text-decoration: solid;
+    color: #626a76;
+    font-size: 10px;
+}
+
+
+.inline{
+    display: inline;
+}
+
+.hidden{
+    display: none;
 }
