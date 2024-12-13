@@ -1,0 +1,12 @@
+#detail{
+    width: 50%;
+    border: 1px dotted #ccc;
+    border-radius: 10px;
+
+    margin: 0px auto;
+    padding: 30px 15px;
+}
+
+#detail_txt{
+    margin: 5px 25px;
+}
