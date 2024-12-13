@@ -1,4 +1,4 @@
-function initGUI(){
+function initBasicGUI(){
     // 在onload时为网页加上标题栏内容和底部栏内容
     drawTitleBar();
     drawPageTail();
@@ -26,7 +26,8 @@ function drawTitleBar(){
 
 function drawPageTail(){
     let page_tail = document.getElementById("pageTail");
-    page_tail.innerHTML = `<p>©Copyright AliceDrop 2024  网页源码受<a></a>保护。</p>
-            <p>本项目为个人项目,如果喜欢本网站，请给<a class="paraLink" href="https://github.com/Alice-Drop/Coding_Notes_Project">本项目</a>一个star，谢谢！</p>
+    page_tail.innerHTML = `<p>© Copyright AliceDrop 2024  网页内容受 <a class="paraLink" href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。</p>
+   
+    <p>本项目为个人项目,如果喜欢本网站，请给 <a class="paraLink" href="https://github.com/Alice-Drop/Coding_Notes_Project" target="_blank">本项目</a> 一个star，谢谢！</p>
 `
 }

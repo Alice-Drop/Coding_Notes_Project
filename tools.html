@@ -7,22 +7,13 @@
     <link rel="icon" href="img/flower_icon.png">
     <link rel="stylesheet" href="style/basic.css">
 
+    <script src="script/basic.js"></script>
+
 </head>
 <body>
 
-    <nav>
-        <div id="container" style="margin: 0 auto;display:flex; justify-content:space-between; width:80%;">    
-            <span><img src="img/flower_icon.png" alt="icon " height="22px" style="margin:0 5px;"></span>
-            <span ><a href="/index.html" class="navLink">AliceDrop的笔记共享</a></span>
-
-            <span class="navLinkContanier_right">
-                <a href="/qt.html" class="navLink">通用</a>
-            
-                <a href="/.html" class="navLink">编程语言笔记</a>
-
-                <a href="/tools.html" class="navLink current_navLink">在线小工具</a>
-            </span>
-        </div>
+    <nav id="nav">
+        
     </nav>
 
     <div id="page_content">
@@ -30,8 +21,13 @@
 
         </div>
     </div>
+
+    <div id="pageTail"></div>
+
+    <script>
+        initBasicGUI();
+    </script>
     
-       
     <script>
         // 目前已上传的工具的数据
         let tools_list = [
