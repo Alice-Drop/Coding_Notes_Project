@@ -1,2 +1,4 @@
-# Coding_Notes_Project
-一个分享多种编程语言的学习笔记的github page
+# AliceDrop的笔记共享
+
+一个分享多种编程语言的学习笔记的网站。
+目前包含通用笔记（如UTF-8等编码的结构、操作开机启动等）、多种编程语言的学习笔记（目前有Python、Qt、Html + CSS + JavaScript，更多笔记还在整理中），还有一些有趣的小工具。
