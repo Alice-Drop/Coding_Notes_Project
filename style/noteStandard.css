@@ -1,0 +1,22 @@
+.app-name-link{
+    color: black;
+}
+
+.section-link{
+    color: black;
+}
+
+a{
+    color: black;
+}
+
+pre{
+    /* 代码块 */
+    background-color: #eee;
+    padding: 5px;
+
+}
+
+#app{
+    width: 80%;
+}

@@ -13,7 +13,7 @@ function drawTitleBar(){
             <span ><a href="/index.html" class="navLink">AliceDrop的笔记共享</a></span>
 
             <span class="navLinkContanier_right">
-                <a href="/qt.html" class="navLink">通用</a>
+                <a href="generalNotes.html" class="navLink">通用</a>
             
                 <a href="/.html" class="navLink">编程语言笔记</a>
 

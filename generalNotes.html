@@ -6,17 +6,37 @@
     <title>通用笔记 | AliceDrop的笔记共享</title>
     <link rel="icon" href="img/flower_icon.png">
 
+    <link rel="stylesheet" href="style/basic.css">
+    <link rel="stylesheet" href="style/noteStandard.css">
+
     <script src="script/basic.js"></script>
-    <script src="script/docsify.min.js"></script>
+
 
 </head>
 <body>
+    <nav id="nav"></nav>
+
+    <div id="page_content">
+        <div id="main_content">
+            <div id="app"></div>
+        </div>
+    </div>
     
 
+    <div id="pageTail"></div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
     
     <script>
         initBasicGUI();
+        window.$docsify = {
+            name: '前端开发笔记',
+            loadSidebar: false,
+            subMaxLevel: 3,
+            basePath: '/docs/common', // 指定加载 Markdown 文件的路径
+            homepage: "main.md"
+          };
     </script>
 </body>
 </html>
