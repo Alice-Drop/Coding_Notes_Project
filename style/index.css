@@ -1,10 +1,31 @@
-#div_how_are_you{
-    width: 200px;
-    height: 300px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+#page1{
+    border-radius: 15px;
+    opacity: 0.6;
 
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 800px;
+    min-width: 100%;
+
+
+    
+}
+
+#div_how_are_you{
+    width: 30%;
+    height: 550px;
+    
     background-color: rgba(233, 233, 233, 0.7);
     backdrop-filter: blur(10px);
+
+    margin-right: 100px;
+    margin-bottom: 60px;
+
+    display: flex;
+    justify-self: center;
+    align-items: center;
+
+
 
 }

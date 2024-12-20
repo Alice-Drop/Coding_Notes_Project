@@ -30,7 +30,7 @@
 
         <div id="main_content">
             <div id="page1">
-                <div id="div_how_are_you">
+                <div id="div_how_are_you" class="blockItem">
 
                 </div>
 
@@ -44,6 +44,36 @@
 
     <script>
         initBasicGUI();
+        //initIndex();
+
+        function initIndex(){
+            let page1 = document.getElementById("page1");
+
+            let bgs_data = {
+                "anime-girls.jpg": "可爱！",
+                "misty.jpg": "整体氛围气质不错"
+        
+            }
+            page1.setAttribute("style", `
+                    background-image: url("img/bg/misty.jpg");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+            `);
+
+            let greeting = "", now = new Date();
+            if (now.getHours() < 11){
+                greeting = "早上好呀！";
+            }else if (now.getHours() < 14){
+                greeting = "中午好！";
+            }else if (now.getHours() < 18){
+                greeting = "下午好！"
+            }else if (now.getHours() < 24){
+                greeting = "晚上好呀！"
+            }
+
+
+            let greet_sentences = [];  // 未来实现随机的greet
+        }
     </script>
 </body>
 
