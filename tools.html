@@ -6,7 +6,7 @@
     <title>在线小工具|AliceDrop的笔记共享</title>
     <link rel="icon" href="img/flower_icon.png">
     <link rel="stylesheet" href="style/basic.css">
-
+    <link rel="stylesheet" href="style/tools.css">
     <script src="script/basic.js"></script>
 
 </head>
@@ -18,7 +18,17 @@
 
     <div id="page_content">
         <div id="main_content">
+            <div id="container">
+                <br>
+                <br>
 
+
+                <h3>在线小工具</h3>
+                <br>
+                <table id="tools_shower"></table>
+            </div>
+            
+            
         </div>
     </div>
 
@@ -35,16 +45,19 @@
                 name: "舒尔特方格 注意力训练",
                 minimum_width: "350px",
                 minimum_height: "660px",
-                href: "tools/SchulteGrid/index.html"
+                href: "tools/SchulteGrid/index.html",
+                icon: ""
             },
             {
                 name: "浏览器状态详情",
                 minimum_width: "",
                 minimum_height: "",
-                href: "/tools/BrowseringDetail/BrowseringDetail.html"
-            }
+                href: "/tools/BrowseringDetail/BrowseringDetail.html",
+                icon: ""
+            },
+ 
         ];
-        window.onload = drawList;
+        window.onload = show_tools_v2;
 
 
         function drawList(){
@@ -88,6 +101,14 @@
 
         function isScreenWideEnough(){
 
+        }
+
+        function show_tools_v2(){
+            let tools_shower = document.getElementById("tools_shower");
+            for (let tool of tools_list){
+                let item = document.createElement("div");
+                item.classList.add("tool_item")
+            }
         }
 
     </script>

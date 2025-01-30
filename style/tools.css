@@ -1,0 +1,20 @@
+#main_content{
+    width: ;
+}
+
+
+#container{
+    width: 60%;
+    height: 100%;
+
+    padding-left: 80px;
+    padding-right: 80px;
+    margin: 0 auto;
+
+
+}
+
+#tools_shower{
+    width: 100%;
+    min-height: 50%;
+}
