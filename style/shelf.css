@@ -1,0 +1,37 @@
+#articles_shelf{
+    margin: 0 auto;
+}
+
+#articles_shelf *{
+    user-select: none;
+}
+
+.article_item{
+    border: 2px solid #ccc;
+    border-radius: 15px;
+
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    padding-top: 15px;
+
+    margin: 5px;
+
+    display:inline-flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.article_item img{
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+}
+
+.article_item a{
+    overflow:hidden;
+    color: black;
+    text-decoration: underline;
+    padding: 0 10px;
+}

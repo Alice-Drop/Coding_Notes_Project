@@ -6,7 +6,11 @@
     <link rel="icon" href="img/flower_icon.png">
     <link rel="stylesheet" href="style/basic.css">
     <link rel="stylesheet" href="style/tools.css">
+    <link rel="stylesheet" href="style/shelf.css">
+
     <script src="script/basic.js"></script>
+    <script src="script/tools.js"></script>
+    <script src="script/shelf.js"></script>
 
 </head>
 <body>
@@ -17,17 +21,12 @@
 
     <div id="page_content">
         <div id="main_content">
-            <div id="container">
-                <br>
-                <br>
-
-
-                <h3>在线小工具</h3>
-                <br>
-                <table id="tools_shower"></table>
+            <div id="a4content">
+                <h3>在线工具</h3>
+                <div id="tools_shelf"></div>
             </div>
-            
-            
+
+
         </div>
     </div>
 
@@ -38,77 +37,7 @@
     </script>
     
     <script>
-        // 目前已上传的工具的数据
-        let tools_list = [
-            {
-                name: "舒尔特方格 注意力训练",
-                minimum_width: "350px",
-                minimum_height: "660px",
-                href: "tools/SchulteGrid/index.html",
-                icon: ""
-            },
-            {
-                name: "浏览器状态详情",
-                minimum_width: "",
-                minimum_height: "",
-                href: "/tools/BrowseringDetail/BrowseringDetail.html",
-                icon: ""
-            },
- 
-        ];
-        window.onload = show_tools_v2;
-
-
-        function drawList(){
-            let tools_menu = document.createElement("div");
-            tools_menu.setAttribute("style", `
-                border: 1px dotted #ccc;
-                border-radius: 5px;
-                width: 150px;
-                min-height: 120px;
-            `)
-            let list_title = document.createElement("h4")
-            list_title.innerText = "工具列表"
-            list_title.setAttribute("style", "margin: 5px;")
-            tools_menu.appendChild(list_title)
-            
-            let widgets_container = document.createElement("ul")
-            widgets_container.setAttribute("style", `
-                padding-inline-start: 20px;
-                margin-right: 10px;
-            `);
-            tools_menu.appendChild(widgets_container)
-
-
-            for (let item of tools_list){
-                let link = document.createElement("a");
-                link.innerText = item["name"];
-                link.setAttribute("target", "_blank");
-                link.setAttribute("href", item["href"]);
-                link.classList.add("menuLink");
-
-                let widget = document.createElement("li")
-                widget.appendChild(link)
-                widgets_container.appendChild(widget);
-
-            }
-            
-            let main_content = document.getElementById("main_content");
-            main_content.appendChild(tools_menu);
-            
-        }
-
-        function isScreenWideEnough(){
-
-        }
-
-        function show_tools_v2(){
-            let tools_shower = document.getElementById("tools_shower");
-            for (let tool of tools_list){
-                let item = document.createElement("div");
-                item.classList.add("tool_item")
-            }
-        }
+        initToolsGUI();
 
     </script>
     

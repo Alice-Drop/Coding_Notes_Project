@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style/basic.css">
     <link rel="stylesheet" href="style/noteStandard.css">
     <link rel="stylesheet" href="style/articles.css">
+    <link rel="stylesheet" href="style/shelf.css">
 
     <script src="script/basic.js"></script>
     <script src="script/articles.js"></script>
+    <script src="script/shelf.js"></script>
 
 
 </head>
@@ -23,8 +25,11 @@
         
 
         <div id="main_content">
-            <h3 style="padding: 3vw;">通用笔记</h3>
-            <table id="articles_shelf"></table>
+            <div id="a4content">
+                <h3>通用笔记</h3>
+                <table id="articles_shelf"></table>
+            </div>
+
         </div>
 
         <div id="pageTail">
@@ -35,7 +40,7 @@
     <script>
         initBasicGUI();
         // 测试生成用代码：
-        display_articles();
+        initArticlesGUI();
 
     </script>
 </body>

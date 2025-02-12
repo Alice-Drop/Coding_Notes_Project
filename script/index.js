@@ -15,7 +15,6 @@ function initIndex(){
     let div_how_are_you = document.getElementById("div_how_are_you");
     div_how_are_you.setAttribute("style", 
         `
-        
         font-size: 18px;
         color: black;
         `)
