@@ -1,3 +1,8 @@
+.hidden{
+    display: none;
+}
+
+
 nav{
     position: fixed;
     top: 0;
@@ -13,8 +18,9 @@ nav{
 
     display: flex;
     align-items: center;
+    z-index: 1000;
 
-    backdrop-filter: blur(10px);
+    /*backdrop-filter: blur(10px);*/
 }
 
 #page_content{
