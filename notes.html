@@ -9,16 +9,23 @@
 
 
     <script src="script/basic.js"></script>
+    <script src="script/shelf.js"></script>
+    <script src="script/notes.js"></script>
 </head>
 <body>
     <nav id="nav"></nav>
 
-    <div id="main_content"></div>
+    <div id="main_content">
+        <div id="a4content">
+            <table id="notes_shelf"></table>
+        </div>
+    </div>
 
     <div id="pageTail"></div>
 
     <script>
         initBasicGUI();
+        initNotesGUI();
     </script>
 </body>
 </html>
