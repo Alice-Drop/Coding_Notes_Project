@@ -14,9 +14,10 @@ function initBasicGUI(){
 function drawNav(){
     let nav = document.getElementById("nav");
     nav.innerHTML = `        
-        <div id="container" style="margin: 0 auto;display:flex; justify-content:space-between;align-items:center; width:80%;">    
+    
+        <div id="navItemPlacer" style="margin: 0 auto;display:flex; justify-content:space-between;align-items:center; width:80%;">    
             <img src="../../img/flower_icon.png" alt="icon " height="22px" style="margin:0 5px;">
-            <a href="/index.html" class="navLink">AliceDrop的笔记共享</a>
+            <a href="/index.html" class="navLink">AliceDrop知识库共享</a>
 
             <span class="navLinkContanier_right">
                 <a href="${LINKS["通用"]}" class="navLink">通用</a>
