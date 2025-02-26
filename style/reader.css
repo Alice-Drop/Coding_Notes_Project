@@ -1,0 +1,73 @@
+.tocItem_H1{
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.tocItem_H2{
+    margin-left: 10px;
+}
+
+.tocItem_H3{
+    margin-left: 20px;
+}
+
+.tocItem_H4{
+    margin-left: 30px;
+}
+
+.tocItem_H5{
+    margin-left: 40px;
+}
+
+.tocItem_H6{
+    margin-left: 50px;
+}
+
+/* 布局 */
+
+body{
+    background-color: #fff;
+}
+
+pre{
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+#document_content{
+    /*background-color: #fafafa;*/
+    width: 60vw;
+    padding-left: 250px;
+    margin-bottom: 100px;
+}
+
+#document_content img{
+    max-width: 55vw;
+    max-height: 70vh;
+    margin: 0 auto;
+}
+
+#document_toc{
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    padding: 15px;
+    padding-top: 2px;
+    padding-bottom: 45px;
+    width: 25vw;
+    max-width: 300px;
+
+    font-size: 13px;
+    user-select: none;
+
+    position: fixed;
+    left: 2vw;
+    top: 110px;
+}
+
+
+
+#document_toc p:hover{
+    cursor: pointer;
+}

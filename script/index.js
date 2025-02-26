@@ -7,7 +7,7 @@ function initIndex(){
     */
 
     page1.setAttribute("style", `
-            background-image: url("img/bg/misty.jpg");
+            background-image: url("img/bg/misty2.jpg");
             background-repeat: no-repeat;
             background-size: cover;
     `);

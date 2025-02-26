@@ -17,7 +17,7 @@ function display_shelf_old(data, shelf_obj){
     }
 }
 
-function display_shelf(data, shelf_obj){
+function display_shelf(data, shelf_obj, as_param=""){
     // 把那些文章数据渲染到上面去
 
     let articles_shelf = shelf_obj;
@@ -29,7 +29,7 @@ function display_shelf(data, shelf_obj){
 
             let item = data[i];
             let cell = document.createElement("td");
-            cell.innerHTML = shelf_item_factory(item["title"], item["icon"], item["href"]);
+            cell.innerHTML = shelf_item_factory(item["title"], item["icon"], item["href"], as_param);
             cell.classList.add("article_item")
 
             row.appendChild(cell)
@@ -41,11 +41,17 @@ function display_shelf(data, shelf_obj){
     
 }
 
-function shelf_item_factory(title, img, href){
+function shelf_item_factory(title, img, href, as_param=""){
     // 生成一个文章展示单元的DOM。
+    // as_param如果被传入，则是打开as_param这个链接，把href作为参数传递给链接
+
     if (!img){
         img = DEFAULT_IMG;
     }
+    if (as_param){
+        href = `${as_param}?doc_href=${href}`;
+    }
+
     let content =  `
         <img src="${img}" />
         <a href="${href}" target="_blank">${title}</a>
@@ -61,7 +67,7 @@ function no_item_msg(){
         border: 1px solid #ccc;
         border-radius: 15px;
         /*box-shadow: 1px 1px 2px #ccc;  */  
-        padding: 15px;
+        padding: 45px;
 
     `);
     let para = document.createElement("p");

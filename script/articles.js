@@ -5,31 +5,11 @@ let ARTICLES = [
         "href": ""
     },
     {
-        "title": "JavaScript基础教程",
+        "title": "【硬科普】存储卡、读卡器挑选指南",
         "icon": "",
-        "href": ""
+        "href": "../docs/common/tf_card/tf_card.html"
     },
-    {
-        "title": "如何优化前端性能",
-        "icon": "",
-        "href": ""
-    },
-    {
-        "title": "React 16的新特性",
-        "icon": "",
-        "href": ""
-    },
-    {
-        "title": "如何优化前端性能",
-        "icon": "",
-        "href": ""
-    },
-    {
-        "title": "React 16的新特性",
-        "icon": "",
-        "href": ""
-    },
-    // 添加更多文章...
+    
 ]
 
 let ITEMS_PER_ROW = 4;
@@ -37,5 +17,5 @@ let DEFAULT_IMG = "../img/tech_article2.png"
 
 function initArticlesGUI(){
     let articles_shelf = document.getElementById("articles_shelf");
-    display_shelf(ARTICLES, articles_shelf)
+    display_shelf(ARTICLES, articles_shelf, "../reader.html")
 }

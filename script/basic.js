@@ -1,6 +1,7 @@
 const LINKS = {
     "通用": "articles.html",
     "编程语言笔记": "notes.html",
+    "在线小工具": "./tools.html"
 }
 
 
@@ -24,7 +25,7 @@ function drawNav(){
             
                 <a href="${LINKS["编程语言笔记"]}" class="navLink">编程语言笔记</a>
 
-                <a href="/tools.html" class="navLink">在线小工具</a>
+                <a href="${LINKS["在线小工具"]}" class="navLink">在线小工具</a>
             </span>
         </div>
     `

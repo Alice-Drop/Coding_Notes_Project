@@ -1,0 +1,207 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h2 id="一次性搞懂fetchpromisethencatch">一次性搞懂fetch、promise、then、catch</h2>
+
+<h3 id="绪论">绪论</h3>
+
+<p>假如我们想做一个阅读器，</p>
+
+<p>运行时它会在div#document_content中另外一个Html的内容。</p>
+
+<p>同时，它旁边会有一个小小的div作为目录，会显示这个被显示在document_content的页面的目录（也就是提取出所有的h1、h2等显示出来，并且可以点击来滚动跳转</p>
+
+<p>使用fetch即可通过请求获取其它网页的内容。</p>
+
+<p><strong>fetch</strong>是一共用来进行一个HTTP请求。它会返回一个Promise对象</p>
+
+<p><strong>Promise</strong>，可以理解为一个承诺，某个操作可能没法立刻有结果，但是承诺在完成后会给一个结果。由于通常用来处理一些网络连接之类的可能会失败，还会允许承诺出结果时附带一个状态：</p>
+
+<p>Resolved表示操作成功，Rejected表示操作失败。加上承诺未出结果时的是</p>
+
+<p>就比如说，让舍友去带炒面，舍友答应了，也就是给了一个承诺帮你带饭，但是去买需要时间并不能立刻买到，他给你的只是一个承诺，不是买的结果。你需要等待这个承诺的结果。</p>
+
+<p>但是去到饭堂，可能炒面已经卖完了。</p>
+
+<p>那没卖完舍友就给你买了一份带回来；卖完了舍友可能就回来告诉你卖完了，或者在微信告诉你卖完了。</p>
+
+<p>然后作为call了带炒面的人，如果承诺的结果是买到了，那你就吃就行；要是结果是没买到，你就得看看是怎么样是吃别的还是不吃了。也就是对承诺的结果进行处理。</p>
+
+<p>而具体怎么判断承诺的结果、处理，则是用then。</p>
+
+<p>我们常用的fetch等会产生Promise的方法，我们就只管使用就好；而如果是自己定义的长耗时的函数，自己创造一个promise对象，就要包含怎么样是成功，怎么样是失败了。</p>
+
+<p><strong>then</strong>是Promise对象的一个方法，用来设置如果Promise的结果是执行成功做什么，设置一个回调函数。</p>
+
+<p>通常来讲，我们会这样写：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">链接</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">respond</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;{})</span>
+</code></pre>
+</div>
+
+<p>实际上就是</p>
+
+<pre><code>fetch(链接).then().catch()
+</code></pre>
+
+<p>的意思，就是把。因为不需要把这个promise赋值给某个变量存起来，也就直接这样就好了。</p>
+
+<p>而<strong>catch</strong>则是Promise对象设置如果是执行失败会做什么。</p>
+
+<h4 id="例子">例子</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">load_doc</span><span class="p">(</span><span class="nx">url_doc</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url_doc</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;document_content&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">html</span><span class="p">;</span>
+<span class="w">        </span><span class="p">})</span><span class="w">   </span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>像这样，就能完成我们刚刚说的把另外一个网页的内容加载到这里面去（但是注意不能跨域访问）。</p>
+
+<p>接下来是详细的介绍。</p>
+
+<h3 id="fetch">fetch</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>url为请求的URL。</p>
+
+<p>options（可选）用来指定请求的方式、请求头等。默认是GET。</p>
+
+<p>会返回一个Promise，若执行成功会隐式传递一个response给fetch.then()传入的回调函数</p>
+
+<p><strong>注意，fetch并不是只是用来获取数据，也可以用于向服务器post前端的数据。</strong>这种情况下，其实我们并不关心fetch的response，可以直接不then，只.catch即可。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>response是一个对象，包含了status、headers，有.text()、.json()</p>
+
+<p>注意，通常我们都要获得response的内容，也就是调用<strong>response.text()或response.json()。注意，这两个也是会返回一个promise，</strong>因为处理可能也要耗时较久</p>
+
+<p>它的结果会隐式传递</p>
+
+<p>也就是这样写，把.text()给解析了：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>但是这样写会嵌套调用.then，并不好。我们可以</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>注意，这样其实就是fetch().then().then()</p>
+
+<p>因为then()的返回值就是传进去的那个函数的返回值，所以他就能传到下一个</p>
+
+<p>千万别忘了return，否则fetch().then()就是未定义，那再来.then()一下还是未定义。</p>
+
+<p>还有一种简便写法：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>利用了箭头函数如果代码一行，可以写到一行省略{}，则可以省去return自动返回该行的写法。</p>
+
+<h3 id="promise">Promise</h3>
+
+<p>看了前面讲fetch的部分，你应该对promise的应用有了基本的认识。</p>
+
+<p>接下来讲点更底层的东西。</p>
+
+<p>.then()和.catch()都是promise的方法。</p>
+
+<p>那么为什么是fetch().then().catch()呢？</p>
+
+<p>是因为，<strong>then()返回的也是一个promise！</strong></p>
+
+<p>然后，如果发生了错误，就会详细传递。</p>
+
+<p>比如说</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then1</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then2</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then3</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then4</span>
+</code></pre>
+</div>
+
+<p>如果是then2发生了错误，后续的then将不执行（也就是then3不执行），一路向下传递，直到catch那里。然后，catch之后，被视为错误已经被捕获了，它就不会一直累加了，catch后续的then仍然可以正常运行。也就是说，then4还是能执行的。</p>
+
+<p>前面讲到链式解析和嵌套解析，说链式解析更好。</p>
+
+<p>这是因为，链式解析的可读性更强。其次，像上面演示的这个这样链式解析，错误会一直向下传递，一个catch就可以捕获前面的所有then的错误。如果是写成嵌套解析，那么就无法这样。</p>
+
+<h4 id="async-和-await">async 和 await</h4>
+
+<p>如果不想用then，可以用async和await，让代码看起来像同步的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">loadData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;data.json&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等待 fetch 完成</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w"> </span><span class="c1">// 等待 json() 解析</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;数据:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">loadData</span><span class="p">();</span>
+</code></pre>
+</div>
+
+    </body>
+    </html>
+    

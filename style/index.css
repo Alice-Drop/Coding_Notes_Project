@@ -55,5 +55,9 @@
 
 
 #div_whats_new{
-    display: block;
+    display: inline-block;
+    background-color: rgba(233, 233, 233, 0.7);
+    border-radius: 15px;
+    padding: 10%;
+
 }

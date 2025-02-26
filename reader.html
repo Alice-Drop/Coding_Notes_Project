@@ -2,36 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Reader</title>
+
+    <link rel="stylesheet" href="style/basic.css">
+    <link rel="stylesheet" href="style/reader.css">
+    <link rel="ICON" href="img/flower_icon.png"></link>
+
+    <script src="script/basic.js"></script>
+    <script src="script/const.js"></script>
+    <script src="script/reader.js"></script>
 </head>
 <body>
-    <nav id="nav">
-
-    </nav>
+    <nav id="nav"></nav>
     
-    <div id="page_content">
+    <div id="main_content">
         
+        <div id="document_toc"></div><!-- 文章目录导航器 -->
 
-        <div id="main_content">
-            
-            <div id="article_nav">
-                <!-- 文章目录导航器 -->
-                
+        <div id="document_content"></div><!-- 文章内容容器 -->
 
-            </div>
-
-
-
-        </div>
-
-        <div id="pageTail">
-
-        </div>
     </div>
+
+    <div id="pageTail"></div>
     
+
     <script>
         initBasicGUI();
-
+        init_reader();
     </script>
 </body>
 </html>
