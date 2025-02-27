@@ -1,8 +1,8 @@
 let NOTES = [
     {
-        "title": "Python基础笔记",
+        "title": "Python要点笔记",
         "icon": "../img/language_icon/python.png",
-        "href": ""
+        "href": "../docs/Python/pythonKeyNote.html"
     },
     {
         "title": "一次性搞懂fetch、promise、then、catch",

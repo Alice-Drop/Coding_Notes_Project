@@ -1,0 +1,3581 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <h1 id="python要点笔记">python要点笔记</h1>
+
+<p>版本：2025/02/27/1</p>
+
+<h2 id="变量基本类型">变量基本类型</h2>
+
+<h3 id="浮点数">浮点数</h3>
+
+<p>小数。</p>
+
+<h5 id="判断浮点数是否整数">判断浮点数是否整数</h5>
+
+<p>很多时候，其实我们需要的是整数结果，例如要做一个计算器，我们需要用两个浮点数来互相运算。但是，这样的结果也是浮点数，即使是1+2 =3.0，这不符合我们的习惯。</p>
+
+<p>所以，可以用</p>
+
+<h3 id="字符串">字符串</h3>
+
+<p>字符串前面可以加一些字母来表示</p>
+
+<p>例如</p>
+
+<pre><code>r"\n"  # 会忽略里面的特殊符号，输出\n这两个字符
+
+f""   格式化。
+</code></pre>
+
+<p>和c一样，格式化可以有各种，例如%f  %.2f</p>
+
+<p>运算的时候，与小数运算，结果会是小数，而且能除得尽的只到那一位，而不是一定小数点后6位之类的。</p>
+
+<p>#### str.join()</p>
+
+<pre><code>字符串.join(列表)
+</code></pre>
+
+<p>字符串的方法，用这个字符串作为连接符来把列表中的字符串连接成一个长的字符串</p>
+
+<h3 id="列表">列表</h3>
+
+<h4 id="查找">查找</h4>
+
+<h5 id="count">count</h5>
+
+<p>统计列表中某个元素的出现次数</p>
+
+<h5 id="index">index</h5>
+
+<p>查找某个元素在列表中第一次出现的位置。如果不存在会抛出错误</p>
+
+<h5 id="find">find</h5>
+
+<p>和index一样，是查找某个元素在列表中第一次出现的位置。但是如果不存在，不会报错，而是返回-1</p>
+
+<h4 id="删除">删除</h4>
+
+<h5 id="pop">pop</h5>
+
+<p>删除指定索引处的元素</p>
+
+<pre><code>myList.pop(索引)
+</code></pre>
+
+<h5 id="remove">remove</h5>
+
+<p>删除内容为指定内容的第一个元素。</p>
+
+<p>切片</p>
+
+<p>左闭右开</p>
+
+<p>如果不填开始，则以0为开始</p>
+
+<p>不填结束，则取到末尾</p>
+
+<h5 id="append">append</h5>
+
+<p>在末尾添加</p>
+
+<h5 id="insert">insert</h5>
+
+<p>在指定的index插入。原来这个位置的元素会往后移。</p>
+
+<p>insert(索引,要插入的元素)</p>
+
+<h4 id="列表推导式">列表推导式</h4>
+
+<p>我们常常要声明一个有好几项的列表，然后在后续的处理中给它添加内容。例如，一个班级有52个人，统计成绩，我们要创建一个长度为52的列表来存储每个人的数据。不能直接</p>
+
+<pre><code>myList = []
+for i in range(52):
+    myList[i] = ....某些东西....
+</code></pre>
+
+<p>否则会报错，说第i项超出了长度（因为我们声明的是一个长度为0的列表）。</p>
+
+<p>这时候，就需要用一个列表推导式了。</p>
+
+<pre><code>[列表项 for 循环变量 in 迭代器]
+</code></pre>
+
+<p>例如，</p>
+
+<pre><code>["ABC" for i in range(5)]
+</code></pre>
+
+<p>就会生成</p>
+
+<pre><code>['ABC', 'ABC', 'ABC', 'ABC', 'ABC']
+</code></pre>
+
+<p>还可以用来生成二维列表，如</p>
+
+<pre><code>[["ABC" for i in range(5)] for i in range(2)]
+</code></pre>
+
+<p>生成</p>
+
+<pre><code>[
+    ['ABC', 'ABC', 'ABC', 'ABC', 'ABC'],
+    ['ABC', 'ABC', 'ABC', 'ABC', 'ABC']
+]
+</code></pre>
+
+<h3 id="元组">元组</h3>
+
+<p>相当于不可修改的列表。用来防止被修改</p>
+
+<p>声明时和声明列表相似，但是是用括号而不是中括号</p>
+
+<pre><code>a = (1,2,3)
+</code></pre>
+
+<p>元组不可修改，例如不能对a append等，也不能删除元组的某个元素。但是可以删除元组这个变量。</p>
+
+<p>使用+，可以获得一个把两个元组合并的结果</p>
+
+<pre><code>tuple_1 = (1,2,3)
+tuple_2 = (4,5,6)
+tuple_3 = tuple_1 + tuple_2
+print(tuple_3)
+</code></pre>
+
+<h3 id="字典">字典</h3>
+
+<p>使用大括号括着，是一个个键值对</p>
+
+<p>可以del 如  del  a["name"]</p>
+
+<h4 id="keys">keys</h4>
+
+<p>获取所有的键为一个列表</p>
+
+<h4 id="values">values</h4>
+
+<p>获取所有的值为一个列表</p>
+
+<h4 id="clear">clear</h4>
+
+<p>删除所有的键值对。</p>
+
+<h4 id="同时遍历字典的键和值">同时遍历字典的键和值</h4>
+
+<p>有些时候我们希望取出字典的每一对数据进行使用。此时可以</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">myDict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># 干些什么</span>
+</code></pre>
+</div>
+
+<p>别漏了.items()，否则会报错。</p>
+
+<h3 id="列表推导式-2">列表推导式</h3>
+
+<p>一个需要注意的点是，在Python中，空字符代表假。</p>
+
+<p>这常用于字符串分割后进行进一步处理，或生成某个格式的列表。</p>
+
+<p>例如，我们有这样一个字符串</p>
+
+<pre><code>str = "薛蟠     4560 25"
+</code></pre>
+
+<p>我们想要把它的数据提取出来。我们可以先</p>
+
+<pre><code>parts = str.split(" ")
+# 得到 ['薛蟠', '', '', '', '', '4560', '25']
+</code></pre>
+
+<p>再重建这个列表</p>
+
+<pre><code>parts = [p for p in parts if p] # 注意，这里有一个点，理论上是for part in parts，但是这样写容易混，更难理解。
+</code></pre>
+
+<pre><code>[表达式 for 元素 in 可迭代对象 if 条件]
+</code></pre>
+
+<p>表达式：列表中的元素与遍历等的关系，用来计算得到列表中的各个元素然后append到列表里。例如前面<code>[p for p in parts if p]</code>就是直接取循环变量p</p>
+
+<p>for <code>元素</code> in <code>可迭代对象</code> if  <code>条件</code>: 就是一个遍历可迭代对象中的元素，如果符合后面的条件，那么就把这个元素下的表达式包含在结果中</p>
+
+<p>最终，就只剩下所有非空字符组成的列表</p>
+
+<pre><code>['薛蟠', '4560', '25']
+</code></pre>
+
+<h3 id="字符串格式化">字符串格式化</h3>
+
+<p>%s等。</p>
+
+<p>更方便的是.format，以及f"文本内容{item}"</p>
+
+<h3 id="python底层数据结构标签引用与拷贝">Python底层数据结构：标签、引用与拷贝</h3>
+
+<p>在 Python 中，所有的变量都是标签（也叫引用、名字、指针），而真正的数据部分是用对象存起来的，包括了id、类型和值。变量就是指向这个对象。</p>
+
+<p>然后可以分成两类：不可变对象和可变对象。</p>
+
+<p><strong>不可变对象</strong>，在声明之后就不可变了，没有修改的方法。只能进行赋值让它指向一个新的数据对象，不能对数据进行修改。</p>
+
+<p>不可变对象有<code>int</code>（整数）、<code>float</code>（浮点数）、<code>str</code>（字符串）、<code>tuple</code>（元组）、<code>frozenset</code>（冻结集合）。</p>
+
+<p>举个例子，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>  
+<span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>就会报错，因为指向的数据对象"abc"是不可变对象，无法修改。</p>
+
+<p><strong>可变对象</strong>，可以随时修改，有修改方法，例如append()。当然也可以用赋值让他指向一个新的数据对象。</p>
+
+<p>包括<code>list</code>、<code>dict</code>、<code>set(集合)</code>、 <code>对象的实例</code>。</p>
+
+<p>它们最明显的特征，就是有没有修改的方法。</p>
+
+<h4 id="赋值">赋值</h4>
+
+<p>赋值操作就是改变标签所指向的数据对象，例如</p>
+
+<pre><code>k = 5 
+k = 6
+</code></pre>
+
+<p>就是先后两次调整k指向的数据对象。</p>
+
+<p>同样，a =b的赋值时让b指向a指向的对象（而不是指向指针a）。例如，</p>
+
+<pre><code>a = 5
+b = a
+a = 10  # 此时b仍然等于5
+
+c = [1,2,3,4]
+d = c
+
+</code></pre>
+
+<p>都是指向实际的数据对象5、[1,2,3,4]。</p>
+
+<p>但是，由于5是不可变对象，如果执行一条a = 10，数据对象5不会改变，而是会创建一个新的数据对象10，然后让a改为指向10.</p>
+
+<p>而b仍然指向5</p>
+
+<p>而[1,2,3,4]是可变对象，多了修改方法。如果也是赋值，例如执行一条c = ["a","b"]，那也是</p>
+
+<p>执行c.append(5)，就会修改[1,2,3,4]为[1,2,3,4,5]，而同样指向这个列表的d的值也就跟着变了。</p>
+
+<p>上述内容一个简单的验证方法是用id()，这个可以看作是内存地址，可以判断是否指向同一个数据对象。</p>
+
+<p>例如，在k=5和k=6时分别运行id(k)，结果不同；</p>
+
+<p>刚刚执行b = a时，id(b) == id(a)，但重新赋值a = 10后，id(b)就不等于id(a)了，因为指向了不同的数据对象；</p>
+
+<p>而在c = d后，如果执行修改，就是对原有的数据对象[1,2,3,4]进行修改，c和d都会因此变化。</p>
+
+<p>这便是可变对象的隐式修改。它可能会导致不是我们想要的意外联动修改，导致程序出现意外行为。</p>
+
+<pre><code>tmp = user_list
+tmp.append(user_item)
+print(user_list)
+</code></pre>
+
+<p>因此要谨慎使用a = b，尽管它也有好处，可以共享数据对象，节省内存。</p>
+
+<p>为了安全地使用a = b，可以换成不可变对象例如列表换元组，但是注意元组内部的可变对象仍然可能发生隐式修改。</p>
+
+<p>一个有趣的现象：</p>
+
+<p>bool只有两个值，因此程序运行时，最多也只会产生一个Ture一个False两个布尔数据对象。这意味着，所有值为True的变量之间、值为False的变量之间，都是共享一个数据对象，id都相同。</p>
+
+<p>类似的现象还发生在其它类型的变量中，这就是python的对象缓存和重用。这里不展开讲。</p>
+
+<h4 id="浅复制深复制">浅复制、深复制</h4>
+
+<p>三种复制的区别</p>
+
+<p>之前的b = a，是引用复制。它不会创建新的数据对象，而是让b指向a所指向的那个数据对象。</p>
+
+<p>比如</p>
+
+<pre><code>a = [1,2,99999, [5,5,5]]
+b = a
+print(id(a), id(b))  # 可以看到两者相同
+</code></pre>
+
+<p>这导致如果修改a（前提是a是可变对象，例如a =  [1, 2, 3]），是修改a指向的数据对象[1,2,3]，b也会被修改。</p>
+
+<p>当然，前面说了，直接赋值去改a或者b，是不会影响另一个的。</p>
+
+<p>特点是a和b共享同一个数据对象，开销小；一旦修改一个会影响到另一个，这个可以加以利用，但很多时候是导致bug。</p>
+
+<p>例如存储剪贴板，如果直接tmp = clipboard，然后去更新剪贴板，就会导致tmp也变了。</p>
+
+<h5 id="浅复制">浅复制</h5>
+
+<p>浅复制是真正在内存中创建了副本，但是只复制对象容器，里面嵌套的对象仍然与原对象共享。例如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">99999</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</code></pre>
+</div>
+
+<p>结果是</p>
+
+<pre><code>2082346509440 2082308870528
+
+140733223926200 140733223926200
+140733223926232 140733223926232
+140733223926264 140733223926264
+2082351979968 2082351979968
+</code></pre>
+
+<p>可以看到，列表这个数据对象是不一样了，但是数据对象里引用的还是同样的。此时修改某一个里面的可变对象[5,5,5]，另一个也会跟着变。</p>
+
+<h5 id="深复制">深复制</h5>
+
+<p>与浅复制相似，但深复制是递归地复制整个对象，包括所有嵌套的对象，这可以让复制后的对象与原对象完全独立。</p>
+
+<p><strong>（不过注意，所有的不可变对象都是不会被复制的，因为不会被修改，没有上述安全问题，没必要。）</strong></p>
+
+<pre><code>import copy
+
+a = [1,2,99999, [5,5,5]]
+b = copy.deepcopy(a)
+
+print(id(a), id(b))
+print("\n")
+for i in range(len(a)):
+    print(id(a[i]), id(b[i]))
+</code></pre>
+
+<p>运行结果</p>
+
+<pre><code>2024942805888 2024942805120
+
+
+140733223926200 140733223926200
+140733223926232 140733223926232
+2024936781360 2024936781360
+2024899996544 2024942705152
+</code></pre>
+
+<p>可以看到，不但容器是另外一份副本了，里面的可变元素也变成副本了。这时候修改任意一个，另一个不会改变。</p>
+
+<h4 id="手动深拷贝">手动深拷贝</h4>
+
+<p>现在我们知道了浅复制、深复制的原理就是遍历然后去获取每一层嵌套的子对象。</p>
+
+<p>但是，使用copy库是一丝不苟地复制全部，但是有些时候我们并不需要这样做。例如，复制剪贴板，我们其实只需要复制剪贴板里的信息条目就可以了，对象的各种数据可以不用管。</p>
+
+<p>以及，它是Python的，对于一些使用别的语言编写的代码部分，例如Qt，它是无法正常处理的，所以不能用它来复制Qt的对象，需要我们手动去复制。</p>
+
+<p>例如，要把剪切板的数据缓存一份，我们可以这样做：</p>
+
+<pre><code>
+</code></pre>
+
+<h3 id="eval">eval</h3>
+
+<p>eval()可以执行一段python代码。例如，</p>
+
+<pre><code>x = 10
+result = eval('x + 20')
+print(result)  # 输出：30
+</code></pre>
+
+<p>这个特性，使得它可以拿去计算表达式，尤其是用来计算数学表达式。</p>
+
+<p>但是一定要注意，这可能会被攻击，用来执行危险代码。在程序中使用eval一定要注意安全性。</p>
+
+<h3 id="类型判断-isinstance">类型判断 isinstance</h3>
+
+<pre><code>isinstance(变量, 类型)
+</code></pre>
+
+<p>判断给定的变量是否是对应的类，例如str、int或者自己指定的类。</p>
+
+<p>传入的<code>类型</code>参数可以一个类，也可以是一个由多个类组成的元组，来表示是否是这些类中的某一个。</p>
+
+<p>需要留意，一个实例可以不止属于一个类，尤其是类是继承的情况下。</p>
+
+<h3 id="函数">函数</h3>
+
+<h4 id="可选参数">可选参数</h4>
+
+<p>在声明函数时，如果给一个参数赋了默认值，那么这个参数就可以不填，成为可选参数。否则，则是必选参数，不填就会报错说传入的参数数量不对。</p>
+
+<h4 id="不定长参数">不定长参数</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">sum_up</span><span class="p">(</span><span class="o">*</span><span class="n">nums</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="nb">sum</span>
+</code></pre>
+</div>
+
+<p>参数的数量是可变的，不固定的。</p>
+
+<p>关键在于，在一个参数前面加上星号，来作为一个列表接收不定数量的参数。然后就可以传入任意数量的参数。</p>
+
+<p>还可以不定长与定长参数混合使用：</p>
+
+<pre><code>def sum_up(length,*nums):
+    sum = 0
+    for n in nums:
+        sum += n
+    print(f"这{length}个数的和是{sum}")
+</code></pre>
+
+<h4 id="匿名函数-lambda">匿名函数 lambda</h4>
+
+<p>function(参数){</p>
+
+<p>​   函数内容</p>
+
+<p>}</p>
+
+<p>同样，</p>
+
+<p>在js中，匿名函数最常用来做的是包装回调函数，用来传递参数。python也是这样。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">myButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">handleClick</span><span class="p">)</span>  <span class="c1"># 设置回调函数。由于是传入这个函数，所以不能写括号，否则就是传递这个函数的运行结果了</span>
+
+<span class="c1"># 但是有些时候，确实需要给回调函数提供一些数据，就可以这样传参</span>
+<span class="n">myButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">handleClick</span><span class="p">(</span><span class="n">myButton</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span>
+</code></pre>
+</div>
+
+<p>相当于</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">myButton</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">{</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">(</span><span class="nx">myButton</span><span class="p">.</span><span class="nx">text</span><span class="p">)}</span>
+</code></pre>
+</div>
+
+<h3 id="类">类</h3>
+
+<p>使用class关键字定义类：</p>
+
+<pre><code>class 类名(父类):   # 如果没有积累，后面的括号这些都不用写。
+
+</code></pre>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">Teacher</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="o">//</span>  <span class="n">内置的初始化函数</span><span class="err">。</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Susan&quot;</span>    <span class="o">//</span> <span class="n">用self</span><span class="o">.</span><span class="n">属性的格式按需要定义一些属性</span><span class="err">，</span><span class="n">这里的name等只是示范</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s2">&quot;English&quot;</span>
+</code></pre>
+</div>
+
+<p>类中包含的函数，称为类的方法。其中初始化方法<code>__init__(self)</code>会在实例化时自动调用，即每一个这个类的实例都会有里面声明的属性。</p>
+
+<p>注意，python中，所有的类的方法，定义时第一个参数都是self。</p>
+
+<h4 id="属性">属性</h4>
+
+<p>也叫成员变量，是类的一个变量。 </p>
+
+<h4 id="方法">方法</h4>
+
+<p>也叫成员函数</p>
+
+<p>类是指一个抽象的类别（比如”老师”），是指代一个人群的所有人。</p>
+
+<p>而生活中我们往往遇见的是一个个具体的人，比如你初中的语文老师阿飞，高中的政治老师阿番，他们是一个具体的对象。</p>
+
+<p>类是模板，对象是依据这个模板做出来的一个个实例。</p>
+
+<h4 id="实例化">实例化</h4>
+
+<pre><code>class Teacher:
+    def __init__(self, name, subject):
+        self.name = name
+        self.subject = subject
+    def print_name(self):
+        print(self.name)
+    def print_subject(self):
+        print(self.subject)
+myTeacher = Teacher("afei"，"yuwen")
+myTeacher.print_name()
+myTeacher.print_subject()
+</code></pre>
+
+<p>像这样，给一个变量赋值。调用Teacher()，就能基于Teacher类生成一个实例对象。</p>
+
+<p>调用Teacher()，参数是传给<code>__init__</code>方法的，第一个参数self是隐式传递的不用填。<code>__init__</code>会在创建对象时自动隐式调用。</p>
+
+<p>类名用大驼峰法</p>
+
+<p>对象名可以用变量命名，其中Python的风格是小写然后下划线连接。</p>
+
+<p>面向过程编程适合简单的任务，比如计算1+1 = 2</p>
+
+<p>面向对象可以很大程度上简化操作并且结构更加清晰。比如要生成一百个老师的信息，直接</p>
+
+<p>像是我们用的列表、字典等，其实都是类、对象，也都有各自的方法。</p>
+
+<p>例如声明一个list变量，其实就是构建一个list对象。</p>
+
+<pre><code>myList = [1,2,3,4]
+myList.append(5)
+</code></pre>
+
+<p>像是append、insert这些就是类里面定义了的方法。</p>
+
+<h4 id="类属性和实例属性">类属性和实例属性</h4>
+
+<p>类属性是定义直接写在类的根部的属性，而没有使用self关键字。</p>
+
+<p>而实例属性是通过self定义的属性，属于对象（即类的实例）本身，各个实例之间的这个是独立的、不互相影响。</p>
+
+<h4 id="实例方法类方法静态方法">实例方法、类方法、静态方法</h4>
+
+<p>类是一个蓝图，描述了某个类型的对象，它应该有什么样的属性和方法。通常我们需要先创建类的实例，然后通过这个实例来调用方法。</p>
+
+<pre><code>class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):  # 狗叫
+        print(f"{self.name}：Woof!")
+</code></pre>
+
+<p>通常来讲，我们使用的一般是实例方法，比如想要一只狗叫，我们会</p>
+
+<pre><code>myDog = Dog("new dog")
+myDog.bark()
+</code></pre>
+
+<p>这一过程隐式传入了self，也就是实例，例如myDog。</p>
+
+<p>通常我们不能直接调用类里面定义的方法，而是得先创建一个实例，哪怕我们是想用类的方法去创建一个实例。</p>
+
+<pre><code>class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def create_puppy(self):
+        return Dog("Puppy")
+
+dog = Dog()
+puppy = dog.create_puppy()
+</code></pre>
+
+<p>在以上代码，我们必须先创建一个实例，然后再用creat<em>puppy创建puppy，如果直接直接调用Dog.creat</em>puppy()，就会出错，因为隐式传入的是类本身，而不是一个实例对象。</p>
+
+<p>但很多时候，我们需要像这样的方法，直接调用用来生成实例，而不是生成实例之后再调用生成实例。</p>
+
+<p>此时可以使用@classmethod装饰器，来说明它是类方法而不是实例方法</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_puppy</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># 注意这里使用 cls 来创建类的实例</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s2">&quot;Puppy&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>这告诉python，这是一个实例方法，可以直接调用。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">puppy</span> <span class="o">=</span> <span class="n">Dog</span><span class="o">.</span><span class="n">create_puppy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">puppy</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># 输出: Puppy</span>
+</code></pre>
+</div>
+
+<p>注意，类方法里面，第一个参数就不是self，而是cls，表示隐式传入的类本身。</p>
+
+<p>简单来说，当需要一个方法与类本身打交道，而不是和某个具体的实例时，用类方法。这常常用于工厂方法，通过不同的数据源创建类实例。</p>
+
+<p>有些时候，我们希望定义一个方法，它和类或实例都没有直接关系，只是一个功能函数，但是就是想把它放在类里面（为了分类等原因），这时可以使用静态方法</p>
+
+<p>给方法加上@staticmethod，就变成静态方法，不接受cls或self作为参数。可以像普通的函数一样调用，只不过它被放在类的命名空间下。</p>
+
+<pre><code>class Math:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+</code></pre>
+
+<h4 id="封装数据与数据隐藏">封装数据与数据隐藏</h4>
+
+<p>一个重要的原则是，进行数据隐藏，即不主动去操作类的属性。</p>
+
+<p>例如，类Hotdog有cooked<em>level属性，如果我们表示烹饪热狗是直接去操作这个属性，一来不够简洁明了，二来可能会由于误操作，出现一些类似myHotdog.cooked</em>level -= 2的操作，导致热狗还变生了。这是不可能出现的。</p>
+
+<p>因此我们可以把热狗可以发生的所有变化都做成它的方法，比如只有烹饪方法cook可以改变cooked_level，而且必定是增。</p>
+
+<p>像这样，把数据的读写配上对应的函数，这就是数据封装（第二层。第一层是数据属于类、实例）。只能通过这些方法来读写数据，实现了数据隐藏。</p>
+
+<h4 id="私有变量">私有变量</h4>
+
+<p>类的属性可以直接在外部修改，这就不符合上面说的数据隐藏。</p>
+
+<p>我们可以把变量设置为私有变量，这个变量就不能从外部访问了。</p>
+
+<p>变量名开始为两条下划线就是私有变量，仅供内部使用，从外部访问会报错，直接说没有这个变量。                                                     </p>
+
+<pre><code>class Student:
+    self.__id = 1
+</code></pre>
+
+<p>同样，方法的开头两条下划线，就是私有方法，也是这样受保护的。</p>
+
+<h4 id="限制类的属性">限制类的属性</h4>
+
+<p>在定义类时，在类里面（不是在类的函数里面）写</p>
+
+<pre><code>__slots__ = ("name","height")
+</code></pre>
+
+<p>就可以限制这个类只能有这两个属性。如果试图添加别的属性就会报错。</p>
+
+<p>当然，继承自这个类的，就不会收到这个的限制了。                                                                                                                                                  </p>
+
+<h4 id="属性操作">属性操作</h4>
+
+<h5 id="setattr对象属性名值">setattr(对象，属性名，值)</h5>
+
+<h5 id="getattr对象属性名">getattr(对象，属性名)</h5>
+
+<h5 id="dir">dir</h5>
+
+<p>获取所有属性和方法.</p>
+
+<p>因此如果想要去除方法，要加上if not callable()；如果还要去除内置属性和私有属性，还要加上 if not attr.startswith('__')去除开头是两个下划线的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">class_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">MyClass</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">MyClass</span><span class="p">,</span> <span class="n">attr</span><span class="p">))]</span>
+</code></pre>
+</div>
+
+<h4 id="python内置的操作类属性的函数">python内置的操作类属性的函数</h4>
+
+<p>getattr(对象，属性名称)可获取对应属性，相当于对象.属性名称</p>
+
+<p>hasattr</p>
+
+<p>setattr</p>
+
+<p>delattr</p>
+
+<p>dir()获取全部属性和方法</p>
+
+<p>再配合前面的</p>
+
+<h4 id="绑定方法">绑定方法</h4>
+
+<p>类的方法是未绑定方法，只有实例化后，实例的方法才是绑定到了实例上。</p>
+
+<pre><code>class A:
+    def method(self):
+        print("A's method")
+
+class B(A):
+    def printInfo(self):
+        print("202408")
+
+
+    def method(self):
+        A.method(self)  # 直接调用 A 的 method 方法，需要手动传递 self
+
+        self.printInfo()  # self是传进来的实例（例如下面传进来b），所以不需要传self
+        print("B's method")
+
+b = B()
+b.method()
+
+</code></pre>
+
+<p>直接调用类A的方法，A是一个类而不是实例，必须传入self</p>
+
+<p>而如果调用self.printInfo()，由于self是实例，所以不用</p>
+
+<h4 id="类的特殊方法">类的特殊方法</h4>
+
+<h4 id="装饰器">@ 装饰器</h4>
+
+<p>高阶函数是指接收函数为参数的函数。</p>
+
+<h5 id="装饰器-2">装饰器</h5>
+
+<p>装饰器是一种特殊的高阶函数。它会执行传入的函数，返回一个增强版的函数。</p>
+
+<p>例如，我们有一个记录用户年龄的函数setAge()，但是它只负责记录，没有判断传入的值是否大于0的功能，不安全。那么，我们就可以用装饰器</p>
+
+<pre><code>def runAfterCheckValue(func):  # 一个用来增强setAge函数的函数
+    def wrapper(age):  # wrapper，意为包装器，把原来的函数包装了一下加了一些内容
+        if age &gt; 0:
+            return func(age)  
+        else:
+            raise ValueError("年龄必须大于0！")
+    return wrapper
+
+</code></pre>
+
+<p>这个会在判断值</p>
+
+<p>有了这个装饰器，我们就可以</p>
+
+<pre><code>setAge = runAfterCheckValue(setAge) # 把setAge函数重定义为使用装饰器升级过的函数
+
+setAge(5)  # 以后还是调用setAge，但是setAge已经更好更安全了
+</code></pre>
+
+<h5 id="写法">@写法</h5>
+
+<p>python提供了更简洁的方法来写装饰器。</p>
+
+<p>像是刚才那个setAge函数，我们就可以在定义那里加上一句@，写成这样：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nd">@runAfterCheckValue</span>  <span class="c1"># 绑定刚刚我们声明的装饰器函数</span>
+<span class="k">def</span> <span class="nf">setAge</span><span class="p">(</span><span class="n">age</span><span class="p">):</span>
+    <span class="c1"># 函数内容</span>
+
+<span class="n">setAge</span><span class="p">(</span><span class="mi">39</span><span class="p">)</span>  <span class="c1"># 调用的时候直接调用，就已经是增强版的setAge了，不用像前面那样手动去重定义</span>
+</code></pre>
+</div>
+
+<p>这种写法很方便快捷。像这样能替代传统写法，像是给代码加上了“糖衣”，更甜、更简洁了的写法，就叫做语法糖。+=就是一个典型的语法糖。</p>
+
+<h4 id="pyhton内置的装饰器">pyhton内置的装饰器</h4>
+
+<p>而python中，已经提供了一些装饰器，我们可以直接用来包装我们的</p>
+
+<h5 id="复合来实现字典数据管理">复合来实现字典数据管理</h5>
+
+<p>我们常常需要用字典存一些常量，例如以下对一些符号进行了分类存储。</p>
+
+<pre><code>symbol_library = [
+    {
+        "type": "常用符号",
+        "data": [
+            {
+                "group": "中文标点",
+                "symbols": ["，", "。", "“", "【", "】"]
+            },
+            {
+                "group": "半角标点",
+                "symbols": [",", ".", '"', "[", "]"]
+            }
+        ]
+    },
+    {
+        "type": "数学",
+        "data": [
+            {
+                "group": "",
+                "symbols": ["+", "-", "×", "÷", "=", "√"]
+            },
+            {
+                "group": "",
+                "symbols": ["∣", "∆", "∵", "∴"]
+            },
+            {
+                "group": "积分",
+                "symbols": ["∫", "∬", "∭", "∯", "∰", "∮"]
+            }
+        ]
+    }
+]
+
+</code></pre>
+
+<p>把它组织为类就是</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">SymbolGrop</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">symbols</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groupName</span> <span class="o">=</span> <span class="n">group_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">symbols</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span>
+            <span class="s2">&quot;groupName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupName</span><span class="p">,</span>
+            <span class="s2">&quot;symbols&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span>
+                    <span class="p">})</span>
+
+
+<span class="k">class</span> <span class="nc">SymbolType</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">typeName</span> <span class="o">=</span> <span class="n">type_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">addData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_symbol_group</span><span class="p">:</span> <span class="n">SymbolGrop</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_symbol_group</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">SymbolLibrary</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">addType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_type</span><span class="p">:</span> <span class="n">SymbolType</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_type</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getTypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">)</span>
+
+
+<span class="n">SYMBOL_LIBRARY</span> <span class="o">=</span> <span class="n">SymbolLibrary</span><span class="p">()</span>
+
+<span class="c1"># 常用符号</span>
+<span class="n">common_symbol</span> <span class="o">=</span> <span class="n">SymbolType</span><span class="p">(</span><span class="s2">&quot;常用符号&quot;</span><span class="p">)</span>
+<span class="n">common_symbol</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">SymbolGrop</span><span class="p">(</span><span class="s2">&quot;中文标点&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;，&quot;</span><span class="p">,</span> <span class="s2">&quot;。&quot;</span><span class="p">,</span> <span class="s2">&quot;“&quot;</span><span class="p">,</span> <span class="s2">&quot;【&quot;</span><span class="p">,</span> <span class="s2">&quot;】&quot;</span><span class="p">]))</span>
+<span class="n">common_symbol</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">SymbolGrop</span><span class="p">(</span><span class="s2">&quot;半角标点&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;]&quot;</span><span class="p">]))</span>
+<span class="n">SYMBOL_LIBRARY</span><span class="o">.</span><span class="n">addType</span><span class="p">(</span><span class="n">common_symbol</span><span class="p">)</span>
+
+<span class="c1"># 数学</span>
+<span class="n">math_symbol</span> <span class="o">=</span> <span class="n">SymbolType</span><span class="p">(</span><span class="s2">&quot;数学符号&quot;</span><span class="p">)</span>
+<span class="n">math_symbol</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">SymbolGrop</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;×&quot;</span><span class="p">,</span> <span class="s2">&quot;÷&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;√&quot;</span><span class="p">]))</span>
+<span class="n">math_symbol</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">SymbolGrop</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;∣&quot;</span><span class="p">,</span> <span class="s2">&quot;∆&quot;</span><span class="p">,</span> <span class="s2">&quot;∵&quot;</span><span class="p">,</span> <span class="s2">&quot;∴&quot;</span><span class="p">]))</span>
+<span class="n">math_symbol</span><span class="o">.</span><span class="n">addData</span><span class="p">(</span><span class="n">SymbolGrop</span><span class="p">(</span><span class="s2">&quot;积分&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;∫&quot;</span><span class="p">,</span> <span class="s2">&quot;∬&quot;</span><span class="p">,</span> <span class="s2">&quot;∭&quot;</span><span class="p">,</span> <span class="s2">&quot;∯&quot;</span><span class="p">,</span> <span class="s2">&quot;∰&quot;</span><span class="p">,</span> <span class="s2">&quot;∮&quot;</span><span class="p">]))</span>
+<span class="n">SYMBOL_LIBRARY</span><span class="o">.</span><span class="n">addType</span><span class="p">(</span><span class="n">math_symbol</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">SYMBOL_LIBRARY</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h6 id="使用dataclass简化初始化">使用@dataclass简化初始化</h6>
+
+<p>前面我们这样写，每个类都要写一个自己的<code>__init__</code>去接收数据。</p>
+
+<p>使用@dataclass可以自动生成<code>__init__</code>、<code>__repr__</code>等。</p>
+
+<p>像这样，写在类根部的这些，会被自动生成。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SymbolGroup</span><span class="p">:</span>
+    <span class="n">group_name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 组名</span>
+    <span class="n">symbols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># 符号列表</span>
+</code></pre>
+</div>
+
+<p>其相当于</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">SymbolGroup</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">symbols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_name</span> <span class="o">=</span> <span class="n">group_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">symbols</span>
+</code></pre>
+</div>
+
+<p>使用field还可以对其进行进一步定制化，</p>
+
+<pre><code>field(init,repr,compare,hash,)
+</code></pre>
+
+<p>例如，</p>
+
+<h5 id="property">@property</h5>
+
+<p>Python有一些内置的装饰器，例如@property</p>
+
+<p>它可以把类的方法转换为一个只读属性。例如，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+<span class="c1"># 示例</span>
+<span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># 直接访问属性而非调用方法</span>
+</code></pre>
+</div>
+
+<p>像这样，修饰之后，name就变成了一个属性，不需要使用<code>person.name()</code>，而是像访问普通属性一样，直接使用 <code>person.name</code> （实际上也并不能再像函数那样用了，如果还是name()会报错</p>
+
+<p>'str' object is not callable之类的）</p>
+
+<p>这样把一个函数变成像一个属性一样的话，我们就可以在一个属性里添加一些逻辑，或者是在调用时立即获取最新的属性（例如用户文本内容、计算最新的结果），或者对文本进行一些处理再输出，等等。</p>
+
+<p>创建了这样一个属性之后，我们还可以更进一步。这个属性是只读的，用来给出name方法的返回值的。而通常，一个属性是可以读和写的。我们可以再写一次name方法，用@<property_name>.setter修饰器修饰它，但是这一个name是用于写入数据操作的</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>   <span class="c1"># 这里_name属性，和下面一样要小心别写错了，不过这里写错调用的是后面的setter，影响不那么恶劣</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting name&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>    <span class="c1"># 这里_name属性别写错了，写成name的话，就变成person的name又调用name，一旦访问person.name那就无限递归栈溢出了。</span>
+
+    <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Setting name&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;名字必须是非空字符串！&quot;</span><span class="p">)</span>
+
+<span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>   <span class="c1"># 调用 @property 装饰的 name 方法，输出 &quot;Getting name&quot; 和 &quot;Alice&quot;</span>
+<span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>  <span class="c1"># 调用 @name.setter 装饰的 name 方法，输出 &quot;Setting name&quot;</span>
+</code></pre>
+</div>
+
+<p>@property的name(self)创建出了这样一个name属性，而@name.setter下面再声明一个name就是声明如果被赋值时用于处理的。</p>
+
+<p>这样，当使用person.name时，</p>
+
+<p>如果是访问，就自动调用上面那个带返回值、不用填参数的；</p>
+
+<p>如果是赋值，就调用下面这个要填一个value参数、没有返回值的，</p>
+
+<p>（property和.setter都是这样，</p>
+
+<p><strong>注意后面那个setter是补充的，必须先定义一个@property装饰的方法，并且这两个方法同名才行。</strong></p>
+
+<p>同样，使用@<property>.setter装饰器来进行属性的修改，比起直接用属性，可以增加各种逻辑（例如，判断用户输入的是否符合要求，符合要求才写入，不符合可以拒绝写入并警告），或者对输入内容进行一些处理等。</p>
+
+<h4 id="多态">多态</h4>
+
+<p>讲的是好几个类都有同一个方法，这个方法在各个类里会以不同的算法实现，来实现适配各种东西。</p>
+
+<p>这样，各种东西我们都可以使用统一的方法去管理了。                                              </p>
+
+<p>例如，我们定义一个长方形类、三角形类，它们都有getArea方法来获取面积。这样，就都能用同一个方法获取面积。</p>
+
+<p>实现多态的关键是，子类可以完全继承基类的方法，（如果基类有的不够合适了）也可以覆写这些方法，来提供不同的实现。</p>
+
+<p>继承自同一个父类，除了基类中相同的内容，各个子类可以有不同的状态等，例如小学生、中学生等。</p>
+
+<p>继承的时候，父类的所有方法都会有，但是我们还是可以自己重新def一次，就能覆盖掉父类的这个方法。</p>
+
+<h5 id="开闭原则">开闭原则</h5>
+
+<p>使用多态，可以实现开闭原则。</p>
+
+<p>例如，我们有这样的需要根据员工的类型（例如全职员工和合同工）来计算工资。如果我们直接在代码中硬编码不同的员工类型计算工资的逻辑，那么每当添加新的员工类型时，都需要修改现有代码。</p>
+
+<pre><code>class Employee:
+    def __init__(self, emp_type):
+        self.emp_type = emp_type
+
+    def calculate_salary(self):
+        if self.emp_type == "full_time":
+            return 5000
+        elif self.emp_type == "contractor":
+            return 3000
+        # 如果增加新类型，就需要修改这个函数
+
+</code></pre>
+
+<p>而使用多态后：</p>
+
+<pre><code>class Employee(ABC):
+    def calculate_salary(self):
+        pass
+
+class FullTimeEmployee(Employee):
+    def calculate_salary(self):
+        return 5000
+
+class Contractor(Employee):
+    def calculate_salary(self):
+        return 3000
+
+# 如果需要增加新的员工类型，只需添加一个新类，而不必修改已有的类
+class Intern(Employee):
+    def calculate_salary(self):
+        return 1000
+
+</code></pre>
+
+<p>只需新建一个类，而不需要修改任何现有的代码。这就是对扩展开放，对修改关闭的表现。                             </p>
+
+<h4 id="继承">继承</h4>
+
+<p>继承自父类（或者叫基类）的类，</p>
+
+<p>定义一个笼统的、通用的大类，然后往下细分的东西就从这里继承。</p>
+
+<p>例如敌怪有生命值、护甲值、防御力、攻击力、移动速度等属性，有拳打脚踢方法。</p>
+
+<p>那么具体到某一个敌怪是怎么样，可能还会有一些自己的特殊方法，例如可能还会射箭远程攻击，召唤什么东西等等，但是基础那些继承就好。</p>
+
+<p>一个有趣的现象是，当基类写得足够完善时，在开发的前期会出现子类没什么需要写的，直接pass。</p>
+
+<p>比如，开发植物大战僵尸，先把僵尸类写好之后，开发的初期会发现多数僵尸不用写子类的内容，攻击、走路的方式不同只要传的图片序列Ok就实现了，走路速度传不同的值，等等。</p>
+
+<p>当子类继承自父类时，子类会拥有父类的所有属性、方法。但是可能父类的方法并不合适，需要调整。</p>
+
+<p>如果子类定义了一个和父类的方法同名的方法，就能覆盖从父类继承的。</p>
+
+<p>但是多数情况，我们只是需要调整一些内容，而不是完全不要。比如说先调用父类的方法完成一些基础工作，然后再添加或修改子类特定的行为。那么我们可以通过父类的名字调用父类的方法。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A&#39;s method&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># 调用父类的 method 方法。注意</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B&#39;s method&quot;</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">method</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>注意，由于B已经定义了method()，覆盖掉了继承来的，因此在method那里如果写的是self.method，调用的就是自己的，那就无限递归了。</p>
+
+<h5 id="super">super</h5>
+
+<p>我们可以用super来简化，自动读取到合适的父元素，包括在</p>
+
+<p><code>super().某个属性或方法</code>       会遵循MRO顺序，去寻找排在当前类后面的那个类，一路往下找，直到找到名字为我们指定的那个。</p>
+
+<p>例如上面的覆盖父类方法，可以简化为</p>
+
+<pre><code>class A:
+    def method(self):
+        print("A's method")
+
+class B(A):
+    def method(self):
+        super().method()  # 调用父类的 method 方法
+
+        self.printInfo()  # self是传进来的实例（例如下面传进来b），所以不需要传self
+        print("B's method")
+
+b = B()
+b.method()
+</code></pre>
+
+<p>注意，类似于<code>self.printInfo()  #</code>  (self是传进来的实例（例如下面传进来b），所以不需要传self)，使用super，也会自动把当前的self用好，所以括号里不用写self</p>
+
+<p>进阶一些，还有逐层继承、多继承的概念。</p>
+
+<h5 id="逐层继承">逐层继承</h5>
+
+<p>子类继承的父类，也是继承自祖父类的，这样一级一级往上继承的叫逐层继承。</p>
+
+<p>例如</p>
+
+<pre><code>class Student:
+    pass
+
+class CollegeStudent(Student):
+    pass
+
+class SecondGradeCollageStudent(CollegeStudent):
+    pass
+</code></pre>
+
+<p>像这个，就是单继承（一个类继承自一个父类）一种形式。</p>
+
+<p>这样，最细分的子类拥有了一路所有父类的属性，且父类可以覆写祖父类的东西，以此类推。</p>
+
+<p>不过要注意，不要让继承链太长。此外对父类的设计和修改要稳定，不然它要是频繁改动接口、参数，后面所有子类实例化的时候都得跟着改。</p>
+
+<h5 id="多继承">多继承</h5>
+
+<p>一个类继承自多个父类。</p>
+
+<p>例如，程序员会变成，音乐家会谱曲，而John既是程序员又是音乐家，于是：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">class</span> <span class="nc">Programmer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Coding...&quot;</span>
+
+<span class="k">class</span> <span class="nc">Musician</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Composing music...&quot;</span>
+
+<span class="k">class</span> <span class="nc">John</span><span class="p">(</span><span class="n">Programmer</span><span class="p">,</span> <span class="n">Musician</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre>
+</div>
+
+<p>这可能会导致上面的问题：如果多继承的两个父类有同名的方法，可能会继承错，需要先检查清除。</p>
+
+<p>这个顺序是根据MRO背后的算法决定的。</p>
+
+<p>一般来说，如果class C(A,B)，那么顺序是先A再B。那么，如果我们调用c.method()，会先查找C，如果C没有method()方法，就去找A，如果找到了就A.method()，不然就去找B</p>
+
+<h5 id="使用组合避免多继承的一些问题">使用组合避免多继承的一些问题</h5>
+
+<h5 id="面向对象思想">面向对象思想</h5>
+
+<p>在设计数据结构时，使用面向对象的思维可以有效地封装代码，整理思路。</p>
+
+<p>例如，前面说到的符号库。</p>
+
+<h3 id="迭代器">迭代器</h3>
+
+<p>for item in ["a", "b", "c"]</p>
+
+<p>像是这样。</p>
+
+<p>像这样能够for去遍历，得到一些元素的东西叫做迭代器。</p>
+
+<p>只要实现了<code>__iter__()</code>（迭代）和<code>__next__()</code>（下一个），就叫做满足了Python的迭代器协议，就是一个迭代器了。</p>
+
+<p>比如说</p>
+
+<pre><code>for item in 被遍历对象:
+    print(item)
+</code></pre>
+
+<p>在for的过程中，Python首先会调用iter(被遍历对象)，这会尝试调用<code>迭代器.__iter__()</code>，如果有返回值说明它是一个可迭代对象。</p>
+
+<p>然后，iter返回的是一个迭代器。那么我们就可以开始迭代，在for的每次循环里循环变量是next(被便利对象)。</p>
+
+<p>直到next里面定义的该停止的时候，在next抛出StopIteration异常，for会捕获这个异常并自动停止循环。比如说生成奇数，可以在next里设置上限。如果不这样，那就会一直下去。</p>
+
+<p>这是因为，原本我们去遍历的对象可能是一个可迭代对象，也可能不仅仅是可迭代对象，而且还是个迭代器。所以，为了</p>
+
+<p>这里面，iter的返回值是一个迭代器。也就是说，比如说，如果我们只是想做一个简单的</p>
+
+<pre><code>class MyIterable:
+    def __iter__(self):
+        return iter([1, 2, 3])  # 返回列表的迭代器
+</code></pre>
+
+<p>它不包含next()方法，只是一个可迭代对象。那么，它的iter就要把自己的数据转换为一个迭代器然后给出去；如果本身已经是一个迭代器了，就返回self即可。</p>
+
+<p>迭代器在被迭代的时候，会去调用</p>
+
+<p>在这样的作用下，可迭代对象表现得就好像一个容器（实质上并不是），里面装有一定数量的元素（实质上是next()去不断生成，直到限制条件——如果有的话），去遍历它就可以</p>
+
+<p>比如说，生成0-10的奇数。</p>
+
+<h3 id="模块包等的管理">模块、包等的管理</h3>
+
+<h4 id="模块">模块</h4>
+
+<p>module</p>
+
+<p>一个py文件。</p>
+
+<p>通常来讲，把它称为模块，是为了在别处使用它里面Python语句、函数定义、常量定义等</p>
+
+<p>假设有一个文件<code>math_functions.py</code>，</p>
+
+<p>我们可以通过<code>import math_functions</code>来在<code>math_functions</code>命名空间下使用这些函数，如<code>math_functions.add()</code></p>
+
+<h4 id="包">包</h4>
+
+<p>package</p>
+
+<p>是一个包含多个模块的文件夹。用来管理模块。</p>
+
+<p>通常包含一个<code>__init__.py</code>文件的，<code>__init__.py</code>可以为空，也可以包含一些初始化代码。</p>
+
+<p>包里面可以包含模块和其它子包。</p>
+
+<p>例如下面这个文件夹</p>
+
+<pre><code>mypackage/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        submodule1.py
+</code></pre>
+
+<p>它包含了两个模块<code>module1</code>和<code>module2</code>，以及一个子包<code>subpackage</code></p>
+
+<p>使用时</p>
+
+<pre><code>from mypackage import module1
+module1.fun1()
+
+from mypackage.subpackage import submodule1
+submdule1.fun2()
+</code></pre>
+
+<p>需要注意，只有</p>
+
+<h4 id="库">库</h4>
+
+<p>library</p>
+
+<p>是一个包含多个模块和包的集合，</p>
+
+<h4 id="区别详解">区别详解：</h4>
+
+<p>假设我们有一个包internal<em>modules，里面包含<strong>init</strong>.py、calculator.py、basic</em>def.py、quick_note.py几个模块。</p>
+
+<h4 id="from-import-与直接import">from ... import ...与直接import</h4>
+
+<p>直接import internal<em>modules，是导入了internal</em>modules这个命名空间到代码的命名空间里。</p>
+
+<p>在这之后，我们就可以在代码里写internal_modules了；</p>
+
+<p>而如果我们要使用internals<em>modules里面的内容calculator，得写成internals</em>modules.calculator</p>
+
+<p>而from internal<em>modules import calculator，是把calculator从internal</em>modules 复制到代码的命名空间来，在这之后，我们就可以直接在代码里写calcluator了</p>
+
+<p>但是这只是导入了calculator到命名空间，没有直接导入calculator里面的内容，所以访问里面的内容要写成calcualtor.MyClass</p>
+
+<p><strong>总而言之，被import的是什么，就是什么进入了命名空间。</strong></p>
+
+<h4 id="as">as</h4>
+
+<p>import ... as ....</p>
+
+<p>from ... import ... as ...</p>
+
+<h4 id="相对导入和绝对导入">相对导入和绝对导入</h4>
+
+<h3 id="异常">异常</h3>
+
+<p>一些中断函数正常运行的事件。</p>
+
+<p>当程序发生错误（广义上的错误，例如0作除数等），解释器就会隐式地抛出一个对应的异常对象。如果这个异常没有被catch，程序的运行就会被中断。</p>
+
+<p>注意，SyntaxError是特殊的异常，它是在代码执行前，python解释器解析代码时抛出的，所以无法被catch</p>
+
+<h4 id="try-except">try - except</h4>
+
+<pre><code>try:
+    代码
+except 异常类型1:
+    异常处理
+except 异常类型2:
+    异常处理2
+...
+else:
+    如果没有异常又怎么做
+finally:
+    不管是否有异常，都要执行这一部分
+</code></pre>
+
+<p>执行try里面的内容，一旦引发异常，就会立刻跳出，不再执行try里面剩下的代码。</p>
+
+<p>但是这能够让代码继续运行，而不是直接报错停止。</p>
+
+<p>例如</p>
+
+<pre><code>try:
+    print(1/0)
+
+    print("ok")
+except:
+    print("出现except")
+
+print("运行结束")
+</code></pre>
+
+<p>然后，except后面可以写是哪种异常，就像是一路switch case一样，例如</p>
+
+<pre><code>try:
+    print(1/0)
+
+    print("ok")
+except ZeroDivisionError:
+    print("出现except")
+</code></pre>
+
+<h4 id="raise引发异常">raise引发异常</h4>
+
+<p>可以主动引发异常。异常信息可不填</p>
+
+<pre><code>raise 异常类型(异常信息)
+</code></pre>
+
+<p>例如</p>
+
+<pre><code>raise ValueError("警告，数值错误")
+</code></pre>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">wlan</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;yourSSID&#39;</span><span class="p">,</span> <span class="s1">&#39;wrongPassword&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">wlan</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+        <span class="k">pass</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;连接失败，错误码:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="断言">断言</h3>
+
+<p>判断条件是否满足，不满足则raise一个<code>AssertionError</code>异常。</p>
+
+<p>可以用来提前检查运行状况。其中异常信息可不填。</p>
+
+<pre><code>assert 判断条件, 异常信息
+</code></pre>
+
+<p>例如</p>
+
+<pre><code>assert 1+1==1, "警告，出现异常，1+1！=1"
+</code></pre>
+
+<p>结果为：</p>
+
+<pre><code>Traceback (most recent call last):
+  File "D:\py\basicPrastic\异常.py", line 10, in &lt;module&gt;
+    assert 1+1==1, "警告，出现异常，1+1！=1"
+           ^^^^^^
+AssertionError: 警告，出现异常，1+1！=1
+</code></pre>
+
+<h3 id="with语句">with语句</h3>
+
+<p>用来管理某个上下文，例如打开文件、网络连接等。常用于</p>
+
+<pre><code>with open("myfile","r") as file:
+    file.write("something")
+
+# 此时，在with的外面，file就自动被关闭了。
+</code></pre>
+
+<p>像这样用于with语句时，等效于</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;something&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>就是自动帮忙关闭了文件</p>
+
+<p>常用来包在try外面，用来识别文件是否存在等。</p>
+
+<h2 id="闭包">闭包</h2>
+
+<p>闭包就是被包在某个函数内部（至少，我们说是在某个作用域中）</p>
+
+<p>它的特性是，能够保存上下文中的变量，（保存为当前jishi即使上下文已经执行完毕，它依然能访问</p>
+
+<p>并且保存</p>
+
+<h3 id="保存上下文中的变量">保存上下文中的变量</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="n">closure</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># outer 运行时，x = 10，被绑定到 inner 中</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">closure</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 输出：15</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">closure</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>  <span class="c1"># 输出：30</span>
+</code></pre>
+</div>
+
+<p>闭包用到的变量，会由于被引用，一直存在，即使上下文被销毁，也不会被内存管理销毁（延迟销毁）。</p>
+
+<p>同时也要注意，由于是引用，而不是拷贝值，所以，当这个变量被改变，闭包访问到的数值也会变。这个特性要注意不要用错。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">create_counters</span><span class="p">():</span>
+    <span class="n">counters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">counter</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">i</span>
+        <span class="n">counters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">counters</span>
+
+<span class="c1"># 创建三个闭包</span>
+<span class="n">counter1</span><span class="p">,</span> <span class="n">counter2</span><span class="p">,</span> <span class="n">counter3</span> <span class="o">=</span> <span class="n">create_counters</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counter1</span><span class="p">())</span>  <span class="c1"># 输出：2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counter2</span><span class="p">())</span>  <span class="c1"># 输出：2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counter3</span><span class="p">())</span>  <span class="c1"># 输出：2</span>
+</code></pre>
+</div>
+
+<p>为什么 counter1()、counter2() 和 counter3() 都返回 2？明明我们希望它们分别返回 0、1、2。</p>
+
+<p>原因：变量的“动态绑定”
+闭包捕获的变量是“引用”而非“值”。
+当闭包访问变量 i 时，它会寻找当前作用域中 i 的值。
+由于 i 在循环结束时的最终值是 2，因此所有闭包都访问了同一个变量 i。</p>
+
+<p>需要注意，</p>
+
+<p>【这是延迟销毁还是什么？如果局部变量在之后变化、销毁，它捕获的值是否会变？</p>
+
+<h4 id="静态绑定">静态绑定</h4>
+
+<h3 id="保存逻辑">保存逻辑</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">event_listener</span><span class="p">(</span><span class="n">event_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">handle_event</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;事件：</span><span class="si">{</span><span class="n">event_name</span><span class="si">}</span><span class="s2">，数据：</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">handle_event</span>
+
+<span class="c1"># 定义两个不同的事件回调</span>
+<span class="n">on_click</span> <span class="o">=</span> <span class="n">event_listener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">)</span>
+<span class="n">on_hover</span> <span class="o">=</span> <span class="n">event_listener</span><span class="p">(</span><span class="s2">&quot;hover&quot;</span><span class="p">)</span>
+
+<span class="c1"># 模拟触发事件</span>
+<span class="n">on_click</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">on_hover</span><span class="p">({</span><span class="s2">&quot;element&quot;</span><span class="p">:</span> <span class="s2">&quot;button&quot;</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>上面这段代码中，</p>
+
+<p>它把print<strong>这一行的执行延迟到了未来触发事件的时候</strong>，而不必在调用外层的函数时就发生，这是闭包的常见的重要用途。</p>
+
+<p>注意，它不是time.sleep()这样的阻塞。实际上外层的event<em>listener并没有调用handle</em>event，只是保存了逻辑，由于把内部函数给了出去，里面定义的函数一直存在。</p>
+
+<p>所以，直到后面给出去的（带有一个保存了的参数data的）handle<em>event即on</em>click被触发，才是调用print。</p>
+
+<p>也就是说，在闭包创建和执行之间，程序并不会被阻塞。</p>
+
+<p>这就是它的意义，能够在适当的时机执行逻辑，而不是阻塞程序或立即运行。</p>
+
+<h4 id="为什么选择闭包">为什么选择闭包</h4>
+
+<p><strong>为什么我们需要闭包？为什么不把内部函数定义到外面，而要嵌套定义在另一个函数里面？</strong> </p>
+
+<p>这是理解闭包的核心，</p>
+
+<p>实际上，闭包不是简单的函数嵌套。</p>
+
+<p>的确，闭包的两个功能保存上下文的变量、保存逻辑中，保存逻辑其实就是一个普通函数的作用，吧内部函数定义在外面也可以实现。但是关键在第一个特性。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="n">closure</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># outer 运行时，x = 10，被绑定到 inner 中</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">closure</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 输出：15</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">closure</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>  <span class="c1"># 输出：30</span>
+</code></pre>
+</div>
+
+<p>如果把内部的inner写到外面去，就无法获取到x了，就需要用传参或者全局变量的方式来提供给inner，就失去了闭包这种写法的优雅的特性。</p>
+
+<p>其次，闭包可以携带固定的数据在内部，实现定制化。这个可以是一个常量，比如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">multiplier</span><span class="p">(</span><span class="n">factor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">number</span> <span class="o">*</span> <span class="n">factor</span>
+    <span class="k">return</span> <span class="n">multiply</span>
+
+<span class="n">double</span> <span class="o">=</span> <span class="n">multiplier</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">triple</span> <span class="o">=</span> <span class="n">multiplier</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">double</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 输出 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triple</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># 输出 15</span>
+</code></pre>
+</div>
+
+<p>这样构造的这两个函数就是专门用来求平方、立方的。这样携带了固定的数据，就能定制化函数。</p>
+
+<p>而且这样还把一些数据</p>
+
+<p>闭包还可以用来记住一个状态，并在多次调用时更新或使用该状态：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">counter</span><span class="p">():</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">count</span>  <span class="c1"># 修改外部作用域变量</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">count</span>
+    <span class="k">return</span> <span class="n">increment</span>
+
+<span class="n">my_counter</span> <span class="o">=</span> <span class="n">counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_counter</span><span class="p">())</span>  <span class="c1"># 输出：1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_counter</span><span class="p">())</span>  <span class="c1"># 输出：2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_counter</span><span class="p">())</span>  <span class="c1"># 输出：3</span>
+</code></pre>
+</div>
+
+<ul>
+<li><code>count</code> 是 <code>counter</code> 的局部变量，但闭包 <code>increment</code> 捕获了它。</li>
+<li>即使 <code>counter</code> 执行结束，<code>count</code> 依然被闭包保存。</li>
+</ul>
+
+<p>因此，闭包就可以实现</p>
+
+<h2 id="并发编程">并发编程</h2>
+
+<p>程序：我们执行的程序</p>
+
+<p>任务：对工作的抽象，指代某个需要完成的工作单元。通常被映射到一个或多个进程中。</p>
+
+<p>进程：操作系统对程序的执行实例。</p>
+
+<p>简单来说，就是一个运行着的程序。每个进程会被分配一定的资源，进程和进程之间的资源是独立的，避免互相影响。进程里面可以包含多个线程，这些线程共享分配给进程的资源。</p>
+
+<p>线程：进程中的基本执行单元，负责代码的具体执行。一个进程的多个线程共享线程的资源。我们可以在代码中把一个进程的任务拆分，让多个线程去做。</p>
+
+<p><strong>注意，默认地、不使用这些并发的东西，一个python程序只有python解释器自动创建的一个进程，进程里默认只有一个线程。</strong></p>
+
+<h3 id="基本概念">基本概念</h3>
+
+<h4 id="操作系统调度器">操作系统调度器</h4>
+
+<p>操作系统对多任务进行分时调度，把需要执行的任务列为队列，一个周期内，每个任务分到一小段时间来执行，时间到就轮到下一个，直到下一个周期，如此循环往复。</p>
+
+<p>通过调度快速切换来实现任务执行的交错，使得任务看起来是同时执行的。</p>
+
+<p>通常调度最小单位是线程</p>
+
+<h4 id="并发和并行">并发和并行</h4>
+
+<p>平时，我们常需要做一些“同时”的编程，例如在运行主程序的同时检测一些操作、调整GUI上的实时显示等。</p>
+
+<p>并发是指多个任务通过调度快速切换交替运行，来实现类似同时运行的效果。例如，一个人先读书，再写字，两个任务共享一个时间段，但是它们并不是同时发生的。</p>
+
+<p>而并行是多个任务真正同时在运行，通常依赖多核处理器。</p>
+
+<p>我们平时生活中大多数编程任务，虽然看似是“同时执行”，实际上并不需要真正同时进行，靠系统调度来实现多任务即可。</p>
+
+<p>再加上它们多数是IO密集型任务（指的不是传统的文件IO，而是一切输入输出，例如GUI、用户输入等），程序运行中大多时间用在等待上（等待用户输入、等待写入完成、等待网络数据包），操作系统可以利用这些等待时间去执行其它任务，从而提高整体效率。</p>
+
+<p>例如读取三个大文件，</p>
+
+<p>所以，一般用并发即可。具体可以用多线程、异步编程。</p>
+
+<p>只有少数高负载的计算，如文件压缩解压缩、AI推理、图形渲染，让多个任务物理上同时运行，最大化资源利用率，才需要用并行</p>
+
+<h4 id="并发的实现方式">并发的实现方式</h4>
+
+<h5 id="多线程">多线程</h5>
+
+<p>多线程是在一个进程内部创建多个线程，每个线程执行任务的不同部分。线程共享进程的内存和资源，因此线程间的通信开销较小。</p>
+
+<p>使用<code>threading</code>模块</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+
+<span class="k">def</span> <span class="nf">myFunction</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">myThread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">myFunction</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="s2">&quot;world&quot;</span><span class="p">))</span>
+
+<span class="n">myThread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">myThread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>  <span class="c1"># 在这里等待全部子线程执行完成</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;所有子线程已执行完成。&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><strong><code>Thread(target, args)</code></strong></p>
+
+<p>创建一个线程实例。target是新线程的入口函数，线程开始后就会执行这个函数。注意把函数作为参数传递，后面不要有括号，不然就是传递函数的返回值作为参数了。</p>
+
+<p><code>Thread.start()</code></p>
+
+<p>根据这个Thread实例对象创建一个线程并开始运行</p>
+
+<p><code>Thread.join()</code></p>
+
+<p>有的时候，一个线程A需要等待另外一个B结束，就调用B.join()，A就会在这里暂停，直到B结束，A才会继续运行。</p>
+
+<p>包括可以用来暂停主线程的执行，等到各个子线程完成了，主线程再对子线程获取的数据进行汇总整理。</p>
+
+<p>可以理解为，在这里等待集合，去接B下班。等到B也完成了，在这里碰头了，A再继续运行。</p>
+
+<p>为了方便快速创建多个线程，我们可以用for来创建，然后创建的各个thread对象放到一个列表里面</p>
+
+<h6 id="资源和共享">资源和共享</h6>
+
+<p>我们可以发现，子线程是调用主线程里某个函数的，因此，其中声明的变量都是局部变量，作用域仅在函数内部。所以，别的线程和主线程都无法获取这些资源。</p>
+
+<p>但是，主线程声明的东西作用域是整个进程的命名空间，所以子线程可以读取和修改它。</p>
+
+<h6 id="线程安全">线程安全</h6>
+
+<p>多个线程同时访问同一个资源时，可能会出现问题。例如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">bank</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;byhy&#39;</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="c1"># 定义一个函数，作为新线程执行的入口函数</span>
+<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="n">theadidx</span><span class="p">,</span><span class="n">amount</span><span class="p">):</span>
+    <span class="n">balance</span> <span class="o">=</span>  <span class="n">bank</span><span class="p">[</span><span class="s1">&#39;byhy&#39;</span><span class="p">]</span>
+    <span class="c1"># 执行一些任务，耗费了0.1秒</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">bank</span><span class="p">[</span><span class="s1">&#39;byhy&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span>  <span class="c1"># 修改全局变量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;子线程 </span><span class="si">{</span><span class="n">theadidx</span><span class="si">}</span><span class="s1"> 结束&#39;</span><span class="p">)</span>
+
+<span class="n">theadlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">deposit</span><span class="p">,</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="p">)</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="c1"># 把线程对象都存储到 threadlist中</span>
+    <span class="n">theadlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">theadlist</span><span class="p">:</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;主线程结束&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;最后我们的账号余额为 </span><span class="si">{</span><span class="n">bank</span><span class="p">[</span><span class="s2">&quot;byhy&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>在上面的代码中，如果运行，可能会出现问题，最终余额只有1。这就是数据竞争，后结束的线程用的还是一开始缓存的0元，然后把前面的都覆盖掉了</p>
+
+<p>（如果把<code>bank['byhy']  = balance + amount</code>里的运算符改成<code>bank['byhy']  += amount</code>也还是可能会出问题，因为+=在运行时，实际上也是先读取bank['byhy']，缓存起来，然后再进行运算和写入。</p>
+
+<h6 id="锁">锁</h6>
+
+<p>这种时候，我们可以使用threading库提供的锁对象Lock去保护。</p>
+
+<p>例如，上面的代码可以修改成</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span><span class="p">,</span><span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">bank</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;byhy&#39;</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="n">bankLock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>     <span class="o">---------------</span> <span class="n">声明一个锁</span>
+
+<span class="c1"># 定义一个函数，作为新线程执行的入口函数</span>
+<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="n">theadidx</span><span class="p">,</span><span class="n">amount</span><span class="p">):</span>
+    <span class="c1"># 操作共享数据前，申请获取锁</span>
+    <span class="n">bankLock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>    <span class="o">---------------</span> <span class="n">申请锁</span>
+
+    <span class="n">balance</span> <span class="o">=</span>  <span class="n">bank</span><span class="p">[</span><span class="s1">&#39;byhy&#39;</span><span class="p">]</span>
+    <span class="c1"># 执行一些任务，耗费了0.1秒</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">bank</span><span class="p">[</span><span class="s1">&#39;byhy&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;子线程 </span><span class="si">{</span><span class="n">theadidx</span><span class="si">}</span><span class="s1"> 结束&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 操作完共享数据后，申请释放锁</span>
+    <span class="n">bankLock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>   <span class="o">----------------</span> <span class="n">释放锁</span>
+
+<span class="n">theadlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">deposit</span><span class="p">,</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="p">)</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="c1"># 把线程对象都存储到 threadlist中</span>
+    <span class="n">theadlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">theadlist</span><span class="p">:</span>
+    <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;主线程结束&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;最后我们的账号余额为 </span><span class="si">{</span><span class="n">bank</span><span class="p">[</span><span class="s2">&quot;byhy&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>运行到<code>lock.accquire()</code>时，<code>accquire()</code>会检查锁的状态。</p>
+
+<p>如果此时锁</p>
+
+<p>如果锁被其他线程持有，<strong>一般情况下</strong>会被阻塞。调度器会把这个线程的状态标记为阻塞，这样这个线程就不会参与对cpu时间片的竞争</p>
+
+<p>当锁被释放时，线程恢复为就绪状态，线程调度器会让它在合适时机获得CPU。</p>
+
+<p>就是厕所，有人进去，就把门锁了，外面的人只能等到里面的人出来（线程释放锁，这时候还可以去干些别的再结束）才能进去</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="n">blocking</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>其中，blocking表示阻塞与否，默认为True，也就是会在这里阻塞线程，直到锁可用。如果设置为false，就不会等锁，而是立即返回false然后往下执行。</p>
+
+<p>timeout是阻塞的时限，默认为-1表示无限长。在上面锁的阻塞触发后，这个timeout会提供一个等待的上限，如果时间到了锁还在被占用，就返回false，不等了。</p>
+
+<p>threading.Lock是非公平锁，解锁后哪个线程先执行全靠操作系统调度，而不是按照请求顺序</p>
+
+<h5 id="多进程">多进程</h5>
+
+<p>多进程是创建多个独立的进程，每个进程有自己的地址空间和资源。进程之间相互独立，通常通过进程间通信（IPC）进行数据交换。</p>
+
+<h5 id="异步编程">异步编程</h5>
+
+<p>异步编程通过事件循环和回调机制来处理I/O操作。程序的主要线程可以继续执行其他任务，而不必等待I/O操作完成。</p>
+
+<h5 id="协程">协程</h5>
+
+<p>协程是一种特殊的线程，可以暂停和恢复执行。协程提供了比线程更轻量的并发方式，允许函数在执行过程中进行暂停和恢复，通常由一个事件循环管理。</p>
+
+<h4 id="使用qt的事件循环替代">使用QT的事件循环替代</h4>
+
+<p>如果我们需要做一些后台的获取本地状态的东西，其实不需要单开一个线程，因为时间极短，不会阻塞别的任务。</p>
+
+<p>我们可以直接使用定时器循环、定时中断。</p>
+
+<p>尤其地，在使用QT的项目中，我们可以直接使用。不过需要注意，Qt用是单线程事件循环模型，无法检查</p>
+
+<h3 id="gil的影响">GIL的影响</h3>
+
+<p>GIL，全局解释锁，是</p>
+
+<p>GIL像是操作系统的时间片调度那样，将线程在时间上分片执行，同时只有一个线程运行，</p>
+
+<p>如果有意无意导致两个线程同时操作一个资源，就会导致混乱，例如在python的内存管理实现中，关于何时认为资源无用了将其释放，依赖引用次数。</p>
+
+<p>虽然操作系统的分时调度也是将线程在时间上分片执行，同时只有一个线程运行，但这不是靠分时调度就能解决的问题。</p>
+
+<p>其它语言使用一些其它机制避免了引入这样的东西</p>
+
+<h2 id="一些编程的重要思想">一些编程的重要思想</h2>
+
+<h3 id="使用常量管理自定义属性">使用常量管理自定义属性</h3>
+
+<p>我们常常需要搞一些自定义属性，例如做一个可以旋转的窗口，它的朝向可以有上下左右4个方向。如果我们直接用数字或者字符串来代表这4个方向，可以，但是不好记，而且字符串可能会拼写错误。</p>
+
+<p>这时候，我们就可以使用常量管理。</p>
+
+<p>我们可以在项目中创建一个const.py文件，用来存储所有的常量。</p>
+
+<p>然后，声明几个常量</p>
+
+<pre><code>DOCK_LEFT = "DOCK_LEFT"
+DOCK_RIGHT = "DOCK_LEFT"
+DOCK_TOP = "DOCK_TOP"
+DOCK_BOTTOM = "DOCK_BOTTOM"
+</code></pre>
+
+<p>这样，在代码中import const之后，</p>
+
+<p>直接setOrient(DOCK_LEFT)</p>
+
+<p>而判断部分也是</p>
+
+<pre><code>def setOrient(self, orient):
+    if orient == DOCK_LEFT:
+        # 执行朝向左侧
+    elif orient == DOCK_RIGHT:
+        # 执行朝向右侧
+    elif orient == DOCK_TOP:
+    ......
+</code></pre>
+
+<p>即可。</p>
+
+<p>可以看到，全程都是使用DOCK_LEFT这些常量名，就很方便，不用担心拼错。</p>
+
+<p>而且，可以发现，此时全程都不需要操作里面的字符串。实际上，这些常量的内容是无所谓的，是字符串、int什么的都无所谓，只要彼此之间不要相等即可。</p>
+
+<p>还可以进一步组织到命名空间</p>
+
+<pre><code>class ToolbarDock:
+    LEFT = "left"
+    RIGHT = "right"
+    TOP = "top"
+    BOTTOM = "bottom"
+
+</code></pre>
+
+<p>这样，调用时使用的是ToolBarDock.LEFT这样的，进一步提高了代码的可读性，而且也不容易和别的重名。</p>
+
+<p>最关键是，它限制了就在ToolBarDock类里面，所以只有4个选项，不会有别的，不会说因各种原因传错。</p>
+
+<h4 id="使用枚举值进一步优化常量">使用枚举值进一步优化常量</h4>
+
+<p>使用enum，还可以进一步统一它们的行为。不重要。不常用。</p>
+
+<p>但是如果使用类来组织同一类的常量，可以顺带加上，可以随手用上。</p>
+
+<pre><code>from enum import Enum
+
+class DockPosition(Enum):
+    DOCK_LEFT = "DOCK_LEFT"
+    DOCK_RIGHT = "DOCK_LEFT"
+    DOCK_TOP = "DOCK_TOP"
+    DOCK_BOTTOM = "DOCK_BOTTOM"
+
+</code></pre>
+
+<h2 id="常用模块">常用模块</h2>
+
+<h3 id="sys">sys</h3>
+
+<h3 id="os">os</h3>
+
+<h4 id="路径相关-ospath">路径相关： os.path</h4>
+
+<h5 id="获取传入路径所在的目录">获取传入路径所在的目录</h5>
+
+<p>获取文件所在的目录。也就是文件路径去除掉文件名这一部分。</p>
+
+<pre><code>import os
+
+path_1 = "/home/user/project/my_file.txt"
+directory_1 = os.path.dirname(file_path)
+print(directory_1)  # 结果是绝对路径：/home/user/project
+
+path_2 = "project/my_file.txt"
+directory_2 = os.path.dirname(file_path)
+print(directory_2)  # 结果是相对路径：project
+</code></pre>
+
+<p><strong>如果传入的是相对路径，那就是相对路径；如果传入绝对路径，那就返回绝对路径。</strong></p>
+
+<p><strong>其实就是识别最后一个/然后split，只留下前面的部分（当然实际上还有一些辅助的处理）</strong></p>
+
+<h5 id="获取传入路径中的文件名">获取传入路径中的文件名</h5>
+
+<p>与上一个os.path.dirname相反，获取传入的路径的文件名部分（包括文件名和扩展名）</p>
+
+<pre><code>import os
+
+file_path = "/home/user/project/my_file.txt"
+file_name = os.path.basename(file_path)
+print(file_name)  # 输出my_file.txt
+
+</code></pre>
+
+<h5 id="拼合多个路径">拼合多个路径</h5>
+
+<p>用来将多个路径拼合在一起。会根据操作系统来使用正确的路径分隔符</p>
+
+<pre><code>import os
+
+path = os.path.join("/home/user", "project", "my_file.txt")
+print(path)   # 输出/home/user/project/my_file.txt
+
+</code></pre>
+
+<h5 id="检测路径所指的目标是否存在">检测路径所指的目标是否存在</h5>
+
+<p>检查路径是否存在（可以是文件或者是目录）</p>
+
+<pre><code>import os
+
+file_path = "/home/user/project/my_file.txt"
+print(os.path.exists(file_path))  # True 或 False
+
+</code></pre>
+
+<h5 id="判断路径是否文件是否目录">判断路径是否文件、是否目录</h5>
+
+<p><code>os.path.isdir(path)</code>检查是否是目录。</p>
+
+<p><code>os.path.isfile(paht)</code>检查是否是文件。</p>
+
+<h5 id="相对路径转为绝对路径">相对路径转为绝对路径</h5>
+
+<p><code>os.path.abspath(path)</code></p>
+
+<p>注意的是，它是根据当前的工作目录来进行的</p>
+
+<h4 id="ospath的重要用法">os.path的重要用法</h4>
+
+<p>在遇到有一个常见问题：</p>
+
+<p>在项目目录下，是这样的结构：</p>
+
+<pre><code>project/
+│
+├── main.py
+├── module/
+│   └── calculator.py
+└── res/
+    └── icons/
+        └── button_icon.png
+
+</code></pre>
+
+<p>功能模块calculator.py放在项目目录下的module文件夹，而图片放在项目目录的res/icons目录，calculator.py里面的CalculatorButton类在<code>__init__</code>中设置了图片</p>
+
+<p>但是，python的相对目录是以当前程序所在目录为起点的。也就是说，</p>
+
+<p>因为main.py的目录和calculator.py不对，导致直接运行calculator.py里面调用CalculatorButton类，与main.py去调用CalculatorButton生成实例，两者需要的路径不同，所以必定有一个无法正常加载图片。</p>
+
+<p>解决的关键是，</p>
+
+<h5 id="使用__file__创建绝对路径">使用<code>__file__</code>创建绝对路径</h5>
+
+<p>我们可以用<code>__file__</code>获取模块的路径。这个获得的是现在写的这个py文件的绝对路径。</p>
+
+<p>因此，我们可以在calculator.py的CalculatorButton的<code>__init__</code>里面这样写</p>
+
+<pre><code>import os
+
+class CalculatorButton:
+    def __init__(self):
+        # 获取 calculator.py 的绝对路径
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        # 拼接得到图片的绝对路径
+        icon_path = os.path.join(current_dir, '../res/icons/button_icon.png')
+
+        # 假设你有个方法来加载这个图片
+        self.icon = self.load_icon(icon_path)
+
+    def load_icon(self, path):
+        print(f"加载图片: {path}")
+        # 加载图片的逻辑
+
+if __name__ == "__main__":
+    # 测试用代码
+
+</code></pre>
+
+<p>这样写，无论是直接运行calculator.py，在<code>if __name__ == "__main__":</code>里面实例化CalculatorButon，还是通过导入calculator.py来在main.py里实例化，<code>__file__</code>都返回calculator.py的绝对路径。</p>
+
+<p>然后把它的路径提取目录部分，和icnon.png相对于它的相对路径'../res/icons/button_icon.png'拼合一下，即可得到图片的绝对路径。</p>
+
+<h5 id="通过main传值">通过main传值</h5>
+
+<p>设置成，全部函数都需要由main.py调用时传入main.py所处的项目目录。</p>
+
+<p>麻烦。但是可能有的时候会用得上</p>
+
+<h4 id="获取当前目录">获取当前目录</h4>
+
+<p>import os</p>
+
+<p>os.getcwd()</p>
+
+<h4 id="执行系统命令">执行系统命令</h4>
+
+<p>返回值 = os.system(命令)</p>
+
+<h3 id="requests库与爬虫相关">requests库与爬虫相关</h3>
+
+<h4 id="requests获取网络数据">requests获取网络数据</h4>
+
+<p>request.get(地址)</p>
+
+<p>注意，这会阻塞代码的运行，直到收到服务器响应</p>
+
+<p>需要注意，它会无限地等待，直到收到响应。如果是出现网络问题或服务器没有响应，就会一直卡在这里。</p>
+
+<p>因此最好加上<code>timeout = 5</code>来设置超时</p>
+
+<p>要下载一个网易云的m4a文件,</p>
+
+<p>使用get方法获取</p>
+
+<p>reuests.get(url).content</p>
+
+<p>获取网页源代码</p>
+
+<p>requests.get(url).text</p>
+
+<p>筛选可以自己手动筛选，或者用第三方模块</p>
+
+<p>lxml的etree.HTML来解析网页</p>
+
+<p>找小说的内容，可以在网页开发者工具里用ctrl +f搜索，在开发者工具可以用字符串搜索</p>
+
+<p>字符串、选择器、 xPath</p>
+
+<p>只需要定位到放置文本的那个div就好了，然后看看它的class或者id，总之是独特的。</p>
+
+<p>但是代码里得用xPath定位</p>
+
+<h4 id="lxml解析html结构">lxml解析html结构</h4>
+
+<p>使用lxml来解析收到的html文本</p>
+
+<h5 id="etree对象转换为html文本">etree对象转换为html文本</h5>
+
+<p>有时候我们需要把etree 元素对象又转回html文本，这需要我们进行</p>
+
+<p>需要注意，得到的结果是字节流，所以还得再来一个decode()</p>
+
+<p>//</p>
+
+<p>//div是全部div</p>
+
+<p>//div[@class="类名"]</p>
+
+<p>每个选择器，例如class，前面都要有个@</p>
+
+<p>然后想要段落，就进一步</p>
+
+<p>html = etree.HTML(data)</p>
+
+<p>p = html.xpath('//div[@class="类名"]/p')</p>
+
+<p>这时候读到的一个列表，全部的p。</p>
+
+<p>这时候如果打印里面的元素，打印出来是<element p in ...&gt;这样的东西。</p>
+
+<p>要读取文字，也是用xpath</p>
+
+<p>item.xpath('./text()')</p>
+
+<p><strong>区别在于，//用于在整个文档对象中寻找任意层级符合要求的节点，而./是从一个节点往下去寻找</strong></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x65) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3&#39;</span>
+
+<span class="n">content_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.hongxiu.com/chapterlist/28664494304681504&quot;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">content_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="n">user_agent</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">chaps</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//ul[@class=</span><span class="se">\&quot;</span><span class="s2">cf</span><span class="se">\&quot;</span><span class="s2">]/li&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chaps</span><span class="p">:</span>
+    <span class="c1">#print(item)</span>
+    <span class="n">poo</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;./a&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#print(&quot;txt:&quot;, item.xpath(&quot;text()&quot;))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">poo</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">poo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<h4 id="相对路径的补全逻辑">相对路径的补全逻辑</h4>
+
+<p><strong>绝对路径</strong>：链接中的完整 URL，例如 <code>https://www.didamh.com/chapter/47059-1-1.html</code>。</p>
+
+<p><strong>相对路径</strong>：不包含完整域名的 URL，例如 <code>/chapter/47059-1-1.html</code>。</p>
+
+<p>对于相对路径，有：</p>
+
+<p><strong>以 <code>/</code> 开头的相对路径</strong>：浏览器会从 <strong>网站根目录</strong> 开始拼接 URL。比如：</p>
+
+<ul>
+<li>如果链接是 <code>/chapter/47059-1-1.html</code>，而网页的链接是<code>https://www.didamh.com/book/47059.html</code>，浏览器会从网页根目录 <code>https://www.didamh.com/</code> 开始拼接，完整 URL 变成 <code>https://www.didamh.com/chapter/47059-1-1.html</code>。</li>
+<li>这就是为什么你在这个页面上看到的链接 <code>href="/chapter/47059-1-1.html"</code>，最终解析为 <code>https://www.didamh.com/chapter/47059-1-1.html</code>。</li>
+</ul>
+
+<p><strong>不以 <code>/</code> 开头的相对路径</strong>：如果路径没有 <code>/</code>，那么浏览器会从当前页面的目录位置开始拼接。例如：</p>
+
+<ul>
+<li>如果你当前的页面是 <code>https://www.didamh.com/book/47059.html</code>，而链接是 <code>chapter/47059-1-1.html</code>（不以 <code>/</code> 开头），浏览器会把它解析为 <code>https://www.didamh.com/book/chapter/47059-1-1.html</code>。</li>
+</ul>
+
+<p>这个自动判断和拼接的过程已经在urllib中实现了</p>
+
+<pre><code>from urllib.parse import urljoin
+
+# 基础 URL，即当前页面的完整 URL
+base_url = "https://www.didamh.com/book/47059.html"
+
+# 示例的相对路径
+relative_url = "/chapter/47059-1-1.html"
+
+# 使用 urljoin 将相对路径转换为完整的绝对路径
+full_url = urljoin(base_url, relative_url)
+
+print("完整的 URL:", full_url)
+
+</code></pre>
+
+<h5 id="session">session</h5>
+
+<p>创建会话，这样就能保持一些公用的数据如cookies，保持登陆状态</p>
+
+<h3 id="json模块">json模块</h3>
+
+<p>可以读写json文件，解析为一个字典。</p>
+
+<h4 id="写入">写入</h4>
+
+<p><code>json.dump(数据字典, 被写入的文件)</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_student&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;courses&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Math&quot;</span><span class="p">,</span> <span class="s2">&quot;Science&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ss.json&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">file</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 这里的indent=4可以不加。这是设置为格式化输出，而不是全部写到一行。</span>
+</code></pre>
+</div>
+
+<p>注意，里面的<code>ensure_ascii=False</code>很重要，如果没有开启，就会把unicode里的非ASCII字符用unicode转义字符<code>\uXXXX</code>的格式写上去，表示U+XXXX。</p>
+
+<p>例如<code>第一章</code>变成<code>\u7b2c1\u8bdd</code>。</p>
+
+<h5 id="字节流和转义字符">字节流和转义字符</h5>
+
+<p>注意，在python3中，有两种带转义符<code>\</code>的表示字符的形式</p>
+
+<pre><code># UTF-8 字节串
+utf8_encoded = b'\xe8\xaf\x9d'
+# 解码为可读字符
+print(utf8_encoded.decode('utf-8'))  # 输出: 话
+
+# Unicode 转义字符
+unicode_escape = "\u8bdd"
+print(unicode_escape)  # 输出: 话
+lllll
+</code></pre>
+
+<p>\x是十六进制数前缀，后面跟两个十六进制字符，共16*16=256种可能，正好表示一个字节。常常用来表示二进制数据，例如字节流。</p>
+
+<p>我们知道，unicode把所有的字符都用一个数字排序，例如<code>ord("A") == 65</code>；而为了减少英文的存储体积，utf-8是可变长编码，用1-3个字节来存储所有字符。</p>
+
+<p>\xe8\xaf\x9d的形式，就是用</p>
+
+<p>而unicode转义字符 \uXXXX则</p>
+
+<h4 id="读取">读取</h4>
+
+<p><code>json.load(文件)</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># 从 JSON 文件中读取数据</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># 输出读取的数据</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="关于用键读取的问题和优化方法">关于用键读取的问题和优化方法</h4>
+
+<p>用键去读取，会比较麻烦，尤其是可能会不小心把键拼错。</p>
+
+<p>例如下面这个</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;ToolsBar&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+            <span class="p">},</span>
+
+        <span class="p">},</span>
+        <span class="s2">&quot;Preferences&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;display&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;theme&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;unfold_mode&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;10px&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;keyboard_shortcut&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;toggle_unfold&quot;</span><span class="p">:</span> <span class="p">{}</span>  <span class="c1"># todo: 完成创建这个表示快捷键的字典标准</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;localStatus&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;if_freshman&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>我们可以把它的键值对变成它的属性</p>
+
+<pre><code>class NestedConfig:
+    # 传入的是一个字典。当去获取这个字典中不存在的键时 ，返回
+    def __init__(self, config):
+        self.config = config
+
+    def __getattr__(self, item):
+        result = self.config[item]
+        if isinstance(result, dict):
+            return NestedConfig(result)
+        else:
+            return result
+
+
+</code></pre>
+
+<h3 id="math模块">math模块</h3>
+
+<h4 id="ceil向上取整">ceil向上取整</h4>
+
+<pre><code>math.ceil(4.8) == 5
+</code></pre>
+
+<h4 id="sqrt平方根">sqrt平方根</h4>
+
+<h3 id="datetime模块">datetime模块</h3>
+
+<p>可以创建日期对象。包括了date、time、datetime类，分别表示日期、时间、日期+时间。</p>
+
+<p>date</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>  <span class="c1"># 创建一个date对象为当前日期</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">today</span><span class="p">)</span>
+<span class="c1"># 还可以获取today().year  today().month等</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># 创建一个指定日期的date</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>time</p>
+
+<pre><code>import datetime
+
+current_time = datetime.time()
+print(current_time)
+
+t = time(12,30,45)
+print(t)
+</code></pre>
+
+<p>datetime</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="random模块">random模块</h3>
+
+<h4 id="randintab">randint(a,b)</h4>
+
+<p>生成ab之间的随机整数。注意左右都是闭区间。</p>
+
+<h4 id="choiceseq">choice(seq)</h4>
+
+<p>随机选择列表seq中的一个元素。</p>
+
+<h3 id="keyboard键">keyboard键</h3>
+
+<p>需要pip安装，之后直接import keyboard</p>
+
+<h4 id="各种按键的代号">各种按键的代号</h4>
+
+<p>f键 f1</p>
+
+<p>截屏键 "print screen" </p>
+
+<p>Scrolock  "scroll lock"</p>
+
+<h4 id="add_hotkey">add_hotkey()</h4>
+
+<pre><code>keyboard.add_hotkey(键名称, 回调函数)
+</code></pre>
+
+<p>监控某个按键。当指定按键被按下时，执行对应回调函数</p>
+
+<h4 id="press_and_release">press<em>and</em>release()</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">keyboard</span><span class="o">.</span><span class="n">press_and_release</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>模拟按下和松开某个按键。</p>
+
+<h3 id="pillow-模块">pillow 模块</h3>
+
+<p>用于处理图片文件，支持多种格式。可以对图片进行缩放、裁剪、旋转、调整亮度等。</p>
+
+<p><strong>注意，这是PIL的分支。pip安装时是pillow，但是import的时候还是import PIL</strong></p>
+
+<h4 id="image">Image</h4>
+
+<p>最核心的类，用来表示图像，包括打开、保存、转换、裁剪、旋转等。</p>
+
+<h5 id="打开图像">打开图像</h5>
+
+<p>直接用Image的方法，来创建一个Image对象</p>
+
+<pre><code>myImage = Image.open("example.jpg")
+</code></pre>
+
+<h5 id="显示图片">显示图片</h5>
+
+<p>以下都是对某个对象来的了</p>
+
+<pre><code>myImage.show()  # 刚刚创建的图片对象
+</code></pre>
+
+<h5 id="转换">转换</h5>
+
+<p>格式：</p>
+
+<pre><code>Image.convert(mode=None, matrix=None, dither=None, palette=WEB, colors=256)
+</code></pre>
+
+<ul>
+<li><code>mode</code>: 指定目标模式。如果为<code>None</code>，则使用默认模式。常见的模式包括：
+<ul>
+<li><code>'1'</code>: 1位像素，黑白，使用一比特来存储每个像素。</li>
+<li><code>'L'</code>: 8位像素，灰度。仅表示明暗。</li>
+<li><code>'P'</code>: 8位像素，使用调色板映射到最多256种颜色。</li>
+<li><code>'RGB'</code>: 3x8位像素，真彩色。</li>
+<li><code>'RGBA'</code>: 4x8位像素，真彩色，带透明通道。</li>
+<li><code>'CMYK'</code>: 4x8位像素，用于分色。常用于印刷</li>
+<li><code>'YCbCr'</code>: 3x8位像素，彩色视频格式。</li>
+<li><code>'LAB'</code>: 3x8位像素，CIE L<em>a</em>b*色彩空间。</li>
+<li><code>'HSV'</code>: 3x8位像素，HSV色彩空间。</li>
+<li><code>'I'</code>: 32位整数像素。</li>
+<li><code>'F'</code>: 32位浮点像素。</li>
+</ul></li>
+<li><code>matrix</code>: 可选的颜色转换矩阵。</li>
+<li><code>dither</code>: 是否使用抖动算法。抖动是一种减少颜色数量时的视觉效果的技术。</li>
+<li><code>palette</code>: 用于模式<code>'P'</code>的调色板。</li>
+<li><code>colors</code>: 用于模式<code>'P'</code>的调色板中的颜色数。</li>
+</ul>
+
+<h5 id="剪切图片">剪切图片</h5>
+
+<p>crop</p>
+
+<h5 id="调整图片大小">调整图片大小</h5>
+
+<p>resize</p>
+
+<h5 id="滤镜">滤镜</h5>
+
+<p>filter</p>
+
+<p>ImageFilter模块提供了滤波器相关定义，这些滤波器主要用于Image类的filter()方法，通过filter()方法我们可以实现滤镜这一功能效果~</p>
+
+<p>例如：</p>
+
+<p>ImageFilter.BLUR 模糊滤镜</p>
+
+<p>ImageFilter.CONTOUR 铅笔轮廓滤镜</p>
+
+<p>ImageFilter.EMBOSS 浮雕滤镜</p>
+
+<p>调用方法</p>
+
+<p>代码编辑器</p>
+
+<p>from PIL import Image,ImageFilter</p>
+
+<p>img = Image.open("/Users/baizhi/Pikachu.png")</p>
+
+<p>img_new = img.filter(ImageFilter.CONTOUR)</p>
+
+<p>img<em>new.save("/Users/baizhi/Pikachu</em>con.png")</p>
+
+<p>要求</p>
+
+<p>根据注释</p>
+
+<ol>
+<li>打开指定路径的图片</li>
+<li>调用filter( )方法，为图片添加CONTOUR滤镜</li>
+<li>保存图片至指定路径（见注释）</li>
+</ol>
+
+<h5 id="保存图片">保存图片</h5>
+
+<p>直接使用pillow创建的图像文件的save方法即可。</p>
+
+<pre><code>myImage.save("output.jpg")
+</code></pre>
+
+<h4 id="imagedraw">imageDraw</h4>
+
+<p>在图像上绘制线条、形状、文本</p>
+
+<h2 id="windows-api">windows api</h2>
+
+<h3 id="ctypes">ctypes</h3>
+
+<p>用于在python中加载动态链接库，调用其中的函数。</p>
+
+<p>例如，导入外部c</p>
+
+<p>常常用于直接导入windows自带的库，尤其是user32.dll，来实现系统操作。</p>
+
+<p>pywin32（包含win32api、win32gui、win32con等可以直接import的小软件包）也是利用类似的方法，访问C语言编写的user32.dll</p>
+
+<h4 id="模拟按键">模拟按键</h4>
+
+<p>使用pyside6的按键事件，只能监控我们自己项目里接受的键盘事件。如果需要检测</p>
+
+<pre><code>import ctypes
+
+ctypes.windll.user32.keybd_event(虚拟键码, 硬件扫描码,动作标志, 拓展信息)
+</code></pre>
+
+<p>通常硬件扫描码和拓展信息写0即可。所以</p>
+
+<pre><code>ctypes.windll.user32.keybd_event(0x41, 0, 0, 0)  # 按下 'A' 键
+</code></pre>
+
+<h5 id="虚拟键码">虚拟键码</h5>
+
+<p>其中的虚拟键码是windows提供的一种特殊的键码定义。</p>
+
+<p>实际上windows API定义了一组常量，如果在python中使用，需要安装pywin32</p>
+
+<h5 id="动作标志">动作标志</h5>
+
+<p>表示这个按键动作是按下还是抬起按键</p>
+
+<p>常用组合键：</p>
+
+<p>ctrl + v:</p>
+
+<pre><code>ctypes.windll.user32.keybd_event(0x11, 0, 0, 0)  # Ctrl 键按下
+ctypes.windll.user32.keybd_event(0x56, 0, 0, 0)  # V 键按下
+ctypes.windll.user32.keybd_event(0x56, 0, 2, 0)  # V 键弹起
+ctypes.windll.user32.keybd_event(0x11, 0, 2, 0)  # Ctrl 键弹起
+</code></pre>
+
+<p>以下为虚拟键码对照表</p>
+
+<table>
+<thead>
+<tr>
+  <th style="text-align:left;">常数</th>
+  <th style="text-align:left;">Value</th>
+  <th style="text-align:left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left;"><code>VK_LBUTTON</code></td>
+  <td style="text-align:left;">0x01</td>
+  <td style="text-align:left;">鼠标左键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RBUTTON</code></td>
+  <td style="text-align:left;">0x02</td>
+  <td style="text-align:left;">鼠标右键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CANCEL</code></td>
+  <td style="text-align:left;">0x03</td>
+  <td style="text-align:left;">控制中断处理</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MBUTTON</code></td>
+  <td style="text-align:left;">0x04</td>
+  <td style="text-align:left;">鼠标中键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_XBUTTON1</code></td>
+  <td style="text-align:left;">0x05</td>
+  <td style="text-align:left;">X1 鼠标按钮</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_XBUTTON2</code></td>
+  <td style="text-align:left;">0x06</td>
+  <td style="text-align:left;">X2 鼠标按钮</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x07</td>
+  <td style="text-align:left;">保留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BACK</code></td>
+  <td style="text-align:left;">0x08</td>
+  <td style="text-align:left;">BACKSPACE 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_TAB</code></td>
+  <td style="text-align:left;">0x09</td>
+  <td style="text-align:left;">Tab 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x0A-0B</td>
+  <td style="text-align:left;">预留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CLEAR</code></td>
+  <td style="text-align:left;">0x0C</td>
+  <td style="text-align:left;">CLEAR 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RETURN</code></td>
+  <td style="text-align:left;">0x0D</td>
+  <td style="text-align:left;">Enter 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x0E-0F</td>
+  <td style="text-align:left;">未分配</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SHIFT</code></td>
+  <td style="text-align:left;">0x10</td>
+  <td style="text-align:left;">SHIFT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CONTROL</code></td>
+  <td style="text-align:left;">0x11</td>
+  <td style="text-align:left;">CTRL 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MENU</code></td>
+  <td style="text-align:left;">0x12</td>
+  <td style="text-align:left;">Alt 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PAUSE</code></td>
+  <td style="text-align:left;">0x13</td>
+  <td style="text-align:left;">PAUSE 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CAPITAL</code></td>
+  <td style="text-align:left;">0x14</td>
+  <td style="text-align:left;">CAPS LOCK 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_KANA</code></td>
+  <td style="text-align:left;">0x15</td>
+  <td style="text-align:left;">IME Kana 模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_HANGUL</code></td>
+  <td style="text-align:left;">0x15</td>
+  <td style="text-align:left;">IME Hanguel 模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_IME_ON</code></td>
+  <td style="text-align:left;">0x16</td>
+  <td style="text-align:left;">IME 打开</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_JUNJA</code></td>
+  <td style="text-align:left;">0x17</td>
+  <td style="text-align:left;">IME Junja 模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_FINAL</code></td>
+  <td style="text-align:left;">0x18</td>
+  <td style="text-align:left;">IME 最终模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_HANJA</code></td>
+  <td style="text-align:left;">0x19</td>
+  <td style="text-align:left;">IME Hanja 模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_KANJI</code></td>
+  <td style="text-align:left;">0x19</td>
+  <td style="text-align:left;">IME Kanji 模式</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_IME_OFF</code></td>
+  <td style="text-align:left;">0x1A</td>
+  <td style="text-align:left;">IME 关闭</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_ESCAPE</code></td>
+  <td style="text-align:left;">0x1B</td>
+  <td style="text-align:left;">ESC 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CONVERT</code></td>
+  <td style="text-align:left;">0x1C</td>
+  <td style="text-align:left;">IME 转换</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NONCONVERT</code></td>
+  <td style="text-align:left;">0x1D</td>
+  <td style="text-align:left;">IME 不转换</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_ACCEPT</code></td>
+  <td style="text-align:left;">0x1E</td>
+  <td style="text-align:left;">IME 接受</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MODECHANGE</code></td>
+  <td style="text-align:left;">0x1F</td>
+  <td style="text-align:left;">IME 模式更改请求</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SPACE</code></td>
+  <td style="text-align:left;">0x20</td>
+  <td style="text-align:left;">空格键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PRIOR</code></td>
+  <td style="text-align:left;">0x21</td>
+  <td style="text-align:left;">PAGE UP 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NEXT</code></td>
+  <td style="text-align:left;">0x22</td>
+  <td style="text-align:left;">PAGE DOWN 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_END</code></td>
+  <td style="text-align:left;">0x23</td>
+  <td style="text-align:left;">END 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_HOME</code></td>
+  <td style="text-align:left;">0x24</td>
+  <td style="text-align:left;">HOME 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LEFT</code></td>
+  <td style="text-align:left;">0x25</td>
+  <td style="text-align:left;">LEFT ARROW 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_UP</code></td>
+  <td style="text-align:left;">0x26</td>
+  <td style="text-align:left;">UP ARROW 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RIGHT</code></td>
+  <td style="text-align:left;">0x27</td>
+  <td style="text-align:left;">RIGHT ARROW 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_DOWN</code></td>
+  <td style="text-align:left;">0x28</td>
+  <td style="text-align:left;">DOWN ARROW 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SELECT</code></td>
+  <td style="text-align:left;">0x29</td>
+  <td style="text-align:left;">SELECT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PRINT</code></td>
+  <td style="text-align:left;">0x2A</td>
+  <td style="text-align:left;">PRINT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_EXECUTE</code></td>
+  <td style="text-align:left;">0x2B</td>
+  <td style="text-align:left;">EXECUTE 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SNAPSHOT</code></td>
+  <td style="text-align:left;">0x2C</td>
+  <td style="text-align:left;">PRINT SCREEN 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_INSERT</code></td>
+  <td style="text-align:left;">0x2D</td>
+  <td style="text-align:left;">INS 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_DELETE</code></td>
+  <td style="text-align:left;">0x2E</td>
+  <td style="text-align:left;">DEL 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_HELP</code></td>
+  <td style="text-align:left;">0x2F</td>
+  <td style="text-align:left;">HELP 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x30</td>
+  <td style="text-align:left;">0 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x31</td>
+  <td style="text-align:left;">1 个键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x32</td>
+  <td style="text-align:left;">2 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x33</td>
+  <td style="text-align:left;">3 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x34</td>
+  <td style="text-align:left;">4 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x35</td>
+  <td style="text-align:left;">5 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x36</td>
+  <td style="text-align:left;">6 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x37</td>
+  <td style="text-align:left;">7 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x38</td>
+  <td style="text-align:left;">8 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x39</td>
+  <td style="text-align:left;">9 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x3A-40</td>
+  <td style="text-align:left;">Undefined</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x41</td>
+  <td style="text-align:left;">A 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x42</td>
+  <td style="text-align:left;">B 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x43</td>
+  <td style="text-align:left;">C 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x44</td>
+  <td style="text-align:left;">D 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x45</td>
+  <td style="text-align:left;">E 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x46</td>
+  <td style="text-align:left;">F 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x47</td>
+  <td style="text-align:left;">G 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x48</td>
+  <td style="text-align:left;">H 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x49</td>
+  <td style="text-align:left;">I 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4A</td>
+  <td style="text-align:left;">J 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4B</td>
+  <td style="text-align:left;">K 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4C</td>
+  <td style="text-align:left;">L 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4D</td>
+  <td style="text-align:left;">M 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4E</td>
+  <td style="text-align:left;">N 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x4F</td>
+  <td style="text-align:left;">O 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x50</td>
+  <td style="text-align:left;">P 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x51</td>
+  <td style="text-align:left;">Q 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x52</td>
+  <td style="text-align:left;">R 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x53</td>
+  <td style="text-align:left;">S 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x54</td>
+  <td style="text-align:left;">T 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x55</td>
+  <td style="text-align:left;">U 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x56</td>
+  <td style="text-align:left;">V 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x57</td>
+  <td style="text-align:left;">W 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x58</td>
+  <td style="text-align:left;">X 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x59</td>
+  <td style="text-align:left;">Y 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"></td>
+  <td style="text-align:left;">0x5A</td>
+  <td style="text-align:left;">Z 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LWIN</code></td>
+  <td style="text-align:left;">0x5B</td>
+  <td style="text-align:left;">左 Windows 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RWIN</code></td>
+  <td style="text-align:left;">0x5C</td>
+  <td style="text-align:left;">右侧 Windows 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_APPS</code></td>
+  <td style="text-align:left;">0x5D</td>
+  <td style="text-align:left;">应用程序密钥</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x5E</td>
+  <td style="text-align:left;">预留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SLEEP</code></td>
+  <td style="text-align:left;">0x5F</td>
+  <td style="text-align:left;">计算机休眠键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD0</code></td>
+  <td style="text-align:left;">0x60</td>
+  <td style="text-align:left;">数字键盘 0 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD1</code></td>
+  <td style="text-align:left;">0x61</td>
+  <td style="text-align:left;">数字键盘 1 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD2</code></td>
+  <td style="text-align:left;">0x62</td>
+  <td style="text-align:left;">数字键盘 2 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD3</code></td>
+  <td style="text-align:left;">0x63</td>
+  <td style="text-align:left;">数字键盘 3 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD4</code></td>
+  <td style="text-align:left;">0x64</td>
+  <td style="text-align:left;">数字键盘 4 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD5</code></td>
+  <td style="text-align:left;">0x65</td>
+  <td style="text-align:left;">数字键盘 5 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD6</code></td>
+  <td style="text-align:left;">0x66</td>
+  <td style="text-align:left;">数字键盘 6 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD7</code></td>
+  <td style="text-align:left;">0x67</td>
+  <td style="text-align:left;">数字键盘 7 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD8</code></td>
+  <td style="text-align:left;">0x68</td>
+  <td style="text-align:left;">数字键盘 8 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMPAD9</code></td>
+  <td style="text-align:left;">0x69</td>
+  <td style="text-align:left;">数字键盘 9 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MULTIPLY</code></td>
+  <td style="text-align:left;">0x6A</td>
+  <td style="text-align:left;">乘号键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_ADD</code></td>
+  <td style="text-align:left;">0x6B</td>
+  <td style="text-align:left;">加号键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SEPARATOR</code></td>
+  <td style="text-align:left;">0x6C</td>
+  <td style="text-align:left;">分隔符键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SUBTRACT</code></td>
+  <td style="text-align:left;">0x6D</td>
+  <td style="text-align:left;">减号键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_DECIMAL</code></td>
+  <td style="text-align:left;">0x6E</td>
+  <td style="text-align:left;">句点键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_DIVIDE</code></td>
+  <td style="text-align:left;">0x6F</td>
+  <td style="text-align:left;">除号键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F1</code></td>
+  <td style="text-align:left;">0x70</td>
+  <td style="text-align:left;">F1 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F2</code></td>
+  <td style="text-align:left;">0x71</td>
+  <td style="text-align:left;">F2 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F3</code></td>
+  <td style="text-align:left;">0x72</td>
+  <td style="text-align:left;">F3 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F4</code></td>
+  <td style="text-align:left;">0x73</td>
+  <td style="text-align:left;">F4 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F5</code></td>
+  <td style="text-align:left;">0x74</td>
+  <td style="text-align:left;">F5 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F6</code></td>
+  <td style="text-align:left;">0x75</td>
+  <td style="text-align:left;">F6 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F7</code></td>
+  <td style="text-align:left;">0x76</td>
+  <td style="text-align:left;">F7 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F8</code></td>
+  <td style="text-align:left;">0x77</td>
+  <td style="text-align:left;">F8 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F9</code></td>
+  <td style="text-align:left;">0x78</td>
+  <td style="text-align:left;">F9 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F10</code></td>
+  <td style="text-align:left;">0x79</td>
+  <td style="text-align:left;">F10 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F11</code></td>
+  <td style="text-align:left;">0x7A</td>
+  <td style="text-align:left;">F11 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F12</code></td>
+  <td style="text-align:left;">0x7B</td>
+  <td style="text-align:left;">F12 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F13</code></td>
+  <td style="text-align:left;">0x7C</td>
+  <td style="text-align:left;">F13 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F14</code></td>
+  <td style="text-align:left;">0x7D</td>
+  <td style="text-align:left;">F14 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F15</code></td>
+  <td style="text-align:left;">0x7E</td>
+  <td style="text-align:left;">F15 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F16</code></td>
+  <td style="text-align:left;">0x7F</td>
+  <td style="text-align:left;">F16 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F17</code></td>
+  <td style="text-align:left;">0x80</td>
+  <td style="text-align:left;">F17 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F18</code></td>
+  <td style="text-align:left;">0x81</td>
+  <td style="text-align:left;">F18 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F19</code></td>
+  <td style="text-align:left;">0x82</td>
+  <td style="text-align:left;">F19 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F20</code></td>
+  <td style="text-align:left;">0x83</td>
+  <td style="text-align:left;">F20 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F21</code></td>
+  <td style="text-align:left;">0x84</td>
+  <td style="text-align:left;">F21 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F22</code></td>
+  <td style="text-align:left;">0x85</td>
+  <td style="text-align:left;">F22 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F23</code></td>
+  <td style="text-align:left;">0x86</td>
+  <td style="text-align:left;">F23 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_F24</code></td>
+  <td style="text-align:left;">0x87</td>
+  <td style="text-align:left;">F24 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x88-8F</td>
+  <td style="text-align:left;">保留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NUMLOCK</code></td>
+  <td style="text-align:left;">0x90</td>
+  <td style="text-align:left;">NUM LOCK 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_SCROLL</code></td>
+  <td style="text-align:left;">0x91</td>
+  <td style="text-align:left;">SCROLL LOCK 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x92-96</td>
+  <td style="text-align:left;">OEM 特有</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0x97-9F</td>
+  <td style="text-align:left;">未分配</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LSHIFT</code></td>
+  <td style="text-align:left;">0xA0</td>
+  <td style="text-align:left;">左 SHIFT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RSHIFT</code></td>
+  <td style="text-align:left;">0xA1</td>
+  <td style="text-align:left;">右 SHIFT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LCONTROL</code></td>
+  <td style="text-align:left;">0xA2</td>
+  <td style="text-align:left;">左 Ctrl 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RCONTROL</code></td>
+  <td style="text-align:left;">0xA3</td>
+  <td style="text-align:left;">右 Ctrl 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LMENU</code></td>
+  <td style="text-align:left;">0xA4</td>
+  <td style="text-align:left;">左 ALT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_RMENU</code></td>
+  <td style="text-align:left;">0xA5</td>
+  <td style="text-align:left;">右 ALT 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_BACK</code></td>
+  <td style="text-align:left;">0xA6</td>
+  <td style="text-align:left;">浏览器后退键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_FORWARD</code></td>
+  <td style="text-align:left;">0xA7</td>
+  <td style="text-align:left;">浏览器前进键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_REFRESH</code></td>
+  <td style="text-align:left;">0xA8</td>
+  <td style="text-align:left;">浏览器刷新键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_STOP</code></td>
+  <td style="text-align:left;">0xA9</td>
+  <td style="text-align:left;">浏览器停止键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_SEARCH</code></td>
+  <td style="text-align:left;">0xAA</td>
+  <td style="text-align:left;">浏览器搜索键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_FAVORITES</code></td>
+  <td style="text-align:left;">0xAB</td>
+  <td style="text-align:left;">浏览器收藏键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_BROWSER_HOME</code></td>
+  <td style="text-align:left;">0xAC</td>
+  <td style="text-align:left;">浏览器“开始”和“主页”键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_VOLUME_MUTE</code></td>
+  <td style="text-align:left;">0xAD</td>
+  <td style="text-align:left;">静音键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_VOLUME_DOWN</code></td>
+  <td style="text-align:left;">0xAE</td>
+  <td style="text-align:left;">音量减小键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_VOLUME_UP</code></td>
+  <td style="text-align:left;">0xAF</td>
+  <td style="text-align:left;">音量增加键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MEDIA_NEXT_TRACK</code></td>
+  <td style="text-align:left;">0xB0</td>
+  <td style="text-align:left;">下一曲目键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MEDIA_PREV_TRACK</code></td>
+  <td style="text-align:left;">0xB1</td>
+  <td style="text-align:left;">上一曲目键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MEDIA_STOP</code></td>
+  <td style="text-align:left;">0xB2</td>
+  <td style="text-align:left;">停止媒体键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_MEDIA_PLAY_PAUSE</code></td>
+  <td style="text-align:left;">0xB3</td>
+  <td style="text-align:left;">播放/暂停媒体键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LAUNCH_MAIL</code></td>
+  <td style="text-align:left;">0xB4</td>
+  <td style="text-align:left;">启动邮件键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LAUNCH_MEDIA_SELECT</code></td>
+  <td style="text-align:left;">0xB5</td>
+  <td style="text-align:left;">选择媒体键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LAUNCH_APP1</code></td>
+  <td style="text-align:left;">0xB6</td>
+  <td style="text-align:left;">启动应用程序 1 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_LAUNCH_APP2</code></td>
+  <td style="text-align:left;">0xB7</td>
+  <td style="text-align:left;">启动应用程序 2 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xB8-B9</td>
+  <td style="text-align:left;">预留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_1</code></td>
+  <td style="text-align:left;">0xBA</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>;:</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_PLUS</code></td>
+  <td style="text-align:left;">0xBB</td>
+  <td style="text-align:left;">对于任何国家/地区，键<code>+</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_COMMA</code></td>
+  <td style="text-align:left;">0xBC</td>
+  <td style="text-align:left;">对于任何国家/地区，键<code>,</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_MINUS</code></td>
+  <td style="text-align:left;">0xBD</td>
+  <td style="text-align:left;">对于任何国家/地区，键<code>-</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_PERIOD</code></td>
+  <td style="text-align:left;">0xBE</td>
+  <td style="text-align:left;">对于任何国家/地区，键<code>.</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_2</code></td>
+  <td style="text-align:left;">0xBF</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>/?</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_3</code></td>
+  <td style="text-align:left;">0xC0</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键`<code>~</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xC1-DA</td>
+  <td style="text-align:left;">保留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_4</code></td>
+  <td style="text-align:left;">0xDB</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>[{</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_5</code></td>
+  <td style="text-align:left;">0xDC</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>\|</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_6</code></td>
+  <td style="text-align:left;">0xDD</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>]}</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_7</code></td>
+  <td style="text-align:left;">0xDE</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。 对于美国标准键盘，键<code>'"</code></td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_8</code></td>
+  <td style="text-align:left;">0xDF</td>
+  <td style="text-align:left;">用于杂项字符；它可能因键盘而异。</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE0</td>
+  <td style="text-align:left;">预留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE1</td>
+  <td style="text-align:left;">OEM 特有</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_102</code></td>
+  <td style="text-align:left;">0xE2</td>
+  <td style="text-align:left;">美国标准键盘上的 <code>&lt;&gt;</code> 键，或非美国 102 键键盘上的 <code>\|</code> 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE3-E4</td>
+  <td style="text-align:left;">OEM 特有</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PROCESSKEY</code></td>
+  <td style="text-align:left;">0xE5</td>
+  <td style="text-align:left;">IME PROCESS 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE6</td>
+  <td style="text-align:left;">OEM 特有</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PACKET</code></td>
+  <td style="text-align:left;">0xE7</td>
+  <td style="text-align:left;">用于将 Unicode 字符当作键击传递。 <code>VK_PACKET</code> 键是用于非键盘输入法的 32 位虚拟键值的低位字。 有关更多信息，请参阅 <a href="https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/ns-winuser-keybdinput"><code>KEYBDINPUT</code></a>、<a href="https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-sendinput"><code>SendInput</code></a>、<a href="https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keydown"><code>WM_KEYDOWN</code></a> 和 <a href="https://learn.microsoft.com/zh-cn/windows/win32/inputdev/wm-keyup"><code>WM_KEYUP</code></a> 中的注释</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE8</td>
+  <td style="text-align:left;">未分配</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>-</code></td>
+  <td style="text-align:left;">0xE9-F5</td>
+  <td style="text-align:left;">OEM 特有</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_ATTN</code></td>
+  <td style="text-align:left;">0xF6</td>
+  <td style="text-align:left;">Attn 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_CRSEL</code></td>
+  <td style="text-align:left;">0xF7</td>
+  <td style="text-align:left;">CrSel 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_EXSEL</code></td>
+  <td style="text-align:left;">0xF8</td>
+  <td style="text-align:left;">ExSel 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_EREOF</code></td>
+  <td style="text-align:left;">0xF9</td>
+  <td style="text-align:left;">Erase EOF 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PLAY</code></td>
+  <td style="text-align:left;">0xFA</td>
+  <td style="text-align:left;">Play 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_ZOOM</code></td>
+  <td style="text-align:left;">0xFB</td>
+  <td style="text-align:left;">Zoom 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_NONAME</code></td>
+  <td style="text-align:left;">0xFC</td>
+  <td style="text-align:left;">预留</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_PA1</code></td>
+  <td style="text-align:left;">0xFD</td>
+  <td style="text-align:left;">PA1 键</td>
+</tr>
+<tr>
+  <td style="text-align:left;"><code>VK_OEM_CLEAR</code></td>
+  <td style="text-align:left;">0xFE</td>
+  <td style="text-align:left;">Clear 键</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="win32gui-控制窗口动作">win32gui 控制窗口动作</h3>
+
+<p>可以</p>
+
+<h4 id="获取当前活动窗口句柄">获取当前活动窗口句柄</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">win32gui</span>
+
+<span class="n">hwnd</span> <span class="o">=</span> <span class="n">win32gui</span><span class="o">.</span><span class="n">GetForegroundWindow</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h4 id="设置当前活动窗口">设置当前活动窗口</h4>
+
+<pre><code>win32gui.SetForegroundWindow(hwnd)
+</code></pre>
+
+<h4 id="获取指定句柄对应窗口的标题文本">获取指定句柄对应窗口的标题文本</h4>
+
+<pre><code>win32gui.GetWindowText(current_hwnd)
+</code></pre>
+
+<p>进阶：自己程序里使用Pyside6创建的窗口，想要操作它的时候，就不用用FindWindow了，直接用窗口的winId方法即可。</p>
+
+<pre><code>window = QMainWindow()
+hwnd = window.winId()
+
+</code></pre>
+
+<p>不只是QMainWindow，QWidget也可以show()来成为一个顶级窗口，也可以用winId获取。</p>
+
+<p>获取到的是原生句柄，例如windows系统上的就是HWND。</p>
+
+<p>实际上，每一个组件都是一个window，都有一个句柄。</p>
+
+<h3 id="amzqr模块">amzqr模块</h3>
+
+<p>用于生成二维码。包括可以生成gif的。但是暂时不支持中文。</p>
+
+<p>直接给run传入参数即可</p>
+
+<pre><code>from amzqr import amzqr
+amzqr.run(word="code",save_name="code.png")
+</code></pre>
+
+<p>amzqr.run(words= "code",</p>
+
+<p>​         save_name="code.gif",</p>
+
+<p>​         picture="Users/baizhi/code.gif",</p>
+
+<p>​         colorized=True,</p>
+
+<p>​         version=10)</p>
+
+<p>3/3</p>
+
+<p>参数picture，类型为字符串，是默认参数。将二维码与图片路径结合，产生一张黑白二维码图片。</p>
+
+<p>参数colorized，类型为布尔值(bool)，是默认参数。参数的默认值为False，生成的二维码为黑白色，将参数设置为True，二维码变为彩色。</p>
+
+<p><img src="./img/image-20240728230502888.png" alt="image-20240728230502888" /></p>
+
+<p>参数version，类型为整型(int)，是默认参数。参数version的值范围在1到40，数字越大，二维码的边长也越长。</p>
+
+<p><img src="./img/image-20240728230529179.png" alt="image-20240728230529179" /></p>
+
+<h3 id="nuitka-打包为exe">nuitka 打包为exe</h3>
+
+<p>对于第三方依赖包较多的项目（比如需要import torch,tensorflow,cv2,numpy,pandas,geopy等等）而言，这里最好打包的方式是只将属于自己的代码转成C++，不管这些大型的第三方包！</p>
+
+<p>以下是我demo的一个目录结构（这里使用了pytq5框架写的界面）：</p>
+
+<pre><code>├─utils//源码1文件夹├─src//源码2文件夹├─logo.ico//demo的图标└─demo.py//main文件
+</code></pre>
+
+<p>使用以下命令（调试）直接生成exe文件：</p>
+
+<pre><code>nuitka --standalone --show-memory --show-progress --nofollow-imports --plugin-enable=qt-plugins --follow-import-to=utils,src --output-dir=out --windows-icon-from-ico=./logo.ico demo.py
+</code></pre>
+
+<p>这里简单介绍下我上面的nuitka的命令：</p>
+
+<ul>
+<li>--standalone：方便移植到其他机器，不用再安装python</li>
+<li>--show-memory --show-progress：展示整个安装的进度过程</li>
+<li>--nofollow-imports：不编译代码中所有的import，比如keras，numpy之类的。</li>
+<li>--plugin-enable=qt-plugins：我这里用到pyqt5来做界面的，这里nuitka有其对应的插件。</li>
+<li>--follow-import-to=utils,src：需要编译成C++代码的指定的2个包含源码的文件夹，这里用,来进行分隔。</li>
+<li>--output-dir=out：指定输出的结果路径为out。</li>
+<li>--windows-icon-from-ico=./logo.ico：指定生成的exe的图标为logo.ico这个图标，这里推荐一个将图片转成ico格式文件的网站（比特虫）。</li>
+<li>--windows-disable-console：运行exe取消弹框。这里没有放上去是因为我们还需要调试，可能哪里还有问题之类的。</li>
+</ul>
+
+<p>经过1min的编译之后，你就能在你的目录下看到：</p>
+
+<pre><code>├─utils//源码1文件夹├─src//源码2文件夹├─out//生成的exe文件夹   
+   ├─demo.build   
+   └─demo.dist 
+             └─demo.exe//生成的exe文件├─logo.ico//demo的图标└─demo.py//main文件
+</code></pre>
+
+<p>当然这里你会发现真正运行exe的时候，会报错：no module named torch,cv2,tensorflow等等这些没有转成C++的第三方包。这里需要找到这些包（我的是在software\python3.7\Lib\site-packages下）复制（比如numpy,cv2这个文件夹）到demo.dist路径下。</p>
+
+<p>至此，exe能完美运行啦！n</p>
+
+<p>通用选项
+--standalone 使得打包结果与本地的Python环境无关，即使得打包结果具备可移植性。
+--onefile 使得打包结果为一个可执行文件，而不是一个文件夹。
+小结：--onefile选项下打出来的包本身就具备可移植性，因此不需要额外加上 --standalone。--onefile 打包结果像绿色软件，仅一个可执行文件；--standalone的打包结果像经过安装的软件，文件夹下包含运行所需要的文件和程序入口。</p>
+
+<p>--lto用于启用链接时间优化。链接时间优化是一种编译器优化技术，它可以在编译和链接阶段对整个程序进行优化，而不仅仅是对单个源文件进行优化。通过启用lto，您可以让编译器在链接时对生成的目标代码进行更深入的优化，提高程序的性能和执行效率</p>
+
+<p>--remove-output 在打包结束后，清理打包过程中生成的临时文件。</p>
+
+<p>--enable-plugin= 启用插件，等号后跟插件名。在要打包的Python代码使用了一些特殊的包时，需要启用插件，Nuitka才能够正确打包。如：如在代码中使用了PySide6，就需要加上--enable-plugin=pyside6。具体的插件列表可以使用nuitka --plugin-list来查看。</p>
+
+<p>--disable-console 在运行打包后的程序时，不会弹出控制台，而是直接运行GUI程序。</p>
+
+<p>--include-package-data= 包含给定软件包名称中的数据文件，等号后软件包名称。有的时候Nuitka并不能正确分析出一些Python软件包所需要使用的数据文件，在运行程序时提示FileNotFoundError等错误，此时就需要使用该选项。如：--include-package-data=ultralytics</p>
+
+<p>--include-data-files= 按文件名包含数据文件，等号后的格式为<SRC=DEST>。SRC指的是文件夹的路径，DEST指的是文件夹相对于打包结果的路径，其中DEST只能使用相对路径。如：--include-data-files=/Users/admin/Downloads/yolov5n.pt=./yolov5n.pt</p>
+
+<p>--include-data-dir= 包含文件夹中的数据文件，等号后的格式为<SRC=DEST>。使用方法与--include-data-files=相同。</p>
+
+        </body>
+        </html>
+        

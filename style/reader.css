@@ -57,6 +57,8 @@ pre{
     padding-bottom: 45px;
     width: 25vw;
     max-width: 300px;
+    max-height: 90vh;
+    overflow: scroll;
 
     font-size: 13px;
     user-select: none;
