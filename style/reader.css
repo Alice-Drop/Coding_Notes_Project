@@ -30,6 +30,7 @@ body{
 }
 
 pre{
+    /* 用来控制代码块。todo:不过html里的代码块好像不太一样，未来可能要修改 */
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 15px;
