@@ -7,7 +7,7 @@ let ARTICLES = [
     {
         "title": "【硬科普】存储卡、读卡器挑选指南",
         "icon": "",
-        "href": "../docs/common/tf_card/tf_card.html"
+        "href": "../docs/common/tfCard/tfCard.html"
     },
     
 ]
