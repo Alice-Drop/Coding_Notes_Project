@@ -2,7 +2,7 @@ let ARTICLES = [
     {
         "title": "2024年，将Python项目发布到PyPI保姆级教程",
         "icon": "",
-        "href": ""
+        "href": "../docs/common/pip/pip.html"
     },
     {
         "title": "【硬科普】存储卡、读卡器挑选指南",

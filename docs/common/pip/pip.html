@@ -1,0 +1,192 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <h1 id="如何让自己的代码可以pip-install安装"><strong>如何让自己的代码可以pip install安装？</strong></h1>
+
+<p>在课上学了Python之后，有的人开始向往那些软件包，希望自己写的库也能用pip install来安装。</p>
+
+<p>像是下面这个，就是我之前开发的软件包，你们也可以试试在自己的电脑上执行</p>
+
+<blockquote>
+  <p>pip install aliceCSV </p>
+</blockquote>
+
+<p><img src="./images/image1.png" alt="" /></p>
+
+<p>即可安装我写的这个软件包。</p>
+
+<p>这篇文章将会从头讲一遍全过程。</p>
+
+<p>首先我们要知道，要让自己的软件包能被pip检索到，只要把自己的软件包上传到pypi上面即可。</p>
+
+<p>那么，当我们写好一个软件包之后，就可以开始相关步骤了。如果你还不知道如何写一个软件包，可以先看看其他人写的文章。</p>
+
+<h2 id="1准备好文件">1.准备好文件</h2>
+
+<p>首先将项目的目录组织成如下形式</p>
+
+<blockquote>
+  <p>项目文件夹</p>
+  
+  <p>├── LICENSE</p>
+  
+  <p>├── pyproject.toml</p>
+  
+  <p>├── README.md</p>
+  
+  <p>├── src/</p>
+  
+  <p>│ └──软件包名称</p>
+  
+  <p>│   ├── <strong>init</strong>.py</p>
+  
+  <p>│   └── <a href="example.py">example.py</a> # 写有内容的模块</p>
+</blockquote>
+
+<p>而官方更推荐使用这种方式：</p>
+
+<blockquote>
+  <p>项目文件夹/</p>
+  
+  <p>├── LICENSE</p>
+  
+  <p>├── pyproject.toml</p>
+  
+  <p>├── README.md</p>
+  
+  <p>├── src/</p>
+  
+  <p>│ └── 软件包名</p>
+  
+  <p>│   ├── <strong>init</strong>.py</p>
+  
+  <p>│   └── example.py  # 写有内容的模块</p>
+</blockquote>
+
+<p>这两种的主要区别是使用setup.py还是pyproject.toml来管理项目，目前两种都可以。</p>
+
+<p>这部分比较简单，有疑惑的可以看<a href="https://zhuanlan.zhihu.com/p/37987613">这篇文章</a>，这里只提醒几个重要的易错点：</p>
+
+<ul>
+<li>setup.py里面open README.md的部分，记得要加encoding="utf-8"，</li>
+</ul>
+
+<p><img src="./images/image2.png" alt="" /></p>
+
+<p>否则在接下来的打包过程中可能会报错.</p>
+
+<blockquote>
+  <p>UnicodeDecodeError: 'gbk' codec can't decode byte 0x80 in position 71: illegal multibyte sequence</p>
+</blockquote>
+
+<ul>
+<li><p>建议先在本地调用一下看看__init__.py写对了没有。如果对这个不太明白，可以看看别人的这篇文章：<a href="https://zhuanlan.zhihu.com/p/115350758"><strong>init</strong>.py的神奇用法 - 知乎 (zhihu.com)</a>。</p></li>
+<li><p>如果你的软件包只有一个模块，那可以不用写<strong>init</strong>.py，因为单个的模块本身就可以被import.</p></li>
+</ul>
+
+<h2 id="2打包targz和whl">2.打包tar.gz和whl</h2>
+
+<p>打开setup.py或pyproject.toml所在的文件夹，用cmd执行以下指令：</p>
+
+<pre><code>py -m pip install --upgrade build
+py -m build
+</code></pre>
+
+<p><img src="./images/image3.png" alt="" /></p>
+
+<p><img src="./images/image4.png" alt="" /></p>
+
+<p>如果正常的话，在一大堆文字闪过去之后，就打包好这两个文件了，会在当前文件夹新建一个dist文件夹，文件就在里面。</p>
+
+<h2 id="3-pypi上的准备工作">3. PyPI上的准备工作</h2>
+
+<p>首先要注册PyPI。</p>
+
+<p>官方的教程是先教上传到TestPyPI，然后结尾简略地提一嘴PyPI。需要注意，PyPI和TestPyPI是两个不同的平台，它们的数据不互通。</p>
+
+<p>简单来说，TestPyPI是一个用来在正式上传到PyPI前试验地上传的平台。</p>
+
+<p><img src="./images/image5.png" alt="" /></p>
+
+<p>你可以直接上传到PyPI，也可以先上传到TestPyPI试验过没问题再上传到PyPI。注意这两个的账号是不通用的，无论怎么样，先至少注册PyPI账号，。</p>
+
+<p><a href="https://pypi.org/">PyPI · The Python Package Index</a></p>
+
+<p><a href="https://test.pypi.org/">TestPyPI · The Python Package Index</a></p>
+
+<p>注册好之后可能会提示你要开2FA验证登录才可以上传项目，就根据指引或者是自己打开账号设置页面去开2FA。</p>
+
+<p>讲一个比较方便的方法，就是用这个浏览器插件来绑定2FA，比微软那个app好用很多。可以自己去edge或者chrome插件商店下</p>
+
+<p><img src="./images/image6.png" alt="" /></p>
+
+<p>这里也给一份插件的crx的链接：</p>
+
+<p><a href="https://wwm.lanzn.com/iOOIw1nv3zdc">https://wwm.lanzn.com/iOOIw1nv3zdc</a></p>
+
+<p>上传到PyPI的方法有两种，可以设置Trusted Publisher从github自动拉取，或者是用twine之类的上传。这里只介绍比较简单的twine上传的方法。</p>
+
+<p>注册完开好2FA之后，到账号设置2FA下面这个API token这里，<a href="https://test.pypi.org/manage/account/token/">Add API token</a>，新建一个API token，因为目前PyPI已经不支持在twine里使用用户名+密码来登录上传项目（就是很多以前的教程里的方法），可以用API的方法登录。</p>
+
+<p><img src="./images/image7.png" alt="" /></p>
+
+<p>名字随便，Scope如果是第一次上传而不是更新已经上传的项目的话得选Entire account (all projects)。</p>
+
+<p>然后就会给你一段“pypi-”开头的API token，把它保存好。</p>
+
+<p>注意不要把TestPyPI和PyPI的token弄混了。</p>
+
+<h2 id="4上传">4.上传</h2>
+
+<p>注册好并且准备好API token之后，就可以开始上传。</p>
+
+<p>首先安装twine</p>
+
+<pre><code>pip install twine
+</code></pre>
+
+<p>然后回到刚刚打包的那个文件夹，就是setup.py或者pyproject.toml所在的文件夹，在cmd执行上传。这会把刚刚生成到这个目录下的dist文件夹里的tar.gz和whl上传。</p>
+
+<p>以下是上传到两个平台的命令：</p>
+
+<p>上传到TestPyPI</p>
+
+<pre><code>py -m twine upload --repository testpypi dist/*
+</code></pre>
+
+<p>上传到PyPI</p>
+
+<pre><code>py -m twine upload dist/*
+</code></pre>
+
+<p>之后会提示你输用户名和密码，这里不要直接输用户名和密码，原因刚刚讲了：现在不允许这样登录PyPI了。</p>
+
+<p>在用户名那里输<code>__token__</code>，密码那里粘贴API token，包括token开头的pypi-。注意输密码是不显示的，不要当成是没按到再粘贴一次。</p>
+
+<p><img src="./images/image8.png" alt="" /></p>
+
+<p>上传的时候注意不要用魔法，不然可能会导致这个代理错误</p>
+
+<p><img src="./images/image9.png" alt="" /></p>
+
+<p>这样就是上传成功了，显示的链接就是项目的链接。</p>
+
+<p><img src="./images/image10.png" alt="" /></p>
+
+<p><img src="./images/image11.png" alt="" /></p>
+
+<p>然后就可以在项目这s里看到上传的项目了。</p>
+
+<p><img src="./images/image12.png" alt="" /></p>
+
+<p>记得上传完自己下载以下看看能不能正常import和使用</p>
+
+        </body>
+        </html>
+        

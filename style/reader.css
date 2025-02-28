@@ -33,8 +33,19 @@ pre{
     /* 用来控制代码块。todo:不过html里的代码块好像不太一样，未来可能要修改 */
     background-color: #f5f5f5;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 15px;
+}
+
+blockquote{
+    border-left: 4px solid #c55f5f;
+    margin: 40px 0;
+    
+    padding-left: 40px;
+}
+
+a{
+    color: #5fa5c5;
 }
 
 #document_content{
