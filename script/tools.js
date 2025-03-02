@@ -4,7 +4,7 @@ let tools_list = [
         title: "舒尔特方格 注意力训练",
         minimum_width: "350px",
         minimum_height: "660px",
-        href: "tools/SchulteGrid/index.html",
+        href: "http://schulte.alicedrop.site/",
         icon: "/img/tool_icon/SchulteGrid.jpg"
     },
     {
