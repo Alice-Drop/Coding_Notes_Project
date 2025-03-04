@@ -1,6 +1,6 @@
 #page1{
     border-radius: 15px;
-    opacity: 0.6;
+    opacity: 0.7;
 
     display: flex;
     justify-content: right;
@@ -21,43 +21,75 @@
     display: flex;
     justify-content: right;
     align-items: center;
+
+    position: absolute;
+    right: 25vw;
+
+    border-spacing: 20px;
 }
 
-#widgets_right td{
-    display: block;
+
+
+.widget{
+    background-color: rgba(240, 240, 240, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    user-select: none;
 }
 
 
 #div_how_are_you{
-    width: 100%;
-    height: 200px;
+    --width: max(10vw, 180px);    
+
+    width: 10vw;
+    min-width: 180px;
+    height: 80px;
     
-    background-color: rgba(233, 233, 233, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 3px 3px 10px #aaa;
 
-    margin-right: 100px;
-    margin-bottom: 60px;
 
-    display: flex;
-    justify-self: center;
-    align-items: center;
+    /*box-shadow: 3px 3px 10px #aaa;*/
 
-    padding: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+
+    text-align: center;
+    vertical-align: middle;
+
+    padding: calc(var(--width) * 0.35) calc(var(--width) * 0.4);
+
+}
+
+#div_how_are_you *{
+    text-align: left;
+    margin: 0;
 }
 
 
 
 
-#div_whats_new{
-    display: inline-block;
-    background-color: rgba(233, 233, 233, 0.7);
-    border-radius: 15px;
-    padding: 10%;
+#new_things{
 
+    padding: 3% 8%;
+
+    
+
+}
+
+#new_things img{
+    /*alicecsv_demo.png*/
+
+
+    width: 43px;
+    height: 43px;
+    opacity: 1;
+    border-radius: 10px;
+
+
+    border: 1px solid rgba(204, 204, 204, 1);
+
+    box-shadow: 1px 1px 2px  rgba(0, 0, 0, 0.25);
+
+}
+
+#new_things_placer{
+    border-spacing:  15px 5px;
 }

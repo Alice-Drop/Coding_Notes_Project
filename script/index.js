@@ -37,5 +37,25 @@ function initIndex(){
 
     let greet_sentences = [];  // 未来实现随机的greet
 
+    load_new_things();
     
+}
+
+function load_new_things(){
+    let new_things_placer = document.getElementById("new_things_placer");
+    new_things_placer.innerHTML = `
+        <table id="new_things_placer">
+            <tr>
+                <td><img src="../img/tool_icon/SchulteGrid.jpg" height="45px"></td>
+                <td><img src="../img/tool_icon/aliceCSV_demo.jpg" height="45px"></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    `
 }
