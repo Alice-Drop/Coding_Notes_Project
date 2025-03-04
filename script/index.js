@@ -42,7 +42,25 @@ function initIndex(){
 }
 
 function load_new_things(){
-    let new_things_placer = document.getElementById("new_things_placer");
+    let new_things = document.getElementById("new_things");
+    let new_docs_title = [
+        {
+            title: "【硬科普】存储卡、读卡器挑选指南",
+            href: "../reader.html?doc_href=../docs/javascript/fetch_and_promise.html"
+        },
+        {
+            title: "一次性搞懂fetch、promise、then、catch",
+            href: "../reader.html?doc_href=../docs/javascript/fetch_and_promise.html"
+        }
+        
+    ];
+
+    for (let item of new_docs_title){
+        if (item){
+            new_things.appendChild(new_doc_item(item));
+        };
+    };
+    /*
     new_things_placer.innerHTML = `
         <table id="new_things_placer">
             <tr>
@@ -58,4 +76,14 @@ function load_new_things(){
             </tr>
         </table>
     `
+    */
+}
+
+function new_doc_item(data){
+    let title=data["title"], href=data["href"];
+    let div = document.createElement("div");
+    div.classList.add("NewDocItem");
+    div.innerHTML = `<a href="${href}">${title}</a>`;
+
+    return div;
 }

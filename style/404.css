@@ -2,7 +2,14 @@
     padding: 50px;
     padding-bottom: 80px;
     border: 1px solid #ccc;
-    max-width: 200px;
+    width: 150px;
+    max-height: 110px;
+
+
 
     margin: 0 auto;
+}
+
+#div404 *{
+    overflow: auto;
 }

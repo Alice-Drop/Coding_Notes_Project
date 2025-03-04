@@ -93,3 +93,35 @@
 #new_things_placer{
     border-spacing:  15px 5px;
 }
+
+
+.NewDocItem{
+
+    width: 100%;
+    height: 25px;
+    opacity: 1;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+
+    margin: 15px 0;
+
+    text-align: center;
+    vertical-align: middle;
+
+    transition: background ease-in 0.1s;
+
+    cursor: pointer;
+
+}
+
+.NewDocItem:hover{
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.NewDocItem a{
+    font-size: 12px;
+    vertical-align: middle;
+
+    color: #000;
+    text-decoration: none;
+}
