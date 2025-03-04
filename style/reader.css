@@ -57,6 +57,8 @@ a{
 
     position: relative;
     left: 27vw;
+
+    min-width: 85vw;
 }
 
 #document_content img{
