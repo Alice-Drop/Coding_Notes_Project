@@ -15,12 +15,18 @@
 <body>
     <nav id="nav"></nav>
     
-    
-        
-    <div id="document_toc"></div><!-- 文章目录导航器 -->
+    <div id="reading_content">
+        <div id="toc">
+            <div id="btn_switch_toc" onclick="toc_btn_onclicked()">
+                <img src="./img/toc.svg" alt="" height="14px" id="img_toc_btn">
+                <span>目录</span>
+            </div>
 
-    <div id="document_content"></div><!-- 文章内容容器 -->
+            <div id="document_toc"></div><!-- 文章目录导航器内容 -->
+        </div>
 
+        <div id="document_content"></div><!-- 文章内容容器 -->
+    </div>
     
 
     <div id="pageTail"></div>

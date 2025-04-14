@@ -52,6 +52,8 @@ function generate_toc(){
         document_toc.appendChild(toc_item);
     });
 
+    
+
 }
 
 function scroll_to_heading(heading_id){
@@ -80,4 +82,21 @@ function test_fetch(){
         .then(html => {
             console.log(html)
         })
+}
+
+function toc_btn_onclicked(){
+    let SRC_FOLDED = "./img/toc.svg";
+    let SRC_UNFOLDED = "./img/toc_unfolded.svg"
+    let img_toc_btn = document.getElementById("img_toc_btn");
+    if (img_toc_btn.getAttribute("src") === SRC_FOLDED){
+        img_toc_btn.setAttribute("src", SRC_UNFOLDED);
+    }else{
+        img_toc_btn.setAttribute("src", SRC_FOLDED);
+    }
+    
+}
+
+
+function toc_unfolded_control(){
+    // 用于在初始化时检测视口宽度，如果宽度无法让toc和文章同时显示，则让toc一开始是收起的，否则一开始是展开的。
 }
