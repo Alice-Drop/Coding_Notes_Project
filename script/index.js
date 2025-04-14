@@ -21,7 +21,9 @@ function initIndex(){
 
     let greeting = "";
     let time_now = new Date();
-    if (time_now.getHours() < 11){
+    if (time_now.getHours() < 6){
+        greeting = "哇，好早啊！\n今天想做点什么？";
+    }else if (time_now.getHours() < 11){
         greeting = "早上好呀 ,\n今天想做点什么？";
     }else if (time_now.getHours() < 14){
         greeting = "中午好 ,\n今天想做点什么？";

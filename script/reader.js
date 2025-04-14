@@ -99,4 +99,11 @@ function toc_btn_onclicked(){
 
 function toc_unfolded_control(){
     // 用于在初始化时检测视口宽度，如果宽度无法让toc和文章同时显示，则让toc一开始是收起的，否则一开始是展开的。
+
+
+    // 另外还要做一个is_mobile，用来实现一些特殊适配
+}
+
+function toc_sticked_control(){
+    // 在初始化时设置window的scroll监听，如果在滚动的位置到上面了，就把布局改为fixed, top 70, left 0（也许也可以不为0，这个是以后美化要做的）；如果在规定的位置的下面，则取消这个sticked类
 }
