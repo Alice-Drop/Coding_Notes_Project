@@ -4,6 +4,7 @@ function loadDetail(){
     text += `屏幕大小：${window.screen.width}x${window.screen.height}
     屏幕avail大小：${window.screen.availWidth}x${window.screen.availHeight}
     浏览器窗口尺寸：${window.innerWidth}x${window.innerHeight}
+    当前网页的缩放倍数：${window.visualViewport.scale}
 
     系统颜色深度: ${window.screen.colorDepth}
     
