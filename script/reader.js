@@ -2,7 +2,13 @@ function init_reader(){  // 默认是通过传参获得。
     let parms = new URLSearchParams(window.location.search);
     let doc_href = parms.get("doc_href");
     load_doc(doc_href);
+    set_scale();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 
+
+}
+
+function set_scale(){
+    // todo: 在初始化时，通过缩放来让整个网页宽度合适，这是对移动端适配设计错误的临时解决办法
 
 }
 
@@ -13,6 +19,7 @@ function load_doc(url_doc){
             document.getElementById("document_content").innerHTML = html;
             fix_src(url_doc)
             generate_toc();
+            toc_sticked_control();
         })
     
 }
@@ -27,6 +34,12 @@ function fix_src(url){
     imgs.forEach((item) => {
         item.src = base_url + item.getAttribute("src");
     })
+}
+
+function adjust_doc_size(){
+    // 调整document_content的位置等。首先，doc设置的宽度是60%，然后的话，
+    console.log(`正在调整文档内容：${}`);
+    
 }
 
 function generate_toc(){
@@ -62,7 +75,8 @@ function scroll_to_heading(heading_id){
     console.log("试图滚动到"+ heading_id);
     
     target_heading.scrollIntoView(); // 之后可以考虑设置动画。
-
+    console.log(TOC_GOTO_MARGIN_TOP)
+    window.scroll(0, TOC_GOTO_MARGIN_TOP)
 }
 
 
@@ -88,11 +102,17 @@ function toc_btn_onclicked(){
     let SRC_FOLDED = "./img/toc.svg";
     let SRC_UNFOLDED = "./img/toc_unfolded.svg"
     let img_toc_btn = document.getElementById("img_toc_btn");
+    let document_toc = document.getElementById("document_toc");
     if (img_toc_btn.getAttribute("src") === SRC_FOLDED){
         img_toc_btn.setAttribute("src", SRC_UNFOLDED);
+        document_toc.classList.remove("hidden");
     }else{
         img_toc_btn.setAttribute("src", SRC_FOLDED);
+        document_toc.classList.add("hidden");
     }
+
+    
+    
     
 }
 
@@ -105,5 +125,14 @@ function toc_unfolded_control(){
 }
 
 function toc_sticked_control(){
+    let toc = document.getElementById("toc");
+
     // 在初始化时设置window的scroll监听，如果在滚动的位置到上面了，就把布局改为fixed, top 70, left 0（也许也可以不为0，这个是以后美化要做的）；如果在规定的位置的下面，则取消这个sticked类
+    window.addEventListener("scroll", function(){
+        if (window.scrollY <= TOC_STICKED_Y){
+            toc.classList.remove("sticked");
+        }else {
+            toc.classList.add("sticked");
+        }
+    });
 }

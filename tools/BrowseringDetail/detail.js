@@ -3,9 +3,13 @@ function loadDetail(){
     let text = "";
     text += `屏幕大小：${window.screen.width}x${window.screen.height}
     屏幕avail大小：${window.screen.availWidth}x${window.screen.availHeight}
-    浏览器窗口尺寸：${window.innerWidth}x${window.innerHeight}
+    
+    浏览器窗口尺寸（含地址栏等）：${window.outerWidth}x${window.outerHeight}
+    浏览器窗口内部尺寸：${window.innerWidth}x${window.innerHeight}
     当前网页的缩放倍数：${window.visualViewport.scale}
 
+    视口大小：${document.documentElement.clientWidth}x${document.documentElement.clientHeight}    
+    
     系统颜色深度: ${window.screen.colorDepth}
     
     User Agent：${navigator.userAgent}

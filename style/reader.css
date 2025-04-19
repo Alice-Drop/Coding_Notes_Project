@@ -67,19 +67,25 @@ a{
 
 #reading_content{
     position: relative;
-    margin-top: 100px;
-    
+    margin-top: 70px;
+    text-align: right;
     height: 100%;
+
+    display: block;
+
+    
 }
 
 
 
 #document_content{
-    display: block;
+
+    text-align: left;
+    display: inline-block;
 
     background-color: #fff;
-    width: 60vw;
-    margin: 0 auto;
+    width: 60%;
+
     margin-bottom: 100px;
     padding: 0vw;
     padding-top: 0;
@@ -118,15 +124,13 @@ a{
 #toc{
     position: absolute;
     left: 20px;                                             
-    top: 0px;
+    top: 60px;
     z-index: 10;
-    background-color: rgba(255, 0, 0, 0.2);
-
 
     padding: 10px;
     background-color: #fafafa;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 25px;
     
     text-align: left;
     vertical-align: top;
@@ -137,7 +141,8 @@ a{
 
     margin-bottom: 15px;
 
-    transition: all ease-in 1s;
+    
+    transition: left 0.2s ease-in,width 1s ease-in-out, height 1s ease-in-out;
 }
 
 #toc.folded{
@@ -146,6 +151,12 @@ a{
 
 #toc.folded #document_toc{
     display: none;
+}
+
+#toc.sticked{
+    position: fixed;
+    top: 70px;
+    left: 40px;
 }
 
 
@@ -168,10 +179,11 @@ a{
     padding-top: 2px;
 
     width: 25vw;
-    max-width: 300px;
-    max-height: 90vh;
+    max-width: 350px;
 
-    max-height: 80vh;
+    max-height: 70vh;
+
+    min-width: 220px;
 
     overflow: auto;
 
@@ -179,7 +191,6 @@ a{
     user-select: none;
 
     box-sizing: border-box;
-
 
 }
 
