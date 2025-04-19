@@ -68,7 +68,7 @@ a{
 #reading_content{
     position: relative;
     margin-top: 70px;
-    text-align: right;
+    text-align: center;
     height: 100%;
 
     display: block;
@@ -79,7 +79,6 @@ a{
 
 
 #document_content{
-
     text-align: left;
     display: inline-block;
 
@@ -93,9 +92,10 @@ a{
     /*position: relative;
     left: 20vw;*/
 
-    
-    min-width: 300px;
+    min-width: 300px !important;
     max-width: 950px;
+
+    margin: 0 auto;
 }
 
 #document_content::selection{

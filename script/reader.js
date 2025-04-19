@@ -38,7 +38,14 @@ function fix_src(url){
 
 function adjust_doc_size(){
     // 调整document_content的位置等。首先，doc设置的宽度是60%，然后的话，
-    console.log(`正在调整文档内容：${}`);
+
+    let document_content = document.getElementById("document_conent");
+    console.log(`正在调整文档内容：
+        当前视口尺寸 ${document.documentElement.clientWidth}x${document.documentElement.clientHeight}
+
+    `);
+
+    if (document_content.getAttribute())
     
 }
 
