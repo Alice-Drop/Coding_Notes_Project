@@ -28,8 +28,7 @@ function display_shelf(data, shelf_obj, as_param=""){
         for (let i = 0; i< data.length; i++){
 
             let item = data[i];
-            let cell = document.createElement("td");
-            cell.innerHTML = shelf_item_factory(item["title"], item["icon"], item["href"], as_param);
+            let cell = shelf_item_factory(item["title"], item["icon"], item["href"], as_param);
             cell.classList.add("article_item")
 
             row.appendChild(cell)
@@ -51,12 +50,15 @@ function shelf_item_factory(title, img, href, as_param=""){
     if (as_param){
         href = `${as_param}?doc_href=${href}`;
     }
-
-    let content =  `
+    let item = document.createElement("td");
+    item.innerHTML =  `
         <img src="${img}" />
         <a href="${href}" target="_blank">${title}</a>
         `
-    return content
+    item.addEventListener("click", function(){
+        window.open(href, "_blank");
+    })
+    return item;
 }
 
 function no_item_msg(){
