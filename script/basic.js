@@ -4,6 +4,14 @@ const LINKS = {
     "在线小工具": "./tools.html"
 }
 
+function getLink(link_name){
+    if (is_in_root()){
+        return LINKS[link_name];
+    }else {
+        return "/" + LINKS[link_name]
+    }
+}
+
 
 function initBasicGUI(){
     // 在onload时为网页加上标题栏内容和底部栏内容
@@ -21,11 +29,11 @@ function drawNav(){
             <a href="/index.html" class="navLink">AliceDrop知识库共享</a>
 
             <span class="navLinkContanier_right">
-                <a href="${LINKS["通用"]}" class="navLink">通用</a>
+                <a href="${getLink("通用")}" class="navLink">通用</a>
             
-                <a href="${LINKS["编程语言笔记"]}" class="navLink">编程语言笔记</a>
+                <a href="${getLink("编程语言笔记")}" class="navLink">编程语言笔记</a>
 
-                <a href="${LINKS["在线小工具"]}" class="navLink">在线小工具</a>
+                <a href="${getLink("在线小工具")}" class="navLink">在线小工具</a>
             </span>
         </div>
     `
@@ -38,4 +46,8 @@ function drawPageTail(){
    
     <p style="font-size:15px;">本项目为个人项目，如果喜欢本网站，可以给 <a href="https://github.com/Alice-Drop/Coding_Notes_Project" target="_blank">本项目</a> 一个star</p>
 `
+}
+
+function is_in_root(){
+    return window.location.pathname === "/";
 }
