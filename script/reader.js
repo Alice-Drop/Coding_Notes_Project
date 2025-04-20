@@ -7,9 +7,27 @@ function init_reader(){  // 默认是通过传参获得。
 
 }
 
+let IS_MOBILE = false;
+
 function set_scale(){
     // todo: 在初始化时，通过缩放来让整个网页宽度合适，这是对移动端适配设计错误的临时解决办法
 
+    let vw = window.outerWidth;
+    //document.documentElement.clientWidth;
+
+    if (vw < NAV_MIN_WIDTH){
+        let rate = vw / NAV_MIN_WIDTH;
+        console.log(`正在调整文档内容：
+            当前视口尺寸 ${vw}
+            尝试缩放到${rate}
+
+        `);
+        //document.documentElement.style.transform = `scale(${rate})`;
+        //document.documentElement.style.transformOrigin = 'top left';
+        document.documentElement.style.zoom = `${rate*100}%`;
+        IS_MOBILE = true;
+        document.getElementById("help").innerText = rate;
+    }
 }
 
 function load_doc(url_doc){
@@ -37,15 +55,23 @@ function fix_src(url){
 }
 
 function adjust_doc_size(){
-    // 调整document_content的位置等。首先，doc设置的宽度是60%，然后的话，
+    // 调整document_content的位置、判断目录是否要默认收起等。首先，doc设置的宽度是60%，然后的话，
 
-    let document_content = document.getElementById("document_conent");
-    console.log(`正在调整文档内容：
-        当前视口尺寸 ${document.documentElement.clientWidth}x${document.documentElement.clientHeight}
-
-    `);
-
-    if (document_content.getAttribute())
+    window.addEventListener("resize", function(){
+        let document_content = document.getElementById("document_conent");
+        let vw = document.documentElement.clientWidth;
+        let vh = document.documentElement.clientHeight;
+        
+        // 如果视口宽度小于STD（300px）则文档占满宽度，否则不调整即保持60%
+        if (vw <= DOC_CONTENT_STD_WIDTH){
+            document_content.classList.add("mobile_style");
+        }else {
+            document_content.classList.remove("mobile_style");
+        }
+            
+        // 如果放置好的document_content左侧的空间不足以放下toc，则toc默认折叠
+        
+    })
     
 }
 
@@ -79,11 +105,12 @@ function generate_toc(){
 function scroll_to_heading(heading_id){
     // 滚动到某个标题上
     let target_heading = document.getElementById(heading_id);
+    let document_conent = document.getElementById("document_content")
     console.log("试图滚动到"+ heading_id);
     
     target_heading.scrollIntoView(); // 之后可以考虑设置动画。
-    console.log(TOC_GOTO_MARGIN_TOP)
-    window.scroll(0, TOC_GOTO_MARGIN_TOP)
+    
+    window.scrollBy(0, TOC_GOTO_MARGIN_TOP)
 }
 
 
@@ -124,12 +151,6 @@ function toc_btn_onclicked(){
 }
 
 
-function toc_unfolded_control(){
-    // 用于在初始化时检测视口宽度，如果宽度无法让toc和文章同时显示，则让toc一开始是收起的，否则一开始是展开的。
-
-
-    // 另外还要做一个is_mobile，用来实现一些特殊适配
-}
 
 function toc_sticked_control(){
     let toc = document.getElementById("toc");

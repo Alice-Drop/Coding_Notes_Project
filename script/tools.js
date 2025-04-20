@@ -18,7 +18,7 @@ let tools_list = [
         title: "浏览器状态详情",
         minimum_width: "",
         minimum_height: "",
-        href: "/tools/BrowseringDetail/BrowseringDetail.html",
+        href: "/tools/BrowserDetail/main.html",
         icon: ""
     },
 

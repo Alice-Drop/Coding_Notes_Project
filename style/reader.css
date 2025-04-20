@@ -69,10 +69,10 @@ a{
     position: relative;
     margin-top: 70px;
     text-align: center;
-    height: 100%;
+    /*height: 100%;*/
 
     display: block;
-
+    min-width: 712px;
     
 }
 
@@ -89,14 +89,20 @@ a{
     padding: 0vw;
     padding-top: 0;
 
-    /*position: relative;
-    left: 20vw;*/
+    position: relative;
+    left: 100px;
 
     min-width: 300px !important;
     max-width: 950px;
 
     margin: 0 auto;
 }
+
+#document_content.mobile_style{
+    width: 100%;
+}
+
+
 
 #document_content::selection{
     background-color: rgba(68, 143, 204, 0.42);
@@ -115,6 +121,7 @@ a{
     max-width: 55%;
     max-height: 70vh;
     margin: 0 auto;
+    align-self: center;
 }
 
 
@@ -124,7 +131,7 @@ a{
 #toc{
     position: absolute;
     left: 20px;                                             
-    top: 60px;
+    top: 70px;
     z-index: 10;
 
     padding: 10px;
@@ -156,12 +163,13 @@ a{
 #toc.sticked{
     position: fixed;
     top: 70px;
-    left: 40px;
+    left: 10px;
 }
 
 
 #btn_switch_toc{
     padding: 12px;
+    min-width: 60px;
 }
 
 #img_toc_btn{
@@ -202,5 +210,10 @@ a{
 
 #document_toc p:hover{
     cursor: pointer;
+}
+
+
+nav{
+    /*min-width: 712px;*/
 }
 

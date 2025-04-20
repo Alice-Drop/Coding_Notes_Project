@@ -42,7 +42,7 @@ function drawNav(){
 
 function drawPageTail(){
     let page_tail = document.getElementById("pageTail");
-    page_tail.innerHTML = `<p style="font-size:15px;">© Copyright AliceDrop 2024-2025 网页内容受 <a href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。</p>
+    page_tail.innerHTML = `<p id="p_copyright" style="">© Copyright AliceDrop 2024-2025 网页内容受 <a href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。</p>
    
     <p style="font-size:15px;">本项目为个人项目，如果喜欢本网站，可以给 <a href="https://github.com/Alice-Drop/Coding_Notes_Project" target="_blank">本项目</a> 一个star</p>
 `

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Reader</title>
+    <meta name="viewport" content="user-scalable=yes" />
 
     <link rel="stylesheet" href="style/basic.css">
     <link rel="stylesheet" href="style/reader.css">
@@ -18,8 +19,9 @@
     <div id="reading_content">
         <div id="toc">
             <div id="btn_switch_toc" onclick="toc_btn_onclicked()">
-                <img src="./img/toc.svg" alt="" height="14px" id="img_toc_btn">
+                <img src="./img/toc_unfolded.svg" alt="" height="14px" id="img_toc_btn">
                 <span>目录</span>
+                <span id="help" class="hidden"></span>
             </div>
 
             <div id="document_toc"></div><!-- 文章目录导航器内容 -->
