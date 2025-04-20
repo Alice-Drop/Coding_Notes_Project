@@ -37,7 +37,8 @@ function load_doc(url_doc){
             document.getElementById("document_content").innerHTML = html;
             fix_src(url_doc)
             generate_toc();
-            toc_sticked_control();
+            add_parent_tag();
+            scroll_change_control();
         })
     
 }
@@ -46,11 +47,24 @@ function fix_src(url){
     let base_url = url.slice(0, url.lastIndexOf("/") + 1)
     console.log(`base url为${base_url}`);
     
-
-    let document_content = document.getElementById("document_content");
     let imgs = document_content.querySelectorAll("img");
     imgs.forEach((item) => {
         item.src = base_url + item.getAttribute("src");
+    })
+}
+
+function add_parent_tag(){
+    // 给每个东西
+    let document_content = document.getElementById("document_content");
+    let area_parent_id = ""
+    document_content.querySelectorAll("*").forEach((value)=>{
+        if (value.classList.contains("tocItem")){
+            area_parent_id = value.id;
+        }else{
+            if (area_parent_id){
+                value.classList.add("son_of_"+area_parent_id);
+            }
+        }
     })
 }
 
@@ -69,7 +83,7 @@ function adjust_doc_size(){
             document_content.classList.remove("mobile_style");
         }
             
-        // 如果放置好的document_content左侧的空间不足以放下toc，则toc默认折叠
+        // todo:如果放置好的document_content左侧的空间不足以放下toc，则toc默认折叠
         
     })
     
@@ -89,6 +103,8 @@ function generate_toc(){
         let toc_item = document.createElement("p");
         toc_item.innerText = item.innerText
         toc_item.classList.add("tocItem_" + item.tagName)
+        toc_item.classList.add("tocItem");
+
         toc_item.id = "toc_"+id;
         toc_item.onclick = () => {
             console.log(`点击了${toc_item.id}`);
@@ -97,6 +113,7 @@ function generate_toc(){
         }
         document_toc.appendChild(toc_item);
     });
+    window.current_heading = document_content.querySelector("h1,h2,h3,h4,h5,h6")
 
     
 
@@ -150,17 +167,83 @@ function toc_btn_onclicked(){
     
 }
 
+function scroll_change_control(){
+    // 监听滚动事件，用来控制toc的sticked，以及控制各种问题
+    window.addEventListener("scroll", function(){
+        toc_sticker();
+        update_current_heading();
+    });
+}
 
 
-function toc_sticked_control(){
+function toc_sticker(){
     let toc = document.getElementById("toc");
 
-    // 在初始化时设置window的scroll监听，如果在滚动的位置到上面了，就把布局改为fixed, top 70, left 0（也许也可以不为0，这个是以后美化要做的）；如果在规定的位置的下面，则取消这个sticked类
-    window.addEventListener("scroll", function(){
-        if (window.scrollY <= TOC_STICKED_Y){
-            toc.classList.remove("sticked");
-        }else {
-            toc.classList.add("sticked");
-        }
-    });
+    // 如果在滚动的位置到上面了，就把布局改为fixed, top 70, left 0（也许也可以不为0，这个是以后美化要做的）；
+    if (window.scrollY <= TOC_STICKED_Y){
+        toc.classList.remove("sticked");
+    }else {
+        toc.classList.add("sticked");
+    }
+}
+
+function update_current_heading(){
+    let scrollY = window.scrollY + TOC_SELECTED_TOP_AGNORE;
+    let document_conent = document.getElementById("document_content");
+    let headings = document_conent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    
+    let current_widget = document_conent.elementsFromPoint(10,10)[0];
+    /*
+    for (let i =0; i< headings.length; i++){
+        let hd = headings[i];
+        // 采用检测相对于文档的方式。不太好。
+        /*if (hd.offsetTop <= scrollY){
+            console.log(`检测到超出${scrollY}, 元素值为${hd.offsetTop}`)
+            console.log();
+            
+            current_heading = headings[i];
+            
+        }else{
+            break;
+        }*/
+
+        // 检测相对于视口的位置，如果某个离视口顶部在[50,100]之间，就选择他（第一个）
+        /*
+        let to_vtop = hd.getBoundingClientRect().top;
+        if ((to_vtop>TOC_SELECTED_RANGE_0)&&(to_vtop<TOC_SELECTED_RANGE_1)){
+            window.current_heading = hd;
+            break;
+        }*/
+
+        
+    console.log(current_widget);
+    
+        
+    
+    
+    console.log(window.current_heading);
+    remove_toc_current_sign();
+
+    let toc_current_heading = document.getElementById("toc_"+window.current_heading.id)
+    toc_current_heading.classList.add("current_header");
+}
+
+function remove_toc_current_sign(){
+    // 清除当前选中的toc
+    let document_toc = document.getElementById("document_toc");
+    let selected = document_toc.querySelectorAll(".current_header");
+    selected.forEach((value)=>{
+        value.classList.remove("current_header");
+    })
+}
+
+function show_headings_offset(){
+    let document_conent = document.getElementById("document_content");
+    let headings = document_conent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for (let i =0; i< headings.length; i++){
+        let hd = headings[i];
+        console.log(hd)
+        //console.log(hd.offsetTop)
+        console.log(hd.getBoundingClientRect().top)
+    }
 }

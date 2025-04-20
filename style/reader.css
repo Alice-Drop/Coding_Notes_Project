@@ -1,33 +1,42 @@
+.tocItem{
+    padding: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 10px;
+}
+
 .tocItem_H1{
-    margin-left: 0;
+    padding-left: 0;
     font-weight: bold;
+    
 }
 
 .tocItem_H2{
-    margin-left: 20px;
+    padding-left: 20px;
 }
 
 .tocItem_H3{
-    margin-left: 40px;
+    padding-left: 40px;
 }
 
 .tocItem_H4{
-    margin-left: 60px;
+    padding-left: 60px;
 }
 
 .tocItem_H5{
-    margin-left: 80px;
+    padding-left: 80px;
 }
 
 .tocItem_H6{
-    margin-left: 100px;
+    padding-left: 100px;
 }
 
 .current_header{
     /* 当前的标题 */
     color: rgb(211, 38, 75);
-    border-radius: 10px;
+
     background-color: #ececec;
+    font-weight: bold;
 }
 
 
