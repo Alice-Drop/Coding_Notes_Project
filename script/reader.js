@@ -54,18 +54,29 @@ function fix_src(url){
 }
 
 function add_parent_tag(){
-    // 给每个东西
+    // 给每个东西标注它属于哪个标题下
+
     let document_content = document.getElementById("document_content");
     let area_parent_id = ""
-    document_content.querySelectorAll("*").forEach((value)=>{
-        if (value.classList.contains("tocItem")){
+    for (let value of document_content.querySelectorAll("*")){
+        //console.log("准备给这个添加所属标签：");
+        //console.log(value);
+
+        if (["H1", "H2", "H3", "H4", "H5", "H6"].includes(value.tagName)){
             area_parent_id = value.id;
         }else{
             if (area_parent_id){
-                value.classList.add("son_of_"+area_parent_id);
+                value.classList.add("son_of_" + area_parent_id);
+            }else {
+                console.log("准备给这个添加所属标签：");
+                console.log(value);
+                console.log("当前没有所属父元素识别标签，无法标记。"); 
+                // 注意，会识别到一些<meta name="viewport" content="width=device-width, initial-scale=1.0"> 之类的html头，
+                // 这是正常的，因为document_content的内容是通过外部导入的，把导入的网站的这些信息也处理了。
+                // 这个不影响使用，不管他，不过未来可以加个排除
             }
         }
-    })
+    }
 }
 
 function adjust_doc_size(){
@@ -187,54 +198,16 @@ function toc_sticker(){
     }
 }
 
-function update_current_heading(){
-    let scrollY = window.scrollY + TOC_SELECTED_TOP_AGNORE;
-    let document_content = document.getElementById("document_content");
-    let headings = document_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    
-    let current_widget = document_content.elementsFromPoint(10,10)[0];
-    /*
-    for (let i =0; i< headings.length; i++){
-        let hd = headings[i];
-        // 采用检测相对于文档的方式。不太好。
-        /*if (hd.offsetTop <= scrollY){
-            console.log(`检测到超出${scrollY}, 元素值为${hd.offsetTop}`)
-            console.log();
-            
-            current_heading = headings[i];
-            
-        }else{
-            break;
-        }*/
-
-        // 检测相对于视口的位置，如果某个离视口顶部在[50,100]之间，就选择他（第一个）
-        /*
-        let to_vtop = hd.getBoundingClientRect().top;
-        if ((to_vtop>TOC_SELECTED_RANGE_0)&&(to_vtop<TOC_SELECTED_RANGE_1)){
-            window.current_heading = hd;
-            break;
-        }*/
-
-        
-    console.log(current_widget);
-    
-        
-    
-    
-    console.log(window.current_heading);
-    remove_toc_current_sign();
-
-    
-}
 
 function mark_first_observable_item(){
+    // 根据滚动，更新toc的当前内容
     let result = null;
 
     remove_toc_current_sign();
     
     let document_content = document.getElementById("document_content");
-    let items = document_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    console.log(items);
+    let items = document_content.querySelectorAll("*");
+    //console.log(items);
     
     let scroll_top = window.scrollY;
 
@@ -246,12 +219,28 @@ function mark_first_observable_item(){
             break;
         }
     }
+    if (result){ // 由于在文档背后加上了一个很长的留白来确保阅读滚动，需要使用这个来避免空白的屏幕没有东西
+        if (["H1", "H2", "H3", "H4", "H5", "H6"].includes(result.tagName)){
+            let toc_current_heading = document.getElementById("toc_"+ result.id)
+            toc_current_heading.classList.add("current_header");
+        }else{
+            for (let class_name of result.classList){
+                
+                if (class_name.startsWith("son_of_")){
+                    let id = class_name.slice("son_of_".length)
+                    console.log(id);
+                    let toc_current_heading = document.getElementById("toc_"+ id)
+                    toc_current_heading.classList.add("current_header");
+                    break;
+                }
+            }
+        }
 
-    let toc_current_heading = document.getElementById("toc_"+ result.id)
-    toc_current_heading.classList.add("current_header");
+    }
 
-    console.log("找到的内容：")
-    console.log(result)
+
+    //console.log("找到的内容：")
+    //console.log(result)
 
 }
 
