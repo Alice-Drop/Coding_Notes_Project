@@ -32,7 +32,7 @@
 }
 
 .current_header{
-    /* 当前的标题 */
+    /* toc里的当前标题 */
     color: rgb(211, 38, 75);
 
     background-color: #ececec;

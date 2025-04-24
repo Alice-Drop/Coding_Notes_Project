@@ -72,7 +72,7 @@ function adjust_doc_size(){
     // 调整document_content的位置、判断目录是否要默认收起等。首先，doc设置的宽度是60%，然后的话，
 
     window.addEventListener("resize", function(){
-        let document_content = document.getElementById("document_conent");
+        let document_content = document.getElementById("document_content");
         let vw = document.documentElement.clientWidth;
         let vh = document.documentElement.clientHeight;
         
@@ -122,7 +122,7 @@ function generate_toc(){
 function scroll_to_heading(heading_id){
     // 滚动到某个标题上
     let target_heading = document.getElementById(heading_id);
-    let document_conent = document.getElementById("document_content")
+    let document_content = document.getElementById("document_content")
     console.log("试图滚动到"+ heading_id);
     
     target_heading.scrollIntoView(); // 之后可以考虑设置动画。
@@ -171,7 +171,7 @@ function scroll_change_control(){
     // 监听滚动事件，用来控制toc的sticked，以及控制各种问题
     window.addEventListener("scroll", function(){
         toc_sticker();
-        update_current_heading();
+        mark_first_observable_item();
     });
 }
 
@@ -189,10 +189,10 @@ function toc_sticker(){
 
 function update_current_heading(){
     let scrollY = window.scrollY + TOC_SELECTED_TOP_AGNORE;
-    let document_conent = document.getElementById("document_content");
-    let headings = document_conent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    let document_content = document.getElementById("document_content");
+    let headings = document_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
     
-    let current_widget = document_conent.elementsFromPoint(10,10)[0];
+    let current_widget = document_content.elementsFromPoint(10,10)[0];
     /*
     for (let i =0; i< headings.length; i++){
         let hd = headings[i];
@@ -224,8 +224,35 @@ function update_current_heading(){
     console.log(window.current_heading);
     remove_toc_current_sign();
 
-    let toc_current_heading = document.getElementById("toc_"+window.current_heading.id)
+    
+}
+
+function mark_first_observable_item(){
+    let result = null;
+
+    remove_toc_current_sign();
+    
+    let document_content = document.getElementById("document_content");
+    let items = document_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    console.log(items);
+    
+    let scroll_top = window.scrollY;
+
+    for (let widget of items){
+        let item_offset_top = widget.offsetTop;
+        let item_offset_height = widget.offsetHeight;
+        if (item_offset_top + item_offset_height > scroll_top){
+            result = widget;
+            break;
+        }
+    }
+
+    let toc_current_heading = document.getElementById("toc_"+ result.id)
     toc_current_heading.classList.add("current_header");
+
+    console.log("找到的内容：")
+    console.log(result)
+
 }
 
 function remove_toc_current_sign(){
@@ -238,8 +265,8 @@ function remove_toc_current_sign(){
 }
 
 function show_headings_offset(){
-    let document_conent = document.getElementById("document_content");
-    let headings = document_conent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    let document_content = document.getElementById("document_content");
+    let headings = document_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
     for (let i =0; i< headings.length; i++){
         let hd = headings[i];
         console.log(hd)
