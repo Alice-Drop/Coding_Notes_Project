@@ -15,6 +15,13 @@ let tools_list = [
         icon: "/img/tool_icon/aliceCSV_demo.jpg"
     },
     {
+        title: "URL Schemes  快捷启动应用工具",
+        minimum_width: "",
+        minimum_height: "",
+        href: "https://launcher.alicedrop.site/",
+        icon: "/img/tool_icon/URL_Scheme_tool.png"
+    },
+    {
         title: "浏览器状态详情",
         minimum_width: "",
         minimum_height: "",

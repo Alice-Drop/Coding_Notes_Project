@@ -1,0 +1,302 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>有点呆板的Git笔记</h1>
+        <p>git有</p>
+
+<p>这篇写得不是很好，呆呆的，不算很好理解。改天换一个结构重新写。</p>
+
+<h4 id="init">init</h4>
+
+<div class="codehilite">
+<pre><span></span><code>git<span class="w"> </span>init
+</code></pre>
+</div>
+
+<p>初始化，创建.git目录</p>
+
+<h4 id="add">add</h4>
+
+<p>就像复制文件之前，要先选择要复制的文件；</p>
+
+<p>这个也是这样，把后面的参数对应的文件选择，记到一个“暂存区”，表示要提交的内容。</p>
+
+<pre><code>git add .
+或者
+git add 目标文件
+</code></pre>
+
+<p>通常直接<code>git add .</code>，点是linux的一种路径写法，表示当前目录下所有文件。</p>
+
+<p>但是，有些时候，我们写了好几个文件，其中有的只写了一半。按照规范，每一次提交的内容应该是清晰的，不要说什么做了一半。此时我们就可以先只提交写完了的，没写完的等写完了再提交。</p>
+
+<h4 id="commit">commit</h4>
+
+<p>提交。把add到暂存区里的内容</p>
+
+<p>如前面所说，每一次提交的功能应该是确定的，所以我们得给提交写个备注，标明这次提交做了什么。</p>
+
+<pre><code>git commit -m "说明文本内容"
+</code></pre>
+
+<p>通常这样写。</p>
+
+<h4 id="工作区暂存区和仓库">工作区、暂存区和仓库</h4>
+
+<p>理解git的工作流程，包含了这三个概念：</p>
+
+<p>工作区，就是指你放代码的那个文件夹。就像一个工作台一样，里面放着这会儿干活要操作的部分（分支，这个暂时不多介绍）</p>
+
+<p>暂存区，如前面所说，是一个类似购物袋的东西，用来选择要提交的部分。</p>
+
+<p>仓库就是存储代码备份的地方，在.git文件夹里面那个就叫本地仓库。还可以有远程仓库，存到github等网络位置。</p>
+
+<h4 id="设置个人信息">设置个人信息</h4>
+
+<p>在提交前，要设置好自己的个人信息，这是因为日志中会记录提交者和他的邮箱，方便协作和管理。</p>
+
+<p>尤其是如果要提交到网络位置这个就更加重要了。</p>
+
+<p>如果是非正式的使用倒是无所谓可以随便填。</p>
+
+<p>git config user.name可以用来读取当前值，如果在后面写上属性值则是赋值。所以不要写错了。</p>
+
+<pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+</code></pre>
+
+<p>通常这样设置。这是全局设置，会应用于这台计算机上所有的仓库。</p>
+
+<p>也可以单独设置这个仓库的</p>
+
+<h4 id="关联到github">关联到github</h4>
+
+<p>在把自己的仓库提交到github上之前，需要先关联。</p>
+
+<p>如果之前没有ssh密钥，要先生成一个。</p>
+
+<pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+</code></pre>
+
+<p>用这个创建自己的ssh密钥。把里面的邮箱改成自己的邮箱。</p>
+
+<p>然后他就会问你把密钥保存在哪里，一般放在默认位置就可以了。，但是要记得默认位置，路径。</p>
+
+<p>打开刚刚你保存导出密钥那个地方，里面会有一个id<em>rsa和id</em>rsa.pub这两个文件（默认名称是这两个）。.pub那个就是你的公钥，另外一个是你的私钥。把那个点pub文件用记事本打开，复制里面的内容。</p>
+
+<p>打开Github，登录账号，点右上角自己的头像，Setting，然后点左边的SSH and GPG keys。在第1个SSH密钥那里添加密钥，把刚刚复制的公钥内容粘贴进去。</p>
+
+<p>设置好公钥之后就可以在本地测试连接。</p>
+
+<p>(下面这几步，如果是windows系统，建议在git附带的那个git bash里执行，不然可能会出问题。)</p>
+
+<pre><code>ssh -T git@github.com
+</code></pre>
+
+<p>用这个可以测试是否可以正常连接</p>
+
+<p>如果正常，会显示</p>
+
+<pre><code>The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</code></pre>
+
+<p>这是第一次通过SSH连接到Github的正常提示，意思是目标主机指纹为`<code>SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU</code>，让你看看是不是真的、不是伪造的。</p>
+
+<p>如果和这个一样就yes就好了。</p>
+
+<p>再执行一次测试连接，如果显示</p>
+
+<pre><code>Hi 你的github用户名! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+
+<p>就是成功了。</p>
+
+<p>如果失败了，显示</p>
+
+<pre><code>git@github.com: Permission denied (publickey).
+</code></pre>
+
+<p>先看看前面导入SSH公钥到Github是否做对了。没问题的话，一般是git没带上你刚刚生成的私钥。</p>
+
+<p>这种情况可以通过这个手动加载</p>
+
+<pre><code>ssh-add 到你私钥的路径
+</code></pre>
+
+<h4 id="上传到github">上传到github</h4>
+
+<p>搞定了之后，就添加远程仓库。</p>
+
+<p>如下所示。把里面的连接换成你自己的github仓库的链接。</p>
+
+<pre><code>git remote add origin https://github.com/Alice-Drop/Coding_Notes_Project.git
+</code></pre>
+
+<p>这样我们就在git软件里添加了github仓库，命名为了origin</p>
+
+<p>然后</p>
+
+<pre><code>git remote -v
+</code></pre>
+
+<p>应该就能看到添加的这个远程仓库了。</p>
+
+<p>输入</p>
+
+<pre><code>git push origin main
+</code></pre>
+
+<p>即可将当前分支提交到github上。</p>
+
+<p>注意，git默认的分支名称是master，而github已经改成了main。</p>
+
+<p>【分支的内容后面讲】</p>
+
+<p>如果你需要指定提交哪个分支上去，就</p>
+
+<pre><code>git push origin 本地分支名:线上分支名
+</code></pre>
+
+<p>即可。</p>
+
+<p>出现以下内容即提交成功</p>
+
+<p><img src="./img/image-20241213030319506.png" alt="image-20241213030319506" /> </p>
+
+<p>遇到下面这样的 ssl error不要慌，多试几次就好了。</p>
+
+<pre><code>fatal: unable to access 'https://github.com/Alice-Drop/Coding_Notes_Project.git/': OpenSSL SSL_read: SSL_ERROR_SYSCALL, errno 0
+</code></pre>
+
+<h4 id="可能遇到的疑难杂症">可能遇到的疑难杂症</h4>
+
+<h5 id="本地和远程完全不一样">本地和远程完全不一样</h5>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master:main
+To<span class="w"> </span>https://github.com/Alice-Drop/Coding_Notes_Project.git
+<span class="w"> </span>!<span class="w"> </span><span class="o">[</span>rejected<span class="o">]</span><span class="w">        </span>master<span class="w"> </span>-&gt;<span class="w"> </span>main<span class="w"> </span><span class="o">(</span>fetch<span class="w"> </span>first<span class="o">)</span>
+error:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>push<span class="w"> </span>some<span class="w"> </span>refs<span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;https://github.com/Alice-Drop/Coding_Notes_Project.git&#39;</span>
+hint:<span class="w"> </span>Updates<span class="w"> </span>were<span class="w"> </span>rejected<span class="w"> </span>because<span class="w"> </span>the<span class="w"> </span>remote<span class="w"> </span>contains<span class="w"> </span>work<span class="w"> </span>that<span class="w"> </span>you<span class="w"> </span><span class="k">do</span><span class="w"> </span>not
+hint:<span class="w"> </span>have<span class="w"> </span>locally.<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>usually<span class="w"> </span>caused<span class="w"> </span>by<span class="w"> </span>another<span class="w"> </span>repository<span class="w"> </span>pushing<span class="w"> </span>to
+hint:<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>ref.<span class="w"> </span>If<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>integrate<span class="w"> </span>the<span class="w"> </span>remote<span class="w"> </span>changes,<span class="w"> </span>use
+hint:<span class="w"> </span><span class="s1">&#39;git pull&#39;</span><span class="w"> </span>before<span class="w"> </span>pushing<span class="w"> </span>again.
+hint:<span class="w"> </span>See<span class="w"> </span>the<span class="w"> </span><span class="s1">&#39;Note about fast-forwards&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;git push --help&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+</code></pre>
+</div>
+
+<p>新手刚接触git，很可能兴致勃勃地就在github上创建了git仓库并且手动在网页上传了一些东西。</p>
+
+<p>包括本教程作为零基础教程，按照比较好理解的顺序来的，也很可能会导致你顺带就这样做了。</p>
+
+<p>这个时候，你用git上传的内容，会和github已经存在的内容完全没有共同部分（因为是分别创建的，创建时间、最初的文件都不同）</p>
+
+<p>这时候，我们需要先把上面的内容pull到本地，与我们本地的文件合并，解决冲突，然后再提交。</p>
+
+<pre><code>git pull origin main --allow-unrelated-histories
+</code></pre>
+
+<p>后面的--allow-unrelated-histories是为了合并两个没有共同部分的内容。</p>
+
+<p>执行后，如果遇到冲突就会让你解决冲突（一般没有），没有冲突了就会显示</p>
+
+<pre><code>Merge branch 'main' of https://github.com/Alice-Drop/Coding_Notes_Project
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+
+</code></pre>
+
+<p>这是VIM编辑器，git让你输入这次操作的提示信息。我们可以保留默认的内容。按ESC然后输入</p>
+
+<p>:wq</p>
+
+<p>按回车即可退出。</p>
+
+<p>这时应该就解决了冲突，再去提交即可。</p>
+
+<h4 id="push出现ssl认证失败">push出现SSL认证失败</h4>
+
+<p>有时候会遇到</p>
+
+<pre><code>git push AutoLock master:main
+fatal: unable to access 'https://github.com/Alice-Drop/auto_lock_by_bluetooth.git/': SSL peer certificate or SSH remote key was not OK
+</code></pre>
+
+<p>push出现这样的报错</p>
+
+<p>一般把远程仓库的链接换成ssh而不是https即可。</p>
+
+<p>首先</p>
+
+<pre><code>git remote -v
+</code></pre>
+
+<p>来查看当前仓库的远程仓库的地址。</p>
+
+<pre><code>git remote -v
+AutoLock        https://github.com/Alice-Drop/auto_lock_by_bluetooth.git (fetch)
+AutoLock        https://github.com/Alice-Drop/auto_lock_by_bluetooth.git (push)
+
+</code></pre>
+
+<p>类似这样的，就是https的url。</p>
+
+<p>可以把它换成ssh的链接。转换的规律是</p>
+
+<pre><code>git@github.com:&lt;你的仓库在github上的相对链接&gt;.git
+</code></pre>
+
+<p>比如说下面这个仓库</p>
+
+<pre><code>https://github.com/Alice-Drop/auto_lock_by_bluetooth
+</code></pre>
+
+<p>它的git链接就是</p>
+
+<pre><code>git@github.com:Alice-Drop/auto_lock_by_bluetooth.git
+</code></pre>
+
+<p>然后</p>
+
+<pre><code>git remote set-url &lt;远程仓库名称&gt; &lt;git链接&gt;
+</code></pre>
+
+<p>即可。</p>
+
+<h3 id="正经部分了">正经部分了</h3>
+
+<h4 id="如何在另一台设备上开始开发">如何在另一台设备上开始开发</h4>
+
+<p>那么就得先把仓库从github上clone到另一台设备新建的这个工作目录里。</p>
+
+<h5 id="如果一开始没有clone呢">如果一开始没有clone呢</h5>
+
+<p>如果一开始没有clone，也就是只有零星几个文件，这时候要提交上去，得先把仓库上的东西pull到本地。</p>
+
+<p>由于这个是你手动创建的，和远程仓库没有交集，pull也会报错</p>
+
+<pre><code>
+</code></pre>
+
+<p>此时需要指定强制pull过来，忽略这个问题。</p>
+
+<pre><code>git pull origin main --allow-unrelated-histories
+</code></pre>
+
+<p>此时，如果是修改了仓库上已有的文件，可能需要解决冲突。</p>
+
+    </body>
+    </html>
+    

@@ -1,17 +1,17 @@
 
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <h1 id="python要点笔记">python要点笔记</h1>
-
-<p>版本：2025/02/27/2 FIX_1</p>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 id="python要点笔记">Python要点笔记</h1>
 
 <h2 id="变量基本类型">变量基本类型</h2>
+
+<p>这部分太基础了，简单提一下就过了。</p>
 
 <h3 id="浮点数">浮点数</h3>
 
@@ -19,9 +19,20 @@
 
 <h5 id="判断浮点数是否整数">判断浮点数是否整数</h5>
 
-<p>很多时候，其实我们需要的是整数结果，例如要做一个计算器，我们需要用两个浮点数来互相运算。但是，这样输出的结果一定是浮点数，就会出现类似1+2 =3.0这样的情况，这不符合我们的习惯。</p>
+<p>很多时候，其实我们需要的是整数结果，例如要做一个计算器，我们需要用两个浮点数来互相运算。</p>
+
+<p>但是，这样输出的结果一定是浮点数，就会出现类似1.5+2.5 =4这样，把本该写成4的东西写成4.0的情况，这不符合我们的习惯。</p>
 
 <p>所以，可以用float.is_integer()来判断一个浮点数是否是整数，如果是则输出int(float)来去除多余的0.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">+</span> <span class="mf">2.5</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>  <span class="c1"># 输出 4</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <h3 id="字符串">字符串</h3>
 
@@ -45,7 +56,11 @@ f""   格式化。
 
 <p>字符串的方法，用这个字符串作为连接符来把列表中的字符串连接成一个长的字符串</p>
 
+<h4 id="转义字符串">转义字符串</h4>
+
 <h3 id="列表">列表</h3>
+
+<p>list。是一个顺序存储的结构。</p>
 
 <h4 id="查找">查找</h4>
 
@@ -74,11 +89,11 @@ f""   格式化。
 
 <p>删除内容为指定内容的第一个元素。</p>
 
-<p>切片</p>
+<h4 id="切片">切片</h4>
 
-<p>左闭右开</p>
+<p>使用myList(开始,结尾)来截取列表中的某部分，注意里面的这个区间是左闭右开。</p>
 
-<p>如果不填开始，则以0为开始</p>
+<p>如果不填开始（myList[:结束]），则以0为开始</p>
 
 <p>不填结束，则取到末尾</p>
 
@@ -164,21 +179,24 @@ print(tuple_3)
 
 <p>获取所有的值为一个列表</p>
 
-<h4 id="clear">clear</h4>
+<h4 id="-1"> </h4>
 
-<p>删除所有的键值对。</p>
+<h4 id="用items同时遍历字典的键和值">用items同时遍历字典的键和值</h4>
 
-<h4 id="同时遍历字典的键和值">同时遍历字典的键和值</h4>
+<p>有些时候我们希望取出字典的每一对数据进行使用。</p>
 
-<p>有些时候我们希望取出字典的每一对数据进行使用。此时可以</p>
+<p>用items()可以获取的是所有的键和所有的值</p>
+
+<p>所以要用两个变量去接收然后就可以遍历了</p>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">myDict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="c1"># 干些什么</span>
 </code></pre>
 </div>
 
-<p>别漏了.items()，否则会报错。</p>
+<h4 id="clear">clear</h4>
+
+<p>删除所有的键值对。</p>
 
 <h3 id="列表推导式-2">列表推导式</h3>
 
@@ -219,6 +237,8 @@ print(tuple_3)
 <p>%s等。</p>
 
 <p>更方便的是.format，以及f"文本内容{item}"</p>
+
+<h2 id="真正的内容">真正的内容</h2>
 
 <h3 id="python底层数据结构标签引用与拷贝">Python底层数据结构：标签、引用与拷贝</h3>
 
@@ -3506,18 +3526,66 @@ amzqr.run(word="code",save_name="code.png")
 
 <p>​         version=10)</p>
 
-<p>3/3</p>
-
 <p>参数picture，类型为字符串，是默认参数。将二维码与图片路径结合，产生一张黑白二维码图片。</p>
 
 <p>参数colorized，类型为布尔值(bool)，是默认参数。参数的默认值为False，生成的二维码为黑白色，将参数设置为True，二维码变为彩色。</p>
 
-<p><img src="./img/image-20240728230502888.png" alt="image-20240728230502888" /></p>
-
 <p>参数version，类型为整型(int)，是默认参数。参数version的值范围在1到40，数字越大，二维码的边长也越长。</p>
 
-<p><img src="./img/image-20240728230529179.png" alt="image-20240728230529179" /></p>
+<h3 id="nuitka-打包为exe">nuitka 打包为exe</h3>
 
-        </body>
-        </html>
-        
+<pre><code>├─utils//源码1文件夹├─src//源码2文件夹├─logo.ico//demo的图标└─demo.py//main文件
+</code></pre>
+
+<p>使用以下命令生成exe文件：</p>
+
+<pre><code>nuitka --standalone --show-memory --show-progress --nofollow-imports --plugin-enable=qt-plugins --follow-import-to=utils,src --output-dir=out --windows-icon-from-ico=./logo.ico demo.py
+</code></pre>
+
+<p>这里简单介绍下我上面的nuitka的命令：</p>
+
+<ul>
+<li>--standalone：方便移植到其他机器，不用再安装python</li>
+<li>--show-memory --show-progress：展示整个安装的进度过程</li>
+<li>--nofollow-imports：不编译代码中所有的import，比如keras，numpy之类的。</li>
+<li>--plugin-enable=qt-plugins：我这里用到pyqt5来做界面的，这里nuitka有其对应的插件。</li>
+<li>--follow-import-to=utils,src：需要编译成C++代码的指定的2个包含源码的文件夹，这里用,来进行分隔。</li>
+<li>--output-dir=out：指定输出的结果路径为out。</li>
+<li>--windows-icon-from-ico=./logo.ico：指定生成的exe的图标为logo.ico这个图标，这里推荐一个将图片转成ico格式文件的网站（比特虫）。</li>
+<li>--windows-disable-console：运行exe取消弹框。这里没有放上去是因为我们还需要调试，可能哪里还有问题之类的。</li>
+</ul>
+
+<p>经过1min的编译之后，你就能在你的目录下看到：</p>
+
+<pre><code>├─utils//源码1文件夹├─src//源码2文件夹├─out//生成的exe文件夹   
+   ├─demo.build   
+   └─demo.dist 
+             └─demo.exe//生成的exe文件├─logo.ico//demo的图标└─demo.py//main文件
+</code></pre>
+
+<p>当然这里你会发现真正运行exe的时候，会报错：no module named torch,cv2,tensorflow等等这些没有转成C++的第三方包。这里需要找到这些包（我的是在software\python3.7\Lib\site-packages下）复制（比如numpy,cv2这个文件夹）到demo.dist路径下。</p>
+
+<p>至此，exe能完美运行啦！n</p>
+
+<p>通用选项
+--standalone 使得打包结果与本地的Python环境无关，即使得打包结果具备可移植性。
+--onefile 使得打包结果为一个可执行文件，而不是一个文件夹。
+小结：--onefile选项下打出来的包本身就具备可移植性，因此不需要额外加上 --standalone。--onefile 打包结果像绿色软件，仅一个可执行文件；--standalone的打包结果像经过安装的软件，文件夹下包含运行所需要的文件和程序入口。</p>
+
+<p>--lto用于启用链接时间优化。链接时间优化是一种编译器优化技术，它可以在编译和链接阶段对整个程序进行优化，而不仅仅是对单个源文件进行优化。通过启用lto，您可以让编译器在链接时对生成的目标代码进行更深入的优化，提高程序的性能和执行效率</p>
+
+<p>--remove-output 在打包结束后，清理打包过程中生成的临时文件。</p>
+
+<p>--enable-plugin= 启用插件，等号后跟插件名。在要打包的Python代码使用了一些特殊的包时，需要启用插件，Nuitka才能够正确打包。如：如在代码中使用了PySide6，就需要加上--enable-plugin=pyside6。具体的插件列表可以使用nuitka --plugin-list来查看。</p>
+
+<p>--disable-console 在运行打包后的程序时，不会弹出控制台，而是直接运行GUI程序。</p>
+
+<p>--include-package-data= 包含给定软件包名称中的数据文件，等号后软件包名称。有的时候Nuitka并不能正确分析出一些Python软件包所需要使用的数据文件，在运行程序时提示FileNotFoundError等错误，此时就需要使用该选项。如：--include-package-data=ultralytics</p>
+
+<p>--include-data-files= 按文件名包含数据文件，等号后的格式为<SRC=DEST>。SRC指的是文件夹的路径，DEST指的是文件夹相对于打包结果的路径，其中DEST只能使用相对路径。如：--include-data-files=/Users/admin/Downloads/yolov5n.pt=./yolov5n.pt</p>
+
+<p>--include-data-dir= 包含文件夹中的数据文件，等号后的格式为<SRC=DEST>。使用方法与--include-data-files=相同。</p>
+
+    </body>
+    </html>
+    

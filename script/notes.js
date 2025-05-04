@@ -9,6 +9,22 @@ let NOTES = [
         "icon": "../img/language_icon/javascript.png",
         "href": "../docs/javascript/fetch_and_promise.html"
     },
+    {
+        "title": "规规矩矩应试C - C语言应试笔记",
+        "icon": "../img/language_icon/c.svg",
+        "href": "/docs/C/C_note_for_test.html"
+    },
+    {
+        "title": "JavaScript入门",
+        "icon": "../img/language_icon/javascript.png",
+        "href": "../docs/javascript/JavaScript_Basic.html"
+    },
+    {
+        "title": "git入门 - 有些呆板的笔记",
+        "icon": "../img/language_icon/git.png",
+        "href": "../docs/Git/git_note_1.html"
+    }
+    
 ]
 
 function initNotesGUI(){

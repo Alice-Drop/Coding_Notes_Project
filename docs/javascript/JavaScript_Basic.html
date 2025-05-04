@@ -1,0 +1,2009 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <p>script可以在head写，也可以body写。</p>
+
+<p>引用外部js，与CSS的导入不太一样</p>
+
+<h4 id="在控制台打印字符">在控制台打印字符：</h4>
+
+<p>console.log()</p>
+
+<p>会再控制台打印对应内容并换行。</p>
+
+<p>可以只打log然后代码补全。</p>
+
+<h3 id="浏览器弹窗">浏览器弹窗</h3>
+
+<p>alert()</p>
+
+<p>浏览器弹窗。</p>
+
+<h3 id="变量">变量</h3>
+
+<p>var 是一般的变量，variable</p>
+
+<p>let 更安全。</p>
+
+<p>注意，var可以多次声明，重名的变量会被视作同一变量，而let不行。</p>
+
+<p>const 是常量。</p>
+
+<p>注意，未初始化的变量，变量值为undifined，如果后面直接+=一个字符串，会把undefined变成文字的undefined加上去；如果是+=数字，会把undefined转换为NaN再相加，结果是NaN.因此，一定要在声明时给个初始值保护。</p>
+
+<h4 id="运算符">运算符</h4>
+
+<p>%是取余，和python一样。</p>
+
+<h4 id="关于var的使用">关于var的使用</h4>
+
+<p>由于var的作用域是整个函数，这个特性可以利用。比如，如果</p>
+
+<p>在现代变成</p>
+
+<h3 id="文本操作">文本操作</h3>
+
+<p>提取文本中索引为i的也是text[i]</p>
+
+<h4 id="字符串的切片">字符串的切片</h4>
+
+<p>表示一段切片，例如Python中的item[5:7]，得用item.substring(start,end)或者item.slice(start,end)</p>
+
+<p>两者的区别是，slice可以接受负数来表示倒数第几。</p>
+
+<p>和Python里一样，都是左闭右开的区间。</p>
+
+<h4 id="字符串的分割">字符串的分割</h4>
+
+<p>文本.split</p>
+
+<h4 id="模板字符串格式化多行">模板字符串（格式化、多行）</h4>
+
+<p>使用反引号包围的文本，就是模板字符串。</p>
+
+<p>它可以直接使用<code>${}</code>嵌入任意有效的JavaScript表达式，类似于python的格式化字符串：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;alice&quot;</span>
+<span class="nx">console</span><span class="p">(</span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span><span class="w">  </span><span class="c1">// 输出 Hello, alice</span>
+</code></pre>
+</div>
+
+<p>同时，它支持多行，类似于python的 <code>""" """</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`This is a</span>
+<span class="sb">multi-line string.`</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h4 id="字符串查找">字符串查找</h4>
+
+<p>indexOf方法，用来查找某个元素</p>
+
+<pre><code>myArray.indexOf(查找的内容)
+</code></pre>
+
+<p>include方法，用来检查是否包含某个元素，类似python里的<code>in</code></p>
+
+<p>lastIndexOf是查找最后一个。</p>
+
+<h4 id="实践用于获取url的基础">实践：用于获取url的基础</h4>
+
+<h3 id="数组列表操作">数组（列表）操作</h3>
+
+<p>创建数组，在python中是list()，在js中是 var arr = new Array()</p>
+
+<p>或者[]</p>
+
+<p>删除数组的某一元素，使用splice()</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span><span class="nx">deleteCount</span><span class="p">,</span><span class="nx">item1</span><span class="p">,</span><span class="nx">item2</span><span class="p">,...)</span>
+</code></pre>
+</div>
+
+<p>删除某一段。</p>
+
+<p>从start开始，删除deleteCount个元素，之后可以把.</p>
+
+<p>注意，item1,item2....可选，但是start和deleteCount必须指定，如果不指定deleteCount，则默认为0，不删除。</p>
+
+<h4 id="查找">查找</h4>
+
+<p>indexOf方法，用来查找某个元素</p>
+
+<pre><code>myArray.indexOf(查找的内容)
+</code></pre>
+
+<p>include方法，用来检查是否包含某个元素，类似python里的<code>in</code></p>
+
+<h3 id="字典">字典</h3>
+
+<p>var dic = {c:5,a:2}</p>
+
+<p>或者{}</p>
+
+<h4 id="与其他语言的巨大不同">与其他语言的巨大不同</h4>
+
+<p>多数语言中，对象和字典通常是两个不同的概念。对象通常是类的实例；而字典（或叫映射、哈希表）是动态的数据结构，可以动态存储键值对。</p>
+
+<p>但是，在js中，字典和对象是同一个概念。对象既能像对象一样动态地存储键值对，也能像对象那样。</p>
+
+<p>而且，在js中，声明时字典的键这个字符串，可以不用带双引号，例如</p>
+
+<pre><code>var option = {
+            title: {
+                text: '第一个 ECharts 实例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {}
+        }
+</code></pre>
+
+<p>里面的键title可以加双引号，也可以像这样不加。</p>
+
+<p>而且，由于它也是对象，所以，option["title"] 也可以用option.title来获取。</p>
+
+<h3 id="控制语句">控制语句</h3>
+
+<h4 id="if-else">if else</h4>
+
+<p>语法：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">表达式1</span><span class="p">){</span>
+
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="nx">表达式2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>注意表达式要用括号括起来。</p>
+
+<p>注意判断是和C、python一样，==才表示判断。</p>
+
+<h4 id="值的真假">值的真假</h4>
+
+<p>注意，空数组也是true。</p>
+
+<h4 id="for-循环">for 循环</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="nx">初始化循环变量</span><span class="p">;</span><span class="nx">循环条件表达式</span><span class="p">;</span><span class="nx">迭代器</span><span class="p">){</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>可以用++运算符表示+1。</p>
+
+<h5 id="进阶">进阶</h5>
+
+<p>对于可迭代对象，例如数组、Map、Set、字符串，可以使用for ... of</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">迭代用的循环变量</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">被迭代的对象</span><span class="p">){</span>
+
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>来在每次循环中获得一个被迭代对象的内容。</p>
+
+<p>而对于不可迭代元素，如字典，可以使用for... in（一般不要用，因为这样遍历会遍历属性，可能会导致bug。如果只是实现python 的for item in ，就用for ..of 即可）</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">被迭代的对象</span><span class="p">){</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="foreach">forEach</h4>
+
+<p>很多时候我们只是想遍历数组里的每个元素</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+    <span class="n">item</span> <span class="o">=</span>  <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;第</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">个是</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>如果使用js的for来写，就是</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">array</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">print</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">print</span><span class="p">(</span><span class="sb">`第</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">个是</span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>forEach提供了一种简便的方法用于遍历数组。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">array</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// 处理逻辑</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>而我们可以使用forEach来替代，更加简单。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">print</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">print</span><span class="p">(</span><span class="sb">`第</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">个是</span><span class="si">${</span><span class="nx">item</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>通过这种传入一个类似回调函数的处理函数来遍历。</p>
+
+<p>不过，forEach并不会返回新数组，也不能使用break等来提前终止循环，而是只能用some()等。</p>
+
+<h4 id="map-遍历数组">map 遍历数组</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="nx">index</span><span class="p">,</span><span class="nx">array</span><span class="p">){</span>
+
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>遍历数组array里面的每一个对象，并能获取到在数组中的位置、原数组，相当于</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="nx">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">lenght</span><span class="p">;</span><span class="nx">index</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>注意，map的不同之处在于，它里面的这个函数提供的array，是另外一个新变量，即不会修改原array</p>
+
+<h4 id="let和var">let和var</h4>
+
+<p>这里就涉及到了var和let的区别。</p>
+
+<p>var的作用域是<strong>整个函数</strong>，而let声明的作用域是块级作用域，例如一个{}内部，或者一个循环体内部。这也是为什么上面for这样写，不会在循环过程中因重定义item而报错了。</p>
+
+<p>var声明的变量，声明过程会被提升到当前函数的顶部，但是声明过程的赋值还会在原来的位置。因此，在var a之前使用a不会报错，会返回undefined。而let不会被提升，因此在声明前访问会报错ReferenceError.</p>
+
+<p>var可以重复声明一个变量，不会报错，只会覆盖前面的值；而let重复声明会SyntaxError。</p>
+
+<p>var和let都可以用来声明全局变量，只要写在函数外面就行了。但是var声明的全局变量会成为window的属性，可能会污染属性。</p>
+
+<p>总的来说，建议全部使用let</p>
+
+<h4 id="全局变量">全局变量</h4>
+
+<p>在函数内定义全局变量，可以直接</p>
+
+<p>window.需要定义的变量 = 变量内容</p>
+
+<p>但是还是建议不要在函数里操作全局变量，全部采用函数思想，函数本身无权访问全局变量，只有主函数可以接触全局变量。全局变量的值通过参数给到函数，处理完的值通过返回值给到主函数，由主函数执行对全局变量的修改。</p>
+
+<p>这样做可以提高代码的可维护性和函数的独立性。</p>
+
+<p>当然有些时候还是可以用一用的，例如跨函数共享数据等。</p>
+
+<h4 id="作用域的闭包">作用域的闭包</h4>
+
+<p>这是一种在函数外读取到函数内的局部变量的方法。</p>
+
+<p>闭包可以记住它所在的上下文的变量，在未来它们已经发生改变甚至作用域已经结束的情况下仍然可以使用这份记忆。</p>
+
+<p>闭包函数、闭包的意思都是指，能够访问与它在同一“目录”（这里指的是位置，例如都在同一个函数内部）的变量，并且在这个“目录”以外仍然能被调用并访问这些“目录”以内的变量的函数。</p>
+
+<p>如果在函数中声明了子函数并引用了局部变量 等情况：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">fun</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">inner_fun</span><span class="p">(){</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">a</span><span class="w"> </span><span class="o">+=</span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">inner_fun</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">myfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fun</span><span class="p">()</span><span class="w"> </span><span class="c1">// 获取fun的返回值inner_fun函数，即从fun提取到了inner_fun</span>
+<span class="nx">myfun</span><span class="p">()</span><span class="w"> </span><span class="c1">// 此时就是在fun之外运行inner_fun,依然能正常运行并读取到a的最终值1。</span>
+</code></pre>
+</div>
+
+<p>像这样，在fun外部依然可以调用inner<em>fun，而inner</em>fun引用了a，所以就变成了可以在fun之外访问fun的局部变量a。</p>
+
+<p>其中，fun是闭包生成器。作为返回值的inner_fun是一个闭包函数，</p>
+
+<p>这样闭包来处理的变量a，是对变量a的引用，这意味着 inner<em>fun里面的a并不是固定为inner</em>fun被声明时的0，而是实时的值。这也是为什么运行myfun()得到的是a的最终值（在原本的作用域fun）即1</p>
+
+<p>另外一个例子：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myButton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleClick</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>这会导致，在main()之外，仍然有对handleClick()的引用，而handleClick会引用count，因此在main()结束之后，内存管理不会因为作用域结束而清除掉它。（即延长变量count的生命周期）</p>
+
+<p>在main()结束之后，handleClick保持对count的引用，会获得它</p>
+
+<h4 id="while-循环">while 循环</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">条件表达式</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="函数">函数</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">函数名</span><span class="p">(</span><span class="nx">参数1</span><span class="err">，</span><span class="nx">参数2</span><span class="p">......)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>允许设置函数参数默认值，例如设置参数1=”“</p>
+
+<h4 id="匿名函数">匿名函数</h4>
+
+<p>对于只用一次的函数，可以用匿名函数。</p>
+
+<p>例如这样把点击事件绑定到一个匿名函数</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">button_element</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h5 id="匿名函数的箭头函数写法">匿名函数的箭头函数写法</h5>
+
+<p>箭头函数=&gt;可以简化匿名函数的写法。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span><span class="nx">arg2</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//函数的内容</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>可以写成</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span><span class="nx">arg2</span><span class="p">)=&gt;{</span>
+<span class="w">    </span><span class="c1">//函数的内容</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>如果没有参数就()就好。</p>
+
+<div class="codehilite">
+<pre><span></span><code>
+</code></pre>
+</div>
+
+<p>然后，如果箭头函数的代码只有一行，可以省略{}写到一行，它会自动返回该行的值，也就是说我们可以省去return不用写。比如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span><span class="w"> </span><span class="nx">arg2</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">arg1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">arg2</span>
+</code></pre>
+</div>
+
+<p>就等同于</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span><span class="w"> </span><span class="nx">arg2</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">arg1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">arg2</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>==注意==</p>
+
+<ol>
+<li><ul>
+<li>箭头函数没有自己的 <code>this</code>，它会捕获其所在上下文的 <code>this</code> 值。</li>
+<li>因此，在箭头函数中的 <code>this</code> 指向的是箭头函数被创建时的外层上下文的 <code>this</code>，而不是触发事件的元素。</li>
+<li>这就导致了在箭头函数中使用 <code>this</code> 时可能会出现问题，因为它不会指向触发事件的元素。</li>
+</ul></li>
+</ol>
+
+<h5 id="把函数作为参数传递">把函数作为参数传递</h5>
+
+<p>在JavaScript中，可以把函数作为参数传递，例如setTimeout,可以设置</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">print</span><span class="p">,</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>需要注意，把函数作为参数传递，不用写括号，也不能写括号。因为如果写了括号，就会立即执行原本想要传递的函数，并且把函数返回值作为参数传递。</p>
+
+<p>如果需要传递参数，可以这样：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>通过匿名函数来包装。</p>
+
+<h5 id="传递函数作为参数">传递函数作为参数</h5>
+
+<p>可以把函数作为参数</p>
+
+<pre><code>function plus(a,b){
+    return a + b;
+}
+
+function print1p1(i,j,k){
+    console.log(i,"+",j,"=",k(i,j))
+}
+
+function run(){
+    print-1p1(1,1,plus)
+}
+
+run()
+</code></pre>
+
+<h3 id="隐式传递">隐式传递</h3>
+
+<p>隐式传递一般都是给某个玩意儿传入一个函数的情况。</p>
+
+<p>比如说设置事件处理回调函数</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">target</span><span class="p">.</span><span class="nx">clicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 函数内容</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;keydown&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 函数内容</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>forEach、map这些数组方法</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">array</span><span class="p">)=&gt;{</span>
+
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>传入之后，它就会自动调用这个函数，并把它产生的一些数据传入进去。</p>
+
+<p>所以，这个要传进去的函数，只要根据这个要传入函数的玩意儿的规定（比如说forEach顺序是item，index，array），去定义形参即可。</p>
+
+<p>如果我们用不到这个参数，也可以直接不定义这个形参，因为js允许传入的参数超过形参数量。</p>
+
+<p>比如说</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">target</span><span class="p">.</span><span class="nx">clicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 函数内容。 里面用不到event，就可以不写</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="事件">事件</h3>
+
+<p><strong>onclick</strong> 点击</p>
+
+<p><strong>onMouseOver</strong> 鼠标移入元素上空。常用于显示提示信息或改变样式。</p>
+
+<p><strong>onMouseOut</strong>  鼠标移出。常用于在鼠标移出时取消onMouseOver产生的变化。</p>
+
+<p><strong>onChange</strong>  文本内容改变（得是文本改变并且失去焦点才触发）</p>
+
+<p><strong>onSelect</strong>  用户选中元素中的文本（例如阅读软件中选择了文本就显示复制、搜索、划线标注的工具栏）</p>
+
+<p><img src="./img/image-20240405000522307.png" alt="image-20240405000522307" /></p>
+
+<p><strong>onFocus</strong>  当元素获得焦点。注意当已经获得焦点时，再次点击不会重复触发。</p>
+
+<p><strong>onBlur</strong>  当元素失去焦点时。</p>
+
+<p>可以绑定到某个函数上。</p>
+
+<p><code>&lt;button onclick="fun()"&gt;按钮&lt;/button&gt;</code></p>
+
+<p>==函数没有参数的时候，也不要忘记在事件绑定的函数名后面加上()！==</p>
+
+<p>事件侦听器</p>
+
+<h4 id="事件的属性">事件的属性</h4>
+
+<p>事件处理函数通常可以接受一个参数，用来获取与事件相关的信息。</p>
+
+<p>例如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Event type:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Target element:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Mouse position:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">clientX</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">clientY</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ctrl key pressed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">ctrlKey</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>以下是一些常见的<code>event</code>对象的属性和方法：</p>
+
+<ul>
+<li><strong><code>event.type</code></strong>：事件类型（如<code>"click"</code>、<code>"keydown"</code>等）。</li>
+<li><strong><code>event.target</code></strong>：触发事件的元素。==<strong>可以用来代替this，避免定义域问题</strong>==</li>
+<li><strong><code>event.currentTarget</code></strong>：事件处理程序绑定到的元素。</li>
+<li><strong><code>event.preventDefault()</code></strong>：取消事件的默认行为。</li>
+<li><strong><code>event.stopPropagation()</code></strong>：阻止事件冒泡到父元素。</li>
+<li><strong><code>event.clientX</code></strong>：鼠标事件中鼠标指针的水平坐标。</li>
+<li><strong><code>event.clientY</code></strong>：鼠标事件中鼠标指针的垂直坐标。</li>
+<li><strong><code>event.key</code></strong>：键盘事件中按下的键。</li>
+<li><strong><code>event.keyCode</code></strong>：键盘事件中按下的键的代码。</li>
+<li><strong><code>event.which</code></strong>：鼠标或键盘事件中按下的键或按钮的代码。</li>
+<li><strong><code>event.altKey</code></strong>、<strong><code>event.ctrlKey</code></strong>、<strong><code>event.shiftKey</code></strong>：表示Alt、Ctrl或Shift键是否被按下。</li>
+</ul>
+
+<h4 id="事件处理函数">事件处理函数</h4>
+
+<p>例如onload、onclick都是事件处理函数</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">MyButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElement</span><span class="w"> </span><span class="p">.....(</span><span class="nx">省略</span><span class="p">)</span>
+<span class="nx">MyButton</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//（做一些事来响应点击）</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里面的event,</p>
+
+<p>第二行这个绑定事件的过程，其本质是这样一个过程：</p>
+
+<p>为了方便，我们把这个事件处理函数</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//（做一些事来响应点击）</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>称为<code>函数1</code>。</p>
+
+<p>那么，当绑定函数1到onclick上面，浏览器会“记住”这个函数，把它和“MyButton”的点击联系在一起。</p>
+
+<p>当按钮被点击时，浏览器会创建一个事件对象eventObj，里面包含了这次事件的详细信息（如事件类型为点击事件、点击位置、触发这个事件的元素即target等）。</p>
+
+<p>然后可以看作是浏览器执行了  </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">函数1</span><span class="p">(</span><span class="nx">eventObj</span><span class="p">)</span>
+<span class="nx">或者叫</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}(</span><span class="nx">eventObj</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>即调用了函数1并把事件对象传递给它。由于我们实际上并没有写函数1(eventObj)这样的代码来手动把eventObj传给函数 1，是由浏览器自动执行的，所以这一过程被称作隐式传递。</p>
+
+<p>此时，像我们刚刚这样声明的函数1</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//（做一些事来响应点击）</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>就会接收到eventObj，并传递给形参event，即让形参event指向eventObj</p>
+
+<p>而如果我们声明时不声明形参event</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">//（做一些事来响应点击）</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>没有形参来接受传给函数1的eventObj，eventObj被传递但未被捕获。这时自然也无法在函数1里用event。</p>
+
+<p>（注意，JavaScript允许传入参数和函数定义的形参数量不同，但是python就不可以这样 了。）</p>
+
+<pre><code>let reader = new FileReader();
+            reader.onload = function(){
+
+}
+</code></pre>
+
+<h4 id="获取事件的元素本身">获取事件的元素本身</h4>
+
+<p>我们通过btn.onclick和btn.addEventListener都可以设置按钮btn的点击处理函数。两种绑定是完全等效的。</p>
+
+<p>但是，如何在函数里获得这个btn，比如说点击就会让按钮变色？</p>
+
+<h5 id="使用btn产生闭包">使用btn产生闭包</h5>
+
+<p>这似乎是一个最直观的方式。不管是两种设置处理函数方式的哪种，都可以正常使用。但实际上它并不稳定</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">btn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#myBtn&#39;</span><span class="p">);</span>
+
+<span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">btn</span><span class="p">);</span><span class="w"> </span><span class="c1">// 正常输出 btn 元素</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>像这样直接把处理函数外的btn写到里面去，会形成闭包，让btn不会被销毁，让事件触发的时候依然能访问到btn。</p>
+
+<p>但是这很有可能会遇到经典的闭包事后变化的问题，在循环或异步环境下使用闭包，可能会导致获取到之后的值</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">buttons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// ❌ 这里 i 已经变成了最后的值</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>因为i是循环变量，在循环中会不断变化，直到最后变成结束时的状态buttons.length - 1，闭包只是让他在此刻保持存在不被销毁，但是它的值将会一直是最后一个值，而不是各个按钮绑定时的0、1、2........</p>
+
+<h5 id="使用this">使用this</h5>
+
+<p>在绑定函数时，this可以获取到绑定的元素。但是这个方法也</p>
+
+<p>不太稳定。</p>
+
+<p>传入的是普通的匿名函数还是箭头函数，会影响this的效果。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="c1">// this 指向 btn</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>事件处理函数写functin的形式是没问题的，this会指向事件所绑定的元素。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="c1">// this 不是 btn</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>但是如果事件处理函数是用箭头函数的形式写的，就会出问题。因为箭头函数虽然也会创建自己的作用域，但是并不会创建自己的this等，而是继承自它外部的定义域。</p>
+
+<h5 id="最安全的方法使用event">最安全的方法：使用event</h5>
+
+<p>事件处理函数被触发时，监听器会隐式传入一个event作为第一个参数。</p>
+
+<p>event.target是触发事件的元素（精确到哪个元素，可能是btn的子元素）</p>
+
+<p>event.currentTarget则是事件处理函数绑定的元素。</p>
+
+<p>所以我们使用event.currentTarget就能很好地满足要求。</p>
+
+<h3 id="dom">DOM</h3>
+
+<p>把HTML文档作为对象操作，动态地改变网页。</p>
+
+<p><img src="./img/image-20240405001943841.png" alt="image-20240405001943841" /></p>
+
+<p>一个网页的结构是这样的，元素节点逐级往下，到了元素的一级，还有元素的各属性（属性节点，如class,id）和文本节点（多数双标签都有，例如a,h1,tittle）。</p>
+
+<p>选择某个元素，可以通过id , class ， name  , TagName (元素标签名称，div，img等) , TagNameNS来识别。</p>
+
+<h4 id="注意">注意</h4>
+
+<p><strong>document.getElementById</strong>返回的是一个对象，因为id通常是唯一的所以只有 是element，获取到的是一个对象</p>
+
+<p><img src="./img/image-20240405120349415.png" alt="image-20240405120349415" /> </p>
+
+<p><strong>document.getElementsByClass</strong>等这几个返回的是一个数组，因为class, name，tagName 可能不唯一，所以函数名也都是elements。会返回一个数组，要操作某一各对象要给一个索引值。</p>
+
+<p>写法和python一样。[0]</p>
+
+<h4 id="获取元素中的元素">获取元素中的元素</h4>
+
+<p>甚至，如果想获取div#sc里的所有div，还可以 </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;sc&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sc</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>等等。document能用的，它也能用。</p>
+
+<p>也可以使用<code>querySelectorAll</code>(选择器)</p>
+
+<p>里面的选择器就是和css选择器一样写法，"div" "p"这样表示元素，#abc 为id，.page表示选择指定类的</p>
+
+<p>如果是多个选择器，那就用逗号隔开。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">contentDiv</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;h1, h2, h3&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="使用dom动态修改">使用DOM动态修改</h4>
+
+<h5 id="innerhtml属性">innerHTML属性</h5>
+
+<p>元素的内容，即双标签中间夹着的内容，会原原本本地给出来，包含HTML标记等。</p>
+
+<p>例如</p>
+
+<p><code>&lt;button onfocus="pri()" id="targ"&gt;提交&lt;/button&gt;</code></p>
+
+<p>返回  "提交“</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;divid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">onselect</span><span class="o">=</span><span class="s">&quot;test()&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;testclass&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tget&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onfocus</span><span class="o">=</span><span class="s">&quot;pri()&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;targ&quot;</span><span class="p">&gt;</span>提交<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color: blue;&quot;</span><span class="p">&gt;</span>sfsdfsf<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>返回：</p>
+
+<div class="codehilite">
+<pre><span></span><code>        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">onselect</span><span class="o">=</span><span class="s">&quot;test()&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;testclass&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tget&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onfocus</span><span class="o">=</span><span class="s">&quot;pri()&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;targ&quot;</span><span class="p">&gt;</span>提交<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color: blue;&quot;</span><span class="p">&gt;</span>sfsdfsf<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>如果是单标记，例如img，这会返回空字符串</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;a href=&#39;#&#39;&gt;这个a元素是将会被替换成的内容&lt;/a&gt;&quot;</span>
+</code></pre>
+</div>
+
+<p>通过对对象的.innerHTML进行赋值，修改元素的内容。</p>
+
+<h5 id="innertext">innerText</h5>
+
+<p>元素的内容的文本，就是双标签夹着的里面的所有双标签夹着的文本。</p>
+
+<p>如果里面的是纯文本，没有HTML标签，则返回全部文本。</p>
+
+<p>例如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;divid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">onselect</span><span class="o">=</span><span class="s">&quot;test()&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;testclass&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tget&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onfocus</span><span class="o">=</span><span class="s">&quot;pri()&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;targ&quot;</span><span class="p">&gt;</span>提交<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;target&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color: blue;&quot;</span><span class="p">&gt;</span>sfsdfsf<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>返回：</p>
+
+<pre><code>神里绫华.html:33  提交
+
+sfsdfsf
+</code></pre>
+
+<h5 id="创建元素">创建元素</h5>
+
+<pre><code>let myDiv = document.creatElement("div")
+myDiv.onclick = .....
+</code></pre>
+
+<h4 id="操作class">操作class</h4>
+
+<p>一个元素的class为它的classList属性。</p>
+
+<p>一个元素可以同时是好几个类，在填写时用空格隔开。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;class1 class2 class3&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;div1&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>classList属性可以使用toggle()方法来切换类，即如果原本classList包含参数中的类，则从classList中移除该类，否则添加该类。</p>
+
+<p>例如，可以声明一个类hidden类，专门用来隐藏</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">.</span><span class="nc">display</span><span class="p">{</span>
+
+<span class="err">​</span><span class="w">   </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>之后，</p>
+
+<pre><code>let div1 = document.getElementById("div1");
+
+div1.classList.toggle("hidden");
+</code></pre>
+
+<p>即可切换类hidden，执行一次就可以让div1由显示变成隐藏，再执行一次又可以由隐藏变为显示。</p>
+
+<h4 id="dom修改属性">DOM修改属性</h4>
+
+<p>除了innerHTML、innerText这些 高级的，还可以用于获取/修改元素的HTML属性</p>
+
+<p>例如，element.style.color</p>
+
+<p>或者是element.setAttribution(&lt;属性&gt;，&lt;值&gt;)</p>
+
+<h4 id="往表格里动态填充内容形成菜单">往表格里动态填充内容形成菜单</h4>
+
+<p>比如说，有一个table，id为article_shelf，我们想按照给定的数据在里面生成一个展示，每行4个数据，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">display_articles</span><span class="p">(){</span>
+<span class="w">    </span><span class="c1">// 把那些文章数据渲染到上面去</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">articles_shelf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;articles_shelf&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">row_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">&lt;</span><span class="w"> </span><span class="nx">ARTICLES</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nx">ITEMS_PER_ROW</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">){</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">articles_shelf</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">row</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ARTICLES</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">cell</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">article_item_factory</span><span class="p">(</span><span class="nx">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="nx">item</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">],</span><span class="w"> </span><span class="nx">item</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]);</span>
+<span class="w">        </span><span class="nx">cell</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;article_item&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="nx">row</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">cell</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">article_item_factory</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span><span class="w"> </span><span class="nx">img</span><span class="p">,</span><span class="w"> </span><span class="nx">href</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// 生成一个文章展示单元的DOM。</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">img</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DEFAULT_IMG</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="sb">`</span>
+<span class="sb">        &lt;img src=&quot;</span><span class="si">${</span><span class="nx">img</span><span class="si">}</span><span class="sb">&quot; /&gt;</span>
+<span class="sb">        &lt;a href=&quot;</span><span class="si">${</span><span class="nx">href</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">title</span><span class="si">}</span><span class="sb">&lt;/a&gt;</span>
+<span class="sb">        `</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">content</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>但实际上，可以发现，如果设置了单元格大小、表格大小，那么如果一行不够就会自动到下一行，这个复合我们的要求。所以，其实可以直接全部item放到同一行不需要处理</p>
+
+<p>当然，如果菜单容器不是table而是div，也可以直接改为创建div表示行。</p>
+
+<h4 id="跳转到网页指定位置">跳转到网页指定位置</h4>
+
+<h2 id="通过url在网页间传递数据">通过URL在网页间传递数据</h2>
+
+<p>对于某个链接，比如"example.com"，后面可以加上一个问号，然后跟上多个键值对，键值对之间用&amp;链接，类似这样：</p>
+
+<pre><code>example.com?user_name=xiaoming&amp;authorized=true
+</code></pre>
+
+<p>所以，如果需要发送参数，只需要手动在连接后面加上这些就好。</p>
+
+<p>而接收的话，可以直接解析。</p>
+
+<p>window.location.search会返回连接后面问号开始的这部分。我们可以自己写逻辑解析，也可以用库。</p>
+
+<h2 id="重写一次性搞懂fetchpromisethencatch">【重写】一次性搞懂fetch、promise、then、catch</h2>
+
+<h3 id="绪论">绪论</h3>
+
+<p>假如我们想做一个阅读器，</p>
+
+<p>运行时它会在div#document_content中另外一个Html的内容。</p>
+
+<p>同时，它旁边会有一个小小的div作为目录，会显示这个被显示在document_content的页面的目录（也就是提取出所有的h1、h2等显示出来，并且可以点击来滚动跳转</p>
+
+<p>那么，</p>
+
+<p>使用fetch即可通过请求获取其它网页的内容。</p>
+
+<p><strong>fetch</strong>是一共用来进行一个HTTP请求。它会返回一个Promise对象</p>
+
+<p><strong>Promise</strong>，可以理解为一个承诺，某个操作可能没法立刻有结果，但是承诺在完成后会给一个结果。由于通常用来处理一些网络连接之类的可能会失败，还会允许承诺出结果时附带一个状态：</p>
+
+<p>Resolved表示操作成功，Rejected表示操作失败。加上承诺未出结果时的是</p>
+
+<p>就比如说，让舍友去带炒面，舍友答应了，也就是给了一个承诺帮你带饭，但是去买需要时间并不能立刻买到，他给你的只是一个承诺，不是买的结果。你需要等待这个承诺的结果。</p>
+
+<p>但是去到饭堂，可能炒面已经卖完了。</p>
+
+<p>那没卖完舍友就给你买了一份带回来；卖完了舍友可能就回来告诉你卖完了，或者在微信告诉你卖完了。</p>
+
+<p>然后作为call了带炒面的人，如果承诺的结果是买到了，那你就吃就行；要是结果是没买到，你就得看看是怎么样是吃别的还是不吃了。也就是对承诺的结果进行处理。</p>
+
+<p>而具体怎么判断承诺的结果、处理，则是用then。</p>
+
+<p>我们常用的fetch等会产生Promise的方法，我们就只管使用就好；而如果是自己定义的长耗时的函数，自己创造一个promise对象，就要包含怎么样是成功，怎么样是失败了。</p>
+
+<p><strong>then</strong>是Promise对象的一个方法，用来设置如果Promise的结果是执行成功做什么，设置一个回调函数。</p>
+
+<p>通常来讲，我们会这样写：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">链接</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">respond</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;{})</span>
+</code></pre>
+</div>
+
+<p>实际上就是</p>
+
+<pre><code>fetch(链接).then().catch()
+</code></pre>
+
+<p>的意思，就是把。因为不需要把这个promise赋值给某个变量存起来，也就直接这样就好了。</p>
+
+<p>而<strong>catch</strong>则是Promise对象设置如果是执行失败会做什么。</p>
+
+<h4 id="例子">例子</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">load_doc</span><span class="p">(</span><span class="nx">url_doc</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url_doc</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;document_content&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">html</span><span class="p">;</span>
+<span class="w">        </span><span class="p">})</span><span class="w">   </span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>像这样，就能完成我们刚刚说的把另外一个网页的内容加载到这里面去（但是注意不能跨域访问）。</p>
+
+<p>接下来是详细的介绍。</p>
+
+<h3 id="fetch">fetch</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>url为请求的URL。</p>
+
+<p>options（可选）用来指定请求的方式、请求头等。默认是GET。</p>
+
+<p>会返回一个Promise，若执行成功会隐式传递一个response给fetch.then()传入的回调函数</p>
+
+<p><strong>注意，fetch并不是只是用来获取数据，也可以用于向服务器post前端的数据。</strong>这种情况下，其实我们并不关心fetch的response，可以直接不then，只.catch即可。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>response是一个对象，包含了status、headers，有.text()、.json()</p>
+
+<p>注意，通常我们都要获得response的内容，也就是调用<strong>response.text()或response.json()。注意，这两个也是会返回一个promise，</strong>因为处理可能也要耗时较久</p>
+
+<p>它的结果会隐式传递</p>
+
+<p>也就是这样写，把.text()给解析了：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>但是这样写会嵌套调用.then，并不好。我们可以</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>注意，这样其实就是fetch().then().then()</p>
+
+<p>因为then()的返回值就是传进去的那个函数的返回值，所以他就能传到下一个</p>
+
+<p>千万别忘了return，否则fetch().then()就是未定义，那再来.then()一下还是未定义。</p>
+
+<p>还有一种简便写法：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">testing_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;../docs/common/tf_card/tf_card.html&quot;</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">testing_doc</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">html</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>利用了箭头函数如果代码一行，可以写到一行省略{}，则可以省去return自动返回该行的写法。</p>
+
+<h3 id="promise新介绍">Promise（新介绍）</h3>
+
+<p>讲点更底层的东西。</p>
+
+<p>.then()和.catch()都是promise的方法。</p>
+
+<p>那么为什么是fetch().then().catch()呢？</p>
+
+<p>是因为，<strong>then()返回的也是一个promise！</strong></p>
+
+<p>然后，如果发生了错误，就会详细传递。</p>
+
+<p>比如说</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">fetch</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then1</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then2</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then3</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">()</span><span class="w"> </span><span class="c1">// then4</span>
+</code></pre>
+</div>
+
+<p>如果是then2发生了错误，后续的then将不执行（也就是then3不执行），一路向下传递，直到catch那里。然后，catch之后，被视为错误已经被捕获了，它就不会一直累加了，catch后续的then仍然可以正常运行。也就是说，then4还是能执行的。</p>
+
+<p>前面讲到链式解析和嵌套解析，说链式解析更好。</p>
+
+<p>这是因为，链式解析的可读性更强。其次，像上面演示的这个这样链式解析，错误会一直向下传递，一个catch就可以捕获前面的所有then的错误。如果是写成嵌套解析，那么就无法这样。</p>
+
+<h4 id="async-和-await">async 和 await</h4>
+
+<p>如果不想用then，可以用async和await，让代码看起来像同步的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">loadData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;data.json&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等待 fetch 完成</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w"> </span><span class="c1">// 等待 json() 解析</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;数据:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">loadData</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<h3 id="promise">Promise</h3>
+
+<p>一个保证，“这个东西不知道什么时候才好，但是我向你保证，当它好了（resolve)的时候马上按你说的方式处理（这个promise的.then），如果不行也按你说的另外一种方法处理()"</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">pms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">//执行函数的内容</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>在这里，promise和reject是在运行P</p>
+
+<p>当我们执行上面的代码创建一个新的Promise对象时，浏览器会执行Promise构造函数。并把我们传递进去的执行函数</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">//执行函数的内容</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>进行立即执行，并传入参数，可以看作(注意区分我们自己定义的形参resolve、reject和Promise构造函数里传递的实参 "内部的resolve"和 "内部的 reject")</p>
+
+<pre><code>执行函数(内部的resolve,内部的reject)
+或者
+function(resolve, reject) {//执行函数的内容} (内部的resolve,内部的reject)
+</code></pre>
+
+<p>那么整个Promise构造函数的过程大致是这样。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">执行函数</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 创建内部的 resolve 和 reject 函数</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">内部的resolve</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 处理 resolve 逻辑 */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">内部的reject</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 处理 reject 逻辑 */</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 调用传入的执行函数，并传递 resolve 和 reject</span>
+<span class="w">    </span><span class="nx">执行函数</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>同样地，then </p>
+
+<p>那么，可以怎么用呢？</p>
+
+<p>比如我们可以写下面这样的代码，当执行hi()时，就会</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">myFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Blob</span><span class="p">([</span><span class="s2">&quot;一闪一闪亮晶晶，满天都是小星星。&quot;</span><span class="p">]);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">hi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">pms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">myFile</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">pms1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">pms1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 调用 hi() 函数</span>
+<span class="nx">hi</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>以下是错误示范。由于在promise构造的一瞬间就会开始执行内部的构造函数，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">myFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Blob</span><span class="p">([</span><span class="s2">&quot;一闪一闪亮晶晶，满天都是小星星。&quot;</span><span class="p">]);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">pms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">myFile</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">pms1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">hi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">pms1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="构造函数代码-值得研究">构造函数代码 值得研究</h4>
+
+<p>以下是更详细的模拟Promise构造函数的代码，有能力的时候可以研究一下</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 创建一个模拟的 Promise 构造函数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">MyPromise</span><span class="p">(</span><span class="nx">executor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">handlers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fulfilled&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">handlers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">onFulfilled</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;rejected&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">handlers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">onRejected</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span><span class="w"> </span><span class="nx">onRejected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MyPromise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">handlers</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+<span class="w">                </span><span class="nx">onFulfilled</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">onFulfilled</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nx">onRejected</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">onRejected</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">onRejected</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+<span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;fulfilled&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">handlers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">onFulfilled</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">                </span><span class="nx">handlers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;rejected&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">handlers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">h</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">onRejected</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">                </span><span class="nx">handlers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">executor</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 使用 MyPromise 模拟真实的 Promise</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">pms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MyPromise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;开始 pms1&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">pms1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Promise fulfilled with result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="async-和await">async 和await</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">run_page1_v2</span><span class="p">(){</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">GAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">page1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;page1&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">sentences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page1</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">            for (let i = 0; i &lt; sentences.length; i++) {</span>
+<span class="cm">                // 闭包捕获每次循环的 `delay` 值</span>
+<span class="cm">                ((currentDelay, sentence) =&gt; {</span>
+<span class="cm">                    setTimeout(() =&gt; {</span>
+<span class="cm">                        let sentence_delay = jump_in_sentence(sentence); // 计算单句动画时长</span>
+<span class="cm">                        delay += sentence_delay + 2*GAP; // 累加耗时（但不会影响外部循环）</span>
+<span class="cm">                    }, currentDelay); // 使用每次迭代时捕获的 `delay` 值</span>
+<span class="cm">                })(delay, sentences[i]); // 把当前 `delay` 和句子传入闭包</span>
+<span class="cm">                delay += GAP; // 更新 delay，控制下一次定时器的基础时间</span>
+<span class="cm">            }*/</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">delay0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentences</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">delay1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentences</span><span class="p">[</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span>
+<span class="w">                    </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentences</span><span class="p">[</span><span class="mf">2</span><span class="p">])</span>
+<span class="w">                </span><span class="p">},</span><span class="w"> </span><span class="nx">delay1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">GAP</span><span class="p">)</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="nx">delay0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">GAP</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentence_obj</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="o">=</span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="p">,</span><span class="w"> </span><span class="nx">gap</span><span class="o">=</span><span class="mf">100</span><span class="p">){</span>
+<span class="w">            </span><span class="c1">// 让这个sentence对象呈现字一个个跳出来的效果。</span>
+<span class="w">            </span><span class="c1">// 返回值是需要的耗时，以便上级去看着开启下一句。</span>
+<span class="w">            </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;fade-in&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">&lt;</span><span class="w"> </span><span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+
+<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">                </span><span class="p">},</span><span class="w"> </span><span class="nx">gap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">i</span><span class="p">);</span>
+
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">gap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 注意，最大的一次计时器为(text.length - 1) *gap</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>有一个很神奇的现象，偶尔，它会让文字的顺序变乱。这是偶然的，刷新几次会偶尔出现一次。为什么会这样？</p>
+
+<p><img src="./img/image-20250127230800923.png" alt="image-20250127230800923" style="zoom:50%;" /> </p>
+
+<p>这是因为，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">run_page1_v2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">GAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">page1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;page1&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">sentences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page1</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">animateText</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">sentences</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentences</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// 等待每个句子动画完成</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">delay</span><span class="p">(</span><span class="nx">GAP</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等待固定的间隔</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">animateText</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">jump_in_sentence</span><span class="p">(</span><span class="nx">sentence_obj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;fade-in&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// 清空文本</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">delay</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 控制字的显示速度，延迟 100ms</span>
+<span class="w">        </span><span class="nx">sentence_obj</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">delay</span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span><span class="w"> </span><span class="c1">// 返回一个 Promise，控制延迟</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="事件-2">事件</h3>
+
+<h4 id="事件监听器">事件监听器</h4>
+
+<p>JavaScript 中常用的事件类型：</p>
+
+<ol>
+<li><strong>click</strong>: 当用户点击某个元素时触发。</li>
+<li><strong>mouseover</strong>: 当鼠标移动到某个元素上时触发。</li>
+<li><strong>mouseout</strong>: 当鼠标从某个元素移出时触发。</li>
+<li><strong>keydown</strong>: 当用户按下键盘上的键时触发。</li>
+<li><strong>keyup</strong>: 当用户释放键盘上的键时触发。</li>
+<li><strong>change</strong>: 当表单元素的值发生改变时触发（适用于 input、select、textarea 等元素）。</li>
+<li><strong>submit</strong>: 当表单提交时触发。</li>
+<li><strong>load</strong>: 当页面或某个元素完成加载时触发。</li>
+<li><strong>error</strong>: 当加载文档或图像时发生错误时触发。</li>
+<li><strong>scroll</strong>: 当用户滚动页面时触发。</li>
+<li><strong>focus</strong>: 当元素获得焦点时触发。</li>
+<li><strong>blur</strong>: 当元素失去焦点时触发。</li>
+</ol>
+
+<p>element.onclick之类的属性中可以设置事件</p>
+
+<p>element.addEventListener(事件，方法) 是对象的方法，用</p>
+
+<p><img src="./img/image-20240406145658834.png" alt="image-20240406145658834" /></p>
+
+<p>！！ 注意！！</p>
+
+<p>要小心重复绑定！比如说，</p>
+
+<p>绑定的时候，如果是用写元素的onclick等来做的，记得带括号。</p>
+
+<p>而如果是用addEventListener的是传入一个函数，是没有括号的，如果要传参数需要使用匿名函数包装</p>
+
+<h4 id="事件与事件对象">事件与事件对象</h4>
+
+<h4 id="通过案例讲解blob创建文件">通过案例讲解：blob创建文件</h4>
+
+<p>blob是一种文件对象，通过创建它可以用来把一些数据变成文件给用户下载，或者通过一些函数发送给服务器</p>
+
+<h5 id="创建blob">创建blob</h5>
+
+<p>创建一个Blob对象，通过new Blob()来实现。</p>
+
+<p>new Blob(参数1，参数2)</p>
+
+<p>参数1：1个数组，依次包含全部的要用来构成这个blob的数据。</p>
+
+<p>参数2：一个字典，用来指定前面给的数据的类型，例如{ type: "text/plain" }。常见的格式有：</p>
+
+<ul>
+<li><code>text</code>
+<ul>
+<li><code>plain</code>：纯文本文件。</li>
+<li><code>html</code>：HTML 文档。</li>
+<li><code>css</code>：CSS 样式表。</li>
+<li><code>xml</code>：XML 数据。</li>
+<li>csv</li>
+</ul></li>
+<li><code>image</code>
+<ul>
+<li><code>jpeg</code>、<code>jpg</code>：JPEG 图像。</li>
+<li><code>png</code>：PNG 图像。</li>
+<li><code>gif</code>：GIF 图像。</li>
+<li><code>svg+xml</code>：SVG 图像。</li>
+</ul></li>
+<li><code>audio</code>
+<ul>
+<li><code>mpeg</code>：MP3 音频。</li>
+<li><code>ogg</code>：Ogg Vorbis 音频。</li>
+<li><code>wav</code>：WAV 音频。</li>
+</ul></li>
+<li><code>video</code>
+<ul>
+<li><code>mp4</code>：MP4 视频。</li>
+<li><code>webm</code>：WebM 视频。</li>
+<li><code>avi</code>：AVI 视频。</li>
+</ul></li>
+<li><code>application</code>
+<ul>
+<li><code>pdf</code>：PDF 文档。</li>
+<li><code>javascript</code>：JavaScript 代码。</li>
+<li><code>json</code>：JSON 数据。</li>
+<li><code>zip</code>：ZIP 压缩文件。</li>
+</ul></li>
+</ul>
+
+<p>例如，</p>
+
+<pre><code>let text = "hello,world!";
+
+let blob_example = new Blob([text],{type:"text/plain"})
+</code></pre>
+
+<p>这样就得到一个blob对象表示的文本文件，文本文件的内容是hello,world!</p>
+
+<p>又比如，要产生一个UTF-8编码的文本，可以</p>
+
+<pre><code>Content-Type: text/plain; charset=UTF-8
+</code></pre>
+
+<p>现在我们有一个字典mydict={"hi":"hello","hello":"helloworld"),如何设置一个函数，在函数运行时，把它转化为JSON文本，然后导出为json文件，然后直接调用浏览器下载来给用户</p>
+
+<p>要实现这个功能，你可以按照以下步骤进行操作：</p>
+
+<ol>
+<li>将字典转换为 JSON 格式的字符串。</li>
+<li>创建一个 Blob 对象，将 JSON 字符串作为数据传入。</li>
+<li>使用 URL.createObjectURL() 创建一个 URL，该 URL 可以用于下载文件。</li>
+<li>创建一个隐藏的 <code>&lt;a&gt;</code> 元素，设置 <code>href</code> 属性为 Blob URL，设置 <code>download</code> 属性为要下载的文件名。</li>
+<li>触发 <code>&lt;a&gt;</code> 元素的点击事件，浏览器将开始下载文件。</li>
+</ol>
+
+<p>下面是一个实现这个功能的示例代码：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">javascriptCopy</span><span class="w"> </span><span class="nx">codefunction</span><span class="w"> </span><span class="nx">downloadJsonFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">jsonStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">blob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Blob</span><span class="p">([</span><span class="nx">jsonStr</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">filename</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">element</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 释放 URL 对象</span>
+<span class="w">    </span><span class="nx">URL</span><span class="p">.</span><span class="nx">revokeObjectURL</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 示例用法</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">mydict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;hi&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;helloworld&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="nx">downloadJsonFile</span><span class="p">(</span><span class="s2">&quot;mydict.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">mydict</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>在这个示例中，<code>downloadJsonFile</code> 函数接受两个参数：要下载的文件名和要写入文件的数据。函数将数据转换为 JSON 格式的字符串，然后创建一个 Blob 对象，将 JSON 字符串作为数据传入。接着创建一个 <code>&lt;a&gt;</code> 元素，设置 <code>href</code> 属性为 Blob URL，设置 <code>download</code> 属性为文件名，并模拟点击这个 <code>&lt;a&gt;</code> 元素，触发下载。最后，释放 Blob URL 对象，以便浏览器可以正确地回收资源。</p>
+
+<h4 id="input元素的重要使用">input元素的重要使用</h4>
+
+<h5 id="file-文件选择器">file 文件选择器</h5>
+
+<p>可以通过onchange事件</p>
+
+<pre><code>&lt;input type="file" id="fileInput" onclick=&gt;
+可以加上mutilple来表示多文件
+</code></pre>
+
+<pre><code>const fileInput = document.getElementById('fileInput');
+
+fileInput.addEventListener('change', function(event) {
+  const files = event.target.files;
+</code></pre>
+
+<h4 id="filereader文件读取器读取文件">FileReader文件读取器读取文件</h4>
+
+<p>像blob一样，通过 new FileReader()创建.</p>
+
+<p>但不同的是，对某些数据创建blob是创建一个存储这些数据的blob对象，而创建FileReader对象，是不包含数据的，是一个像是API的东西，包含各种文件处理方法。</p>
+
+<p>读取文件，可以读一个blob。input type="file" 的files属性也是blob。例如</p>
+
+<p>例如，读取文件，声明一个FileReader对象(这个reader可以设置为const，这样之后就不能设置为别的，比如又拿来当字符串)</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FileReader</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>之后要设置回调函数，用来指定之后用它来异步读取某个文件，当它读取完后把读取到的数据给谁。</p>
+
+<p>关于这个，有几种写法：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">//或者写成 this.result</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<span class="c1">// 这个e是event的简写</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// event.target，即触发这个事件的对象，也就还是这个reader</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>这种写法。所有的事件处理函数，</p>
+
+<p>这些写法的本质都是获取到这个reader然后读取它的结果。</p>
+
+<p>reader.</p>
+
+<p>reader.abort()  终止在异步中进行的文件读取</p>
+
+<h5 id="读取文件的常用方法">读取文件的常用方法</h5>
+
+<ul>
+<li><code>readAsText(file, encoding)</code>：以文本形式读取文件内容。</li>
+<li><code>readAsDataURL(file)</code>：以 Data URL 形式读取文件内容，适合用于图片等二进制数据。</li>
+<li><code>readAsArrayBuffer(file)</code>：以 ArrayBuffer 形式读取文件内容，适合处理二进制数据。</li>
+<li><code>readAsBinaryString(file)</code>：以二进制字符串形式读取文件内容（不推荐使用，现代浏览器建议使用 ArrayBuffer）。</li>
+</ul>
+
+<p>显示 ”正在读取中“</p>
+
+<h4 id="使用localstorage浏览器缓存保存数据">使用localStorage浏览器缓存保存数据</h4>
+
+<h5 id="获取数据">获取数据</h5>
+
+<pre><code>localStorage.getItem(key);
+</code></pre>
+
+<h5 id="删除单个数据">删除单个数据</h5>
+
+<pre><code>localStorage.removeItem(key);
+</code></pre>
+
+<h5 id="删除全部数据">删除全部数据</h5>
+
+<pre><code>localStorage.clear();
+</code></pre>
+
+<h5 id="得到某个索引的key">得到某个索引的key</h5>
+
+<pre><code>localStorage.key(index);
+</code></pre>
+
+<h5 id="获取key的数量">获取key的数量</h5>
+
+<pre><code>localStorage.length
+</code></pre>
+
+<p>因此，想要获取全部的数据，可以通过</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">len</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 获取索引对应的key</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">getKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">key</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 获取key对应的值</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">getVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="nx">getKey</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 放进数组</span>
+<span class="w">        </span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;key&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">getKey</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;val&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">getVal</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="插入音频">插入音频</h3>
+
+<p>使用<code>&lt;audio&gt;</code>标签可插入音频。</p>
+
+<p>在标签中写autoplay可自动播放，loop可循环播放。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">audio</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;background-music&quot;</span> <span class="na">autoplay</span> <span class="na">loop</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;path/to/your/music.mp3&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;audio/mpeg&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;path/to/your/music.ogg&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;audio/ogg&quot;</span><span class="p">&gt;</span>
+    Your browser does not support the audio element.
+<span class="p">&lt;/</span><span class="nt">audio</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<h4 id="控制播放状态">控制播放状态</h4>
+
+<h3 id="延时和取消延时">延时和取消延时</h3>
+
+<p>setTimeout用于设置延时。</p>
+
+<p>会给一个返回值,即</p>
+
+<pre><code>const timeoutDuration = 10000; // 10秒超时
+const timeoutId = setTimeout(() =&gt; {
+          loadingElement.style.display = 'none';
+          alert('文件读取超时，请重试。');
+          reader.abort(); // 中止读取操作
+        }, timeoutDuration);
+</code></pre>
+
+<h3 id="javascipt类">JavaScipt类</h3>
+
+<h4 id="url">URL</h4>
+
+<h4 id="urlcreateobjecturl">URL.createObjectURL()</h4>
+
+<p>用来创建一个URL对象。指向某个blob对象或文件对象，使可以通过URL来使用它们。</p>
+
+<p>例如<code>myURL = URL.createObjectURL()</code></p>
+
+<h5 id="urlrevokeobjecturl">URL.revokeObjectURL()</h5>
+
+<p>用来释放某个URL对象，</p>
+
+<p><code>document.createElement</code> 创建的元素是一个 JavaScript 对象，表示一个尚未添加到页面中的元素。</p>
+
+<p>创建出来之后，就像在html一样，可以指定各种属性，例如</p>
+
+<p>myDiv = document.createElement("div")</p>
+
+<p>myDiv.style.backgroundColor = "blue"</p>
+
+<p>设置可以用两种方法</p>
+
+<p>myURL.href= url</p>
+
+<p>myURL.setAttribute("href", url )</p>
+
+<p>两种都可以，第一种更直观，第二种可以靠js动态生成属性名（例如不设置href了而是src了）因此更通用。</p>
+
+<p>JSON</p>
+
+<p>Number</p>
+
+<p>String</p>
+
+<p>Date</p>
+
+<h3 id="第三方库">第三方库</h3>
+
+<h4 id="echarts">Echarts</h4>
+
+<p>用于绘制统计图表。</p>
+
+<p>只要选择一个元素(通常是div)作为盛放的容器。</p>
+
+<pre><code>let dataChartContainer = echarts.init(document.getElementById("dataChartContainer"));
+</code></pre>
+
+<p>然后用一个字典来提供数据，例如</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;第一个 ECharts 实例&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">tooltip</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nx">legend</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">data</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;销量&#39;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">xAxis</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;衬衫&quot;</span><span class="p">,</span><span class="s2">&quot;羊毛衫&quot;</span><span class="p">,</span><span class="s2">&quot;雪纺衫&quot;</span><span class="p">,</span><span class="s2">&quot;裤子&quot;</span><span class="p">,</span><span class="s2">&quot;高跟鞋&quot;</span><span class="p">,</span><span class="s2">&quot;袜子&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">yAxis</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="nx">series</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;销量&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">36</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}]</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre>
+</div>
+
+<p>然后把这些数据给它加载一下</p>
+
+<pre><code>dataChartContainer.setOption(option);
+</code></pre>
+
+<p>就可以显示出统计图表了</p>
+
+<p><img src="./img/image-20240827174323689.png" alt="image-20240827174323689" /></p>
+
+<h4 id="传入的数据详解">传入的数据详解</h4>
+
+<h5 id="标题">标题</h5>
+
+<p>设置图表标题</p>
+
+<pre><code>title: {
+    text: '第一个 ECharts 实例'
+}
+</code></pre>
+
+<p>这样就会有一个标题。</p>
+
+<h5 id="提示信息">提示信息</h5>
+
+<p>配置提示信息：</p>
+
+<pre><code>tooltip: {},
+</code></pre>
+
+<h5 id="x轴y轴">x轴、y轴</h5>
+
+<p>设置x轴、y轴上写的字</p>
+
+<p>可以有多个y轴。</p>
+
+<p><strong>注意，x轴、y轴的绑定和图例不同，不依靠name来绑定到一组数据上，name只是给人看的。要在数据里面用yAxisIndex来绑定到yAxis里面写的第几个y轴。</strong></p>
+
+<h5 id="系列">系列</h5>
+
+<p>一个列表，包含若干组数据。显示在图标上的内容。不同的系列将会绘制成不同组的数据。</p>
+
+<pre><code>series: [{
+    name: '销量',  // 系列名称
+    type: 'bar',  // 系列图表类型
+    data: [5, 20, 36, 10, 10, 20]  // 系列中的数据内容
+}]
+</code></pre>
+
+<h6 id="name">name</h6>
+
+<p>用来定位到这组数据的唯一标识符。</p>
+
+<h6 id="type">type</h6>
+
+<p>同时，还可以设置各组数据是长什么样子的。</p>
+
+<p>例如，我们可以设置2023年各月销量、2024年各月销量、2023年各月销量相比上月的增速、2024年各月销量相比上月的增速四个系列的数据，然后把两个销量设置为柱状图，两个增速设置为折线图。</p>
+
+<ul>
+<li><strong>type: 'bar'</strong>：柱状/条形图</li>
+<li><strong>type: 'line'</strong>：折线/面积图</li>
+<li><strong>type: 'pie'</strong>：饼图</li>
+<li><strong>type: 'scatter'</strong>：散点（气泡）图</li>
+<li><strong>type: 'effectScatter'</strong>：带有涟漪特效动画的散点（气泡）</li>
+<li><strong>type: 'radar'</strong>：雷达图</li>
+<li><strong>type: 'tree'</strong>：树型图</li>
+<li><strong>type: 'treemap'</strong>：树型图</li>
+<li><strong>type: 'sunburst'</strong>：旭日图</li>
+<li><strong>type: 'boxplot'</strong>：箱形图</li>
+<li><strong>type: 'candlestick'</strong>：K线图</li>
+<li><strong>type: 'heatmap'</strong>：热力图</li>
+<li><strong>type: 'map'</strong>：地图</li>
+<li><strong>type: 'parallel'</strong>：平行坐标系的系列</li>
+<li><strong>type: 'lines'</strong>：线图</li>
+<li><strong>type: 'graph'</strong>：关系图</li>
+<li><strong>type: 'sankey'</strong>：桑基图</li>
+<li><strong>type: 'funnel'</strong>：漏斗图</li>
+<li><strong>type: 'gauge'</strong>：仪表盘</li>
+<li><strong>type: 'pictorialBar'</strong>：象形柱图</li>
+<li><strong>type: 'themeRiver'</strong>：主题河流</li>
+<li><strong>type: 'custom'</strong>：自定义系列</li>
+</ul>
+
+<h6 id="data">data</h6>
+
+<p>数据。注意，这是根据不同的图表来的。</p>
+
+<p>像是柱状图、折线图，是从x轴挨个给出y轴高度，所以只要一维数组即可，</p>
+
+<p>例如</p>
+
+<pre><code>data: [5, 20, 36, 10, 10, 20]
+</code></pre>
+
+<p>而散点图是需要二维坐标，所以需要给一个二维数组，如</p>
+
+<pre><code>data: [
+        [10, 20],  // 第一个点的坐标 (x, y)
+        [15, 30],  // 第二个点的坐标 (x, y)
+        [20, 40]   // 第三个点的坐标 (x, y)
+    ]
+</code></pre>
+
+<h5 id="图例">图例</h5>
+
+<p>legend用来设置图例，图例组件展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示。</p>
+
+<pre><code>legend: {
+    data: [{
+        name: '系列1',
+        // 强制设置图形为圆。
+        icon: 'circle',
+        // 设置文本为红色
+        textStyle: {
+            color: 'red'
+        }
+    }]
+}
+</code></pre>
+
+<p>注意，可以不写legend的内容，这样echart会自动生成图例。</p>
+
+<h6 id="图例的位置">图例的位置</h6>
+
+<p>和其它echart组件一样，可以通过echart的<code>orient</code>, <code>top</code>, <code>left</code>, <code>right</code>, <code>bottom</code>来设置legend的位置。</p>
+
+<p>是增强版的position   top。</p>
+
+<p>例如</p>
+
+<p>top : top,</p>
+
+<p>left: center</p>
+
+<p>这样图例会出现在顶部且水平居中。</p>
+
+<h4 id="echart的属性与css的异同">echart的属性与CSS的异同</h4>
+
+<p>fontSize(类似于CSS的font-size)</p>
+
+<p>borderColor(类似于CSS的border-color)</p>
+
+<p>color类似于CSS的color</p>
+
+<p>但是，也有一些echarts特有的属性</p>
+
+<p>rotate: 旋转。</p>
+
+<p>orient  组件的布局方向，有 <code>'horizontal'</code>（水平）和 <code>'vertical'</code>（垂直）两种取值。</p>
+
+<p><strong><code>top</code>/<code>left</code>/<code>right</code>/<code>bottom</code></strong>: 定义组件在图表中的位置。这些属性有点类似于 CSS 中的 <code>position</code> 配合 <code>top</code>、<code>left</code> 等属性来定位元素，但在 ECharts 中，它们更灵活，可以接受数值、百分比甚至是字符串（如 <code>"center"</code>、top bottom left right）来定位组件。</p>
+
+<h5 id="echarts-组件的特殊配置"><strong>ECharts 组件的特殊配置</strong></h5>
+
+<p>ECharts 中有许多配置项是针对图表组件的特殊需求设置的。例如，<code>formatter</code> 用于自定义标签显示内容，<code>interval</code> 用于设置坐标轴刻度间隔，这些在 CSS 中没有直接的对应。</p>
+
+<ul>
+<li><p><strong><code>formatter</code></strong>: 用于自定义标签内容的格式。它可以接受一个字符串模板或者一个函数。</p>
+
+<pre><code>javascript复制代码axisLabel: {
+    formatter: function(value) {
+        return value + '元';
+    }
+}
+</code></pre></li>
+<li><p><strong><code>interval</code></strong>: 控制 X 轴或 Y 轴标签的显示频率。可以用来控制是否每个标签都显示或隔几个显示一个。</p>
+
+<pre><code>javascript复制代码xAxis: {
+    axisLabel: {
+        interval: 0 // 显示所有标签
+    }
+}
+</code></pre></li>
+</ul>
+
+<p>而且，每一个组件都是可以有多个的。</p>
+
+<p>例如图例，例如y轴。</p>
+
+<pre><code>yAxis: [
+        {
+            type: 'value',
+            name: '当日支出',
+            position: 'left',
+            min: 0,
+            max: Math.max(...statisticResult.expense), // 设置支出数据的最大值
+            axisLabel: {
+                formatter: '{value} 元'
+            }
+        },
+        {
+            type: 'value',
+            name: '剩余金额',
+            position: 'right',
+            min: 0,
+            max: Math.max(...statisticResult.rel_money_left), // 设置剩余金额的最大值
+            axisLabel: {
+                formatter: '{value} 元'
+            }
+        }
+    ],
+</code></pre>
+
+<p>只要传入的不是一个字典，而是好几个字典排列成的列表，就能做出多个这个组件，而且每个都可以有自己独立的各种属性，例如top。</p>
+
+    </body>
+    </html>
+    
