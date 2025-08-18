@@ -2,7 +2,7 @@ function init_reader(){  // 默认是通过传参获得。
     let parms = new URLSearchParams(window.location.search);
     let doc_href = parms.get("doc_href");
     load_doc(doc_href);
-    set_scale();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    // set_scale();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 
 
 }
