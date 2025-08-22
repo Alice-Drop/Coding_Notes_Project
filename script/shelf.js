@@ -53,7 +53,7 @@ function shelf_item_factory(title, img, href, as_param=""){
     let item = document.createElement("td");
     item.innerHTML =  `
         <img src="${img}" />
-        <a href="${href}" target="_blank">${title}</a>
+        <span>${title}</span>
         `
     item.addEventListener("click", function(){
         window.open(href, "_blank");
