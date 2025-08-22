@@ -110,7 +110,7 @@
     text-align: center;
     vertical-align: middle;
 
-    transition: background-color ease-out 0.3s;
+    transition: background-color 0.3s;
 
     cursor: pointer;
 
@@ -118,6 +118,7 @@
 
 .NewDocItem:hover{
     background: rgba(255, 255, 255, 0.5);
+    transition-duration: 0.2s;
 }
 
 .NewDocItem a{
