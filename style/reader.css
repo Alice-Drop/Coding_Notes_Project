@@ -3,6 +3,12 @@
     margin-top: 0;
     margin-bottom: 0;
     border-radius: 10px;
+    border: 1px solid #FAFAFA;
+}
+
+.tocItem:hover{
+    border: 1px solid #eaeaea;
+    background-color: #fff;
 }
 
 .tocItem_H1{
@@ -35,7 +41,7 @@
     /* toc里的当前标题 */
     color: rgb(211, 38, 75);
 
-    background-color: #ececec;
+    background-color: #ececec !important;
     font-weight: bold;
 }
 
@@ -81,7 +87,7 @@ a{
     /*height: 100%;*/
 
     display: block;
-    min-width: 712px;
+    /*min-width: 712px;*/
     
 }
 
@@ -181,6 +187,7 @@ a{
 #btn_switch_toc{
     padding: 12px;
     min-width: 60px;
+    cursor: pointer;
 }
 
 #img_toc_btn{
@@ -201,6 +208,7 @@ a{
     max-width: 350px;
 
     max-height: 70vh;
+    max-height: 70svh;
 
     min-width: 220px;
 

@@ -2,6 +2,12 @@
     margin: 0 auto;
 }
 
+.shelf{
+    margin: 0 auto;
+    display: block;
+    max-width: 70vw;
+}
+
 .article_item *{
     user-select: none;
 }
