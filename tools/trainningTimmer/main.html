@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>训练助手｜眼部训练 & 身体训练</title>
+  <style>
+    :root {
+      --bg: #0f172a;      /* slate-900 */
+      --panel: #111827;   /* gray-900 */
+      --muted: #94a3b8;   /* slate-400 */
+      --text: #e5e7eb;    /* gray-200 */
+      --brand: #22d3ee;   /* cyan-400 */
+      --accent: #a78bfa;  /* violet-400 */
+      --good: #34d399;    /* emerald-400 */
+      --warn: #fbbf24;    /* amber-400 */
+      --danger: #f87171;  /* red-400 */
+    }
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, #0b1224, #0f172a);
+      color: var(--text);
+    }
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    h1{font-size:clamp(22px,3vw,32px);margin:0 0 20px 0;letter-spacing:.5px}
+    .card{background:rgba(17,24,39,.7);border:1px solid rgba(148,163,184,.16);border-radius:18px;padding:16px 18px;margin:14px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .accordion{border-radius:14px;overflow:hidden}
+    .acc-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 10px;border-bottom:1px solid rgba(148,163,184,.14)}
+    .acc-head h2{margin:0;font-size:18px}
+    .acc-body{display:none;padding:14px 6px}
+    .acc.open .acc-body{display:block}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;background:rgba(34,211,238,.1);color:var(--brand);border:1px solid rgba(34,211,238,.35);margin-left:10px}
+    .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .row > *{flex:0 0 auto}
+    label{font-size:12px;color:var(--muted)}
+    input[type="number"],select{background:#0b1020;color:var(--text);border:1px solid rgba(148,163,184,.25);border-radius:10px;padding:8px 10px;min-width:90px}
+    .btn{background:#0b1020;color:var(--text);border:1px solid rgba(148,163,184,.3);padding:9px 14px;border-radius:12px;cursor:pointer;transition:.2s;}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg, rgba(34,211,238,.2), rgba(167,139,250,.2));border-color:rgba(167,139,250,.45)}
+    .btn.danger{border-color:rgba(248,113,113,.6);color:#fecaca}
+    .btn.ghost{background:transparent}
+    .grid{display:grid;gap:12px}
+    .grid.two{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .timer{font-variant-numeric:tabular-nums;font-size:34px;letter-spacing:1px}
+    .sub{color:var(--muted);font-size:12px}
+    .progress{height:8px;border-radius:999px;background:#0b1020;border:1px solid rgba(148,163,184,.25);overflow:hidden}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--accent))}
+    .pill{padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.12);color:var(--good);border:1px solid rgba(52,211,153,.35);font-size:12px}
+    .log{font-size:13px;line-height:1.45;background:#0b1020;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>训练助手 <span class="badge">语音/蜂鸣提示 & 进度</span></h1>
+
+    <!-- 眼部训练 -->
+    <div class="card accordion acc" id="eye-acc">
+      <div class="acc-head" data-acc-toggle>
+        <h2>眼部训练</h2>
+        <div class="muted">点击展开/收起</div>
+      </div>
+      <div class="acc-body">
+        <div class="grid two">
+          <div>
+            <div class="row">
+              <div>
+                <label>训练A（分钟）</label><br>
+                <input id="eye-a" type="number" min="1" value="8">
+              </div>
+              <div>
+                <label>休息（分钟）</label><br>
+                <input id="eye-rest" type="number" min="1" value="6">
+              </div>
+              <div>
+                <label>训练B（分钟）</label><br>
+                <input id="eye-b" type="number" min="1" value="8">
+              </div>
+            </div>
+            <div class="row" style="margin-top:12px">
+              <button class="btn primary" id="eye-start">开始眼部训练</button>
+              <button class="btn" id="eye-pause">暂停/继续</button>
+              <button class="btn danger" id="eye-reset">停止</button>
+            </div>
+          </div>
+          <div>
+            <div class="timer" id="eye-timer">00:00</div>
+            <div class="sub" id="eye-stage">就绪</div>
+            <div class="progress" style="margin-top:8px"><div class="bar" id="eye-bar"></div></div>
+            <div class="log" id="eye-log" style="margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 身体训练 1 -->
+    <div class="card">
+      <h2>身体训练 · 流程一</h2>
+      <div class="sub">开始 → 等 <b>1秒</b> → 切换动作 → 等 <b>5秒</b> → 切换… 共 <b>15</b> 次；休息 <b>30秒</b>；重复 <b>3</b> 组（参数可调）。</div>
+      <div class="grid two" style="margin-top:10px">
+        <div>
+          <div class="row">
+            <div><label>预备(秒)</label><br><input id="f1-prep" type="number" min="0" value="1"></div>
+            <div><label>动作间隔(秒)</label><br><input id="f1-interval" type="number" min="1" value="5"></div>
+            <div><label>次数</label><br><input id="f1-reps" type="number" min="1" value="15"></div>
+            <div><label>休息(秒)</label><br><input id="f1-rest" type="number" min="0" value="30"></div>
+            <div><label>组数</label><br><input id="f1-sets" type="number" min="1" value="3"></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" id="f1-start">开始流程一</button>
+            <button class="btn" id="f1-pause">暂停/继续</button>
+            <button class="btn danger" id="f1-reset">停止</button>
+          </div>
+        </div>
+        <div>
+          <div class="timer" id="f1-timer">00:00</div>
+          <div class="sub" id="f1-stage">就绪</div>
+          <div class="progress" style="margin-top:8px"><div class="bar" id="f1-bar"></div></div>
+          <div class="row" style="margin-top:8px"><span class="pill" id="f1-rep-pill">第 0 / 0 次</span><span class="pill" id="f1-set-pill">第 0 / 0 组</span></div>
+          <div class="log" id="f1-log" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 身体训练 2 -->
+    <div class="card">
+      <h2>身体训练 · 流程二（语音/蜂鸣计数）</h2>
+      <div class="sub">语音喊 <b>1</b> → 等 <b>3秒</b>（或 <b>5秒</b>） → 蜂鸣/语音提示 → 等 <b>1.5秒</b> → 语音 <b>2</b> … 共 <b>15</b> 次；休息 <b>30秒</b>；默认 <b>3</b> 组（可调）。</div>
+      <div class="grid two" style="margin-top:10px">
+        <div>
+          <div class="row">
+            <div><label>主等待(秒)</label><br><input id="f2-wait" type="number" step="0.1" min="0" value="3"></div>
+            <div><label>备用等待(秒)</label><br><input id="f2-wait2" type="number" step="0.1" min="0" value="5"></div>
+            <div><label>提示停顿(秒)</label><br><input id="f2-gap" type="number" step="0.1" min="0" value="1.5"></div>
+            <div><label>次数</label><br><input id="f2-reps" type="number" min="1" value="15"></div>
+            <div><label>休息(秒)</label><br><input id="f2-rest" type="number" min="0" value="30"></div>
+            <div><label>组数</label><br><input id="f2-sets" type="number" min="1" value="3"></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" id="f2-start-main">开始（主等待）</button>
+            <button class="btn" id="f2-start-alt">开始（备用等待）</button>
+            <button class="btn" id="f2-pause">暂停/继续</button>
+            <button class="btn danger" id="f2-reset">停止</button>
+          </div>
+        </div>
+        <div>
+          <div class="timer" id="f2-timer">00:00</div>
+          <div class="sub" id="f2-stage">就绪</div>
+          <div class="progress" style="margin-top:8px"><div class="bar" id="f2-bar"></div></div>
+          <div class="row" style="margin-top:8px"><span class="pill" id="f2-rep-pill">第 0 / 0 次</span><span class="pill" id="f2-set-pill">第 0 / 0 组</span></div>
+          <div class="log" id="f2-log" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">提示：语音采用浏览器 <code>SpeechSynthesis</code>（支持中文）与蜂鸣器（Web Audio）。若语音无声，可改用蜂鸣或更换浏览器。</div>
+  </div>
+
+<script>
+// —— 工具：时间格式与日志 ——
+const fmt = (s)=>{
+  s = Math.max(0, Math.floor(s));
+  const m = Math.floor(s/60).toString().padStart(2,'0');
+  const ss = (s%60).toString().padStart(2,'0');
+  return `${m}:${ss}`;
+};
+function appendLog(el, msg){
+  const time = new Date().toLocaleTimeString();
+  el.innerHTML = `<div>[${time}] ${msg}</div>` + el.innerHTML;
+}
+
+// —— 语音与蜂鸣 ——
+let audioCtx;
+function beep(duration=300, freq=880){
+  try{
+    audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.value = freq;
+    o.connect(g); g.connect(audioCtx.destination);
+    g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime+0.02);
+    o.start();
+    setTimeout(()=>{o.stop();}, duration);
+  }catch(e){ /* ignore */ }
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) { beep(); return; }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN';
+  u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// —— 调度器：支持暂停/继续/停止 ——
+class Scheduler{
+  constructor(update){
+    this.queue=[];this.running=false;this.paused=false;this.idx=0;this.startAt=0;this.remaining=0;this.timer=null;this.update=update||(()=>{});
+  }
+  add(label, seconds, onStart){
+    this.queue.push({label, seconds, onStart});
+    return this;
+  }
+  start(){
+    if(this.running) return; this.running=true; this.idx=0; this._runCurrent();
+  }
+  _runCurrent(){
+    if(this.idx>=this.queue.length){ this.running=false; this.update('done'); return; }
+    const step = this.queue[this.idx];
+    this.remaining = step.seconds;
+    step.onStart && step.onStart();
+    this.update('start', step.label, this.idx, this.queue.length, this.remaining);
+    this._tick();
+  }
+  _tick(){
+    if(!this.running || this.paused) return;
+    const started = Date.now();
+    this.timer = setInterval(()=>{
+      const dt = Math.round((Date.now()-started)/1000);
+      const left = this.remaining - dt;
+      this.update('tick', null, this.idx, this.queue.length, Math.max(left,0));
+      if(left<=0){ clearInterval(this.timer); this.idx++; this._runCurrent(); }
+    },250);
+  }
+  pause(){ if(!this.running) return; if(this.paused){ this.resume(); return;} this.paused=true; clearInterval(this.timer); this.update('pause'); }
+  resume(){ if(!this.running) return; this.paused=false; // 继续当前步骤，重置倒计时为上一 tick 报告的剩余
+    const step = this.queue[this.idx];
+    const currentLeft = this.lastLeft ?? step.seconds;
+    step.seconds = currentLeft; // 继续剩余
+    this._runCurrent();
+  }
+  stop(){ this.running=false; this.paused=false; clearInterval(this.timer); this.update('stop'); }
+}
+
+// —— UI 辅助 ——
+function bindAccordion(){
+  document.querySelectorAll('[data-acc-toggle]').forEach(h=>{
+    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'))
+  });
+}
+
+// —— 眼部训练 ——
+(function(){
+  const a = document.getElementById('eye-a');
+  const r = document.getElementById('eye-rest');
+  const b = document.getElementById('eye-b');
+  const t = document.getElementById('eye-timer');
+  const s = document.getElementById('eye-stage');
+  const bar = document.getElementById('eye-bar');
+  const log = document.getElementById('eye-log');
+  let total=0, currentTotal=0;
+
+  const sched = new Scheduler((evt,label,idx,len,left)=>{
+    if(evt==='start'){
+      sched.lastLeft = left; // 记录剩余
+    }
+    if(evt==='tick'){
+      sched.lastLeft = left;
+      t.textContent = fmt(left);
+      const doneSteps = idx;
+      const stepTotal = (idx < len) ? sched.queue[idx].seconds : 0;
+      const elapsed = stepTotal - left;
+      const overallElapsed = sched.queue.slice(0,idx).reduce((s,x)=>s+x.seconds,0) + elapsed;
+      bar.style.width = `${(overallElapsed/total)*100}%`;
+    }
+    if(evt==='pause'){ appendLog(log,'已暂停'); }
+    if(evt==='stop'){ t.textContent='00:00'; s.textContent='已停止'; bar.style.width='0%'; appendLog(log,'停止训练'); }
+    if(evt==='done'){ t.textContent='完成'; s.textContent='全部结束'; bar.style.width='100%'; appendLog(log,'眼部训练完成 ✅'); speak('眼部训练完成'); }
+  });
+
+  function build(){
+    sched.stop(); sched.queue=[]; 
+    const A = (+a.value||8)*60; const R=(+r.value||6)*60; const B=(+b.value||8)*60;
+    total = A+R+B; bar.style.width='0%';
+    sched.add('训练 A', A, ()=>{ s.textContent='训练 A'; speak('开始眼部训练A'); })
+         .add('休息', R, ()=>{ s.textContent='休息'; speak('休息'); })
+         .add('训练 B', B, ()=>{ s.textContent='训练 B'; speak('开始眼部训练B'); });
+  }
+  document.getElementById('eye-start').onclick=()=>{ build(); sched.start(); };
+  document.getElementById('eye-pause').onclick=()=> sched.pause();
+  document.getElementById('eye-reset').onclick=()=> sched.stop();
+})();
+
+// —— 身体训练 · 流程一 ——
+(function(){
+  const els = id=>document.getElementById(id);
+  const prep=els('f1-prep'), interval=els('f1-interval'), reps=els('f1-reps'), rest=els('f1-rest'), sets=els('f1-sets');
+  const t=els('f1-timer'), s=els('f1-stage'), bar=els('f1-bar'), log=els('f1-log'), repPill=els('f1-rep-pill'), setPill=els('f1-set-pill');
+  let total=0;
+
+  const sched = new Scheduler((evt,label,idx,len,left)=>{
+    if(evt==='tick'){
+      sched.lastLeft = left;
+      t.textContent=fmt(left);
+      const stepTotal = (idx < len) ? sched.queue[idx].seconds : 0;
+      const elapsed = stepTotal - left;
+      const overallElapsed = sched.queue.slice(0,idx).reduce((s,x)=>s+x.seconds,0) + elapsed;
+      bar.style.width = `${(overallElapsed/total)*100}%`;
+    }
+    if(evt==='start'){ /* noop */ }
+    if(evt==='pause'){ appendLog(log,'已暂停'); }
+    if(evt==='stop'){ t.textContent='00:00'; s.textContent='已停止'; bar.style.width='0%'; appendLog(log,'停止流程一'); }
+    if(evt==='done'){ t.textContent='完成'; s.textContent='全部结束'; bar.style.width='100%'; appendLog(log,'流程一完成 ✅'); speak('流程一完成'); }
+  });
+
+  function build(){
+    sched.stop(); sched.queue=[]; bar.style.width='0%';
+    const P=+prep.value||0, I=+interval.value||5, R=+reps.value||15, Rest=+rest.value||30, Sets=+sets.value||3;
+    // 计算总时长
+    total = Sets * (P + (I * R) + Rest) - Rest; // 最后一组后不休息
+    let repCount=0, setCount=0;
+
+    for(let st=1; st<=Sets; st++){
+      setCount = st; updatePills(0, R, st, Sets);
+      if(P>0) sched.add(`第${st}组 预备`, P, ()=>{ s.textContent=`第 ${st} 组 · 预备`; appendLog(log,`第 ${st} 组开始，预备 ${P} 秒`); speak(`第 ${st} 组，预备`); });
+      for(let r=1; r<=R; r++){
+        const repIndex=r; repCount=r; 
+        sched.add(`第${st}组 动作${r}`, I, ()=>{ s.textContent=`第 ${st} 组 · 动作 ${repIndex}`; updatePills(repIndex,R,setCount,Sets); speak(`${repIndex}`); beep(180,980); });
+      }
+      if(st<Sets && Rest>0) sched.add(`休息`, Rest, ()=>{ s.textContent=`休息 ${Rest}s`; appendLog(log,`组间休息 ${Rest} 秒`); });
+    }
+  }
+  function updatePills(rep, repMax, set, setMax){
+    repPill.textContent = `第 ${rep} / ${repMax} 次`;
+    setPill.textContent = `第 ${set} / ${setMax} 组`;
+  }
+  document.getElementById('f1-start').onclick=()=>{ build(); sched.start(); };
+  document.getElementById('f1-pause').onclick=()=> sched.pause();
+  document.getElementById('f1-reset').onclick=()=> sched.stop();
+})();
+
+// —— 身体训练 · 流程二 ——
+(function(){
+  const els = id=>document.getElementById(id);
+  const wait=els('f2-wait'), wait2=els('f2-wait2'), gap=els('f2-gap'), reps=els('f2-reps'), rest=els('f2-rest'), sets=els('f2-sets');
+  const t=els('f2-timer'), s=els('f2-stage'), bar=els('f2-bar'), log=els('f2-log'), repPill=els('f2-rep-pill'), setPill=els('f2-set-pill');
+  let total=0;
+
+  const sched = new Scheduler((evt,label,idx,len,left)=>{
+    if(evt==='tick'){
+      sched.lastLeft = left;
+      t.textContent=fmt(left);
+      const stepTotal = (idx < len) ? sched.queue[idx].seconds : 0;
+      const elapsed = stepTotal - left;
+      const overallElapsed = sched.queue.slice(0,idx).reduce((s,x)=>s+x.seconds,0) + elapsed;
+      bar.style.width = `${(overallElapsed/total)*100}%`;
+    }
+    if(evt==='pause'){ appendLog(log,'已暂停'); }
+    if(evt==='stop'){ t.textContent='00:00'; s.textContent='已停止'; bar.style.width='0%'; appendLog(log,'停止流程二'); }
+    if(evt==='done'){ t.textContent='完成'; s.textContent='全部结束'; bar.style.width='100%'; appendLog(log,'流程二完成 ✅'); speak('流程二完成'); }
+  });
+
+  function build(useAlt){
+    sched.stop(); sched.queue=[]; bar.style.width='0%';
+    const W = +(useAlt? wait2.value : wait.value) || 3; // 主或备用等待
+    const G = +gap.value || 1.5; const R=+reps.value||15; const Rest=+rest.value||30; const Sets=+sets.value||3;
+    // 每次计数包含：喊数 → 等 W → 哔/喊 → 等 G
+    const perRep = W + G; // 喊数耗时忽略
+    total = Sets * (perRep * R + Rest) - Rest; // 最后一组后不休息
+
+    let setCount=0;
+    for(let st=1; st<=Sets; st++){
+      setCount=st; updatePills(0,R,setCount,Sets);
+      for(let r=1; r<=R; r++){
+        const repIndex=r;
+        // 喊数
+        sched.add(`第${st}组 计数${r}（喊数）`, 0.6, ()=>{ s.textContent=`第 ${st} 组 · 喊 ${repIndex}`; speak(`${repIndex}`); appendLog(log,`第 ${st} 组：喊 ${repIndex}`); });
+        // 等待 W 秒
+        if(W>0) sched.add(`等待 ${W}s`, W, ()=>{ s.textContent=`等待 ${W} 秒`; });
+        // 哔/提示
+        sched.add(`提示`, Math.max(0.2, Math.min(0.8,G/2)), ()=>{ beep(200, 900); /* 可改成 speak('换') */ });
+        // 等 G 秒
+        if(G>0) sched.add(`间隔 ${G}s`, G, ()=>{ s.textContent=`间隔 ${G} 秒`; updatePills(repIndex,R,setCount,Sets); });
+      }
+      if(st<Sets && Rest>0) sched.add(`休息`, Rest, ()=>{ s.textContent=`休息 ${Rest}s`; appendLog(log,`组间休息 ${Rest} 秒`); });
+    }
+  }
+  function updatePills(rep, repMax, set, setMax){
+    repPill.textContent = `第 ${rep} / ${repMax} 次`;
+    setPill.textContent = `第 ${set} / ${setMax} 组`;
+  }
+
+  document.getElementById('f2-start-main').onclick=()=>{ build(false); sched.start(); };
+  document.getElementById('f2-start-alt').onclick=()=>{ build(true); sched.start(); };
+  document.getElementById('f2-pause').onclick=()=> sched.pause();
+  document.getElementById('f2-reset').onclick=()=> sched.stop();
+})();
+
+// 初始化
+bindAccordion();
+// 默认展开眼部训练
+document.getElementById('eye-acc').classList.add('open');
+</script>
+</body>
+</html>
