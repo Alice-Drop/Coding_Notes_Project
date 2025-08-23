@@ -37,5 +37,5 @@ let DEFAULT_IMG = "../img/tech_article2.png"
 function initToolsGUI(){
     // 所有书架展示样式的都交给shelf.js
     let tools_shelf = document.getElementById("tools_shelf");
-    display_shelf(tools_list, tools_shelf);
+    display_shelf(tools_list, tools_shelf, "", "在线工具");
 }

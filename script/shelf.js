@@ -17,12 +17,21 @@ function display_shelf_old(data, shelf_obj){
     }
 }
 
-function display_shelf(data, shelf_obj, as_param=""){
+function display_shelf(data, shelf_obj, as_param="", shelf_title=""){
     // 把那些文章数据渲染到上面去
 
     let articles_shelf = shelf_obj;
     console.log(data)
     articles_shelf.style.width = String(cal_shelf_width()+"px");
+    if (shelf_title){
+        console.log(shelf_title);
+        
+        let title_row = document.createElement("tr");
+        articles_shelf.appendChild(title_row);
+        let title = document.createElement("td");
+        title.innerHTML = `<h3>${shelf_title}</h3>`
+        title_row.appendChild(title)
+    }
     if (data.length){
         let row = document.createElement("tr");
         articles_shelf.appendChild(row)
@@ -88,7 +97,7 @@ function no_item_msg(){
 function cal_shelf_width(){
     let viewportWidth = document.documentElement.clientWidth;
     let ITEM_WIDTH = 246;  // 单个article_item的宽度
-    let SHELF_WIDTH_RATE = 0.7
+    let SHELF_WIDTH_RATE = 0.6
     let theoryWidth = viewportWidth * SHELF_WIDTH_RATE  // 根据视口大小计算的shelf的理论值
     console.log(`理论值：${theoryWidth}`);
     

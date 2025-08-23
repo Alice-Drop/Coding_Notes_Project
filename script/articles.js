@@ -17,5 +17,5 @@ let DEFAULT_IMG = "../img/tech_article2.png"
 
 function initArticlesGUI(){
     let articles_shelf = document.getElementById("articles_shelf");
-    display_shelf(ARTICLES, articles_shelf, "../reader.html")
+    display_shelf(ARTICLES, articles_shelf, "../reader.html", "通用笔记")
 }

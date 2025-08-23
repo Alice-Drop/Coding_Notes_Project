@@ -137,10 +137,10 @@ nav{
 }
 
 #a4content{
-    width: 50vw;
+    width: 60vw;
     max-width: 860px;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 40px;
 
 }
 /* 注意，main_content提供的是一个基础的限位，基本的左右margin。但是有的东西，本身更加接近于一个文章，
