@@ -22,7 +22,7 @@ let tools_list = [
         icon: "/img/tool_icon/URL_Scheme_tool.png"
     },
     {
-        title: "训练计时器⏱️ alpha",
+        title: "训练计时助手 -alpha",
         minimum_width: "",
         minimum_height: "",
         href: "/tools/trainningTimmer/main.html",
