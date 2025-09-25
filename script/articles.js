@@ -9,6 +9,11 @@ let ARTICLES = [
         "icon": "",
         "href": "../docs/common/tfCard/tfCard.html"
     },
+    {
+        "title": "如何管理收藏的影视资源？刮削详细入门攻略",
+        "icon": "",
+        "href": "../docs/common/MediaManage/index.html"
+    },
     
 ]
 

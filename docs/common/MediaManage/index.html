@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1>影视资源信息入门</h1>
+    
+    <p>版本：20260925-0133</p>
+    
+    <h2>什么是资源管理与刮削</h2>
+    
+    <p>当整理了一些资源到网盘或者存到NAS里之后，就可以</p>
+    
+    <p>我们可以使用带有刮削功能的播放器，比如说Plex、Vidhub、Infuse、Jellyfin、Emby等。</p>
+    
+    <p>TMDB/TVDB。从上面下载元数据，这样在软件内就会有这样的海报墙的效果，就像是Steam的游戏库展示墙一样，直观地展示自己保存了哪些影视资源，仿佛站在书架前挑选抽出一盒自己今晚想看的光盘一般。</p>
+    
+    <img src="./assets/image-20250925020710065.png" alt="image-20250925020710065" />
+    
+    <p>同时，它还能提供影视作品的信息，方便像在流媒体平台上观看一般，快速了解这部作品，比如今天想看恐怖片，那就看看简介。</p>
+    
+    <img src="./assets/image-20250925020632344.png" alt="image-20250925020632344" />
+    
+    <p>之后主要用Vidhub演示。</p>
+    
+    <h2>存放位置</h2>
+    
+    <p>通常来讲，在资源目录下，每部作品，无论是电影还是多集的剧集，都最好是一部一个文件夹。</p>
+    
+    <p>然后文件夹里面是视频文件、字幕、信息等。</p>
+    
+    <p>比如</p>
+    
+    <pre><code>电影/
+      佩小姐的奇幻城堡 (2016)/
+        Miss.Peregrines.Home.for.Peculiar.Children.2016.2160p.mkv
+        Miss.Peregrines.Home.for.Peculiar.Children.2016.2160p.srt
+        movie.nfo
+        poster.jpg
+    </code></pre>
+    
+    <pre><code>剧集/
+      我的青春恋爱物语肯定有问题 (2013)/
+        Season 01/
+          Oregairu.S01E01.mkv
+          Oregairu.S01E01.srt
+        Season 02/
+          Oregairu.S02E01.mkv</code></pre>
+    
+    <p>通常来讲，扫描都是扫描视频文件，然后通过视频的文件名来识别，所以文件夹的名字就不用用标准的写法，通常就<code>片名（年份）</code>即可。</p>
+    
+    <h3>字幕</h3>
+    
+    <p>字幕的话可以直接压制到视频里面（成为图像的一部分），也可以作为嵌入视频文件或单独放置的srt、ass格式的字幕。</p>
+    
+    <p>如果字幕不是嵌在视频文件里的，通常要求把字幕文件和视频文件放在一起，比如</p>
+    
+    <pre><code>Oregairu.S01E01.mkv
+    Oregairu.S01E01.zh.srt
+    Oregairu.S01E01.eng.srt
+    Oregairu.S01E01.jp.srt
+    Oregairu.S01E02.mkv
+    Oregairu.S01E02.zh.srt
+    ...</code></pre>
+    
+    <p>但是这样的缺点是，字幕和视频文件混在一起，特别是如果有多种语言的字幕导致文件太多就更乱更难找某一集了。</p>
+    
+    <p>更整洁的方法是，在视频所在目录内，创建一个字幕子目录<code>./Subs/</code>，专门用来放字幕，比如</p>
+    
+    <pre><code>Oregairu.S01E01.mkv
+    Oregairu.S01E02.mkv
+    Subs/
+      Oregairu.S01E01.zh.srt
+      Oregairu.S01E01.eng.srt
+      Oregairu.S01E01.jp.srt
+      Oregairu.S01E02.zh.srt
+      Oregairu.S01E02.eng.srt
+      ...</code></pre>
+    
+    <p>但是这个并不是所有的播放器都支持，比如Vidhub目前暂不支持，而Plex需要手动在设置里开启这一功能。</p>
+    
+    <h3>元数据文件</h3>
+    
+    <p>有些时候，我们会选择在一部影视作品的文件夹中放.nfo文件、 <code>poster.jpg</code>、<code>fanart.jpg</code>、<code>clearlogo.png</code> 等配套海报等。就是资源的元数据，只是直接放在本地的话就比较方便，也不需要再联网去刮削。</p>
+    
+    <p>如果要这样，通常是使用TinyMediaManager、MediaElch<strong>、</strong>Ember Media Manager 等工具生成。</p>
+    
+    <h3>附加内容</h3>
+    
+    <p>蓝光光碟里面往往会附赠一些文件，我们有时候也会把收藏的NCOP、NCED、花絮、特典SP（Special）、OVA、番外等等和电影、番剧等放在一起。</p>
+    
+    <p>这些的话有可能会被软件识别为剧集，因此通常会把它们放到特殊文件夹或者做一些标记，让软件不要乱刮削。</p>
+    
+    <p>第一种也是最常用的方式是建立特殊文件夹。</p>
+    
+    <p>建立./Extras/子目录放到里面去，这里面的文件将不会参与正片刮削，而是在软件中显示为附加内容。Plex完全支持，Jellfin、Emby部分支持这种方式。</p>
+    
+    <p>除了Extras之外，特殊文件夹还有Specials</p>
+    
+    <p>第二种方式是通过命名标签后缀来实现，比如</p>
+    
+    <pre><code>MovieName.Extra.mkv
+    MovieName.Trailer.mkv
+    ShowName.S01E01.NCOP.mkv</code></pre>
+    
+    <p>第三种方式是把附加内容标记为S00E01等。这也是TVDB/TMDB都规范，把所有不属于正片的内容都收录进S00.数据库里是有这个内容的，比如某动画的OVA1被TVDB编为S00E01，那么支持这个功能的播放器能通过查询得到OVA标题、该集封面等信息。</p>
+    
+    <p>不过需要注意，和Extras方案一股脑丢进去不同的是，这样是有顺序的，把什么内容称为S00的第一集、什么称为第二集等这个是按照TVDB、TMDB的来的，更加精细，但是也可能带来麻烦，如果填错了或者乱填这个集数，就会封面与标题识别错误或者显示为“未知特别篇”等。尤其是NCOP、NCED等一般不会被TVDB收录，所以用这种方法怎么样都是“未知特别篇“的。</p>
+    
+    <p>Plex、Jellfin、Emby、Kodi支持这一方式。</p>
+    
+    <p>还有一种方法，是在使用Season子目录区分每一季的剧集，创建不是以Season开头的子目录用来存放附加内容</p>
+    
+    <pre><code>ShowName/
+      Season 01/
+        ShowName.S01E01.mkv
+      Specials/   ← OVA、OAD、SP 放这里
+        ShowName.Special1.mkv
+      NCOP_NCED/   ← NCOP和NCED 放这里
+        ShowName.S01.NCOP1.mkv
+        ShowName.S01.NCED1.mkv</code></pre>
+    
+    <h2>文件命名格式</h2>
+    
+    <p>视频文件的命名通常使用下面这样用点分隔的格式：</p>
+    
+    <p>电影通常是差不多这样的格式：</p>
+    
+    <pre><code>电影名.年份.分辨率.资源来源.视频编码.音频编码-组名.mkv</code></pre>
+    
+    <p>例如</p>
+    
+    <pre><code>佩小姐的奇幻城堡.2016.2160p.WEB-DL.x265.DDP5.1-XYZ.mkv</code></pre>
+    
+    <p>而剧集则一般是这样：</p>
+    
+    <pre><code>剧名.年份.SxxExx.分辨率.来源.编码-组名.mkv</code></pre>
+    
+    <p>SxxExx是用来标识剧集是第几季第几集的，详见下面的<a href="#标识季、集">标识季、集</a>部分。</p>
+    
+    <p>通常，名称如果是英文的话，各个单词之间也是使用点来间隔的（代替空格），比如</p>
+    
+    <pre><code>Miss.Peregrines.Home.for.Peculiar.Children.2016.2160p.mkv</code></pre>
+    
+    <p>因此，电影的年份（首播年份）非常重要，这个数字一眼就可以看出从这里开始就不是电影名称了，可以起到快速标识名称结束位置的作用。同时，年份也是刮削的时候用来识别重名电影的关键。</p>
+    
+    <p>而剧集的年份是可选的，不强制要求，因为重名的情况较少。</p>
+    
+    <p>刮削器处理电影和剧集的方式往往不太一样，因为剧集在年份后面没有</p>
+    
+    <p>会通过文件结构（文件夹里是只有它一个还是有好多个、是否有Season1、SxxExx等来）判断是电影还是剧集然后应用不同的规则来识别。</p>
+    
+    <p>有的可能会采用猜的方式来增加对不规范的格式的兼容性，从开头开始一段一段地截取，如果能在TMDB/TVDB搜到看起来好像是的片，就把这个当作片名。</p>
+    
+    <p>需要注意，电影开头的名称和年份是固定的，后面的这些视频编码、音频编码这些都是不固定的，上面只是列出一些常见的，并不一定包括这些。</p>
+    
+    <p>这些是可选的辅助信息，一般软件是不会去识别这个的，是给我们自己看的。</p>
+    
+    <p>这一过程通常是先找到第一个4位的年份，然后前面的部分当作片名，而后面的一律当作辅助信息不去识别，也就是电影文件年份后面的都是辅助信息。</p>
+    
+    <p>（不同软件具体算法不同，不一定是这样）</p>
+    
+    <h3>社区常见格式</h3>
+    
+    <p>网上下载到的资源，很多时候都不是这样的格式，比如番剧往往是这种格式：</p>
+    
+    <pre><code>[zhuzhuaClub][我的青春恋爱物语一定有问题][BluRay][01][GB][1080p].mkv</code></pre>
+    
+    <p>这些的话对自动识别媒体库不算特别友好，很容易识别错，建议用便于刮削的格式。</p>
+    
+    <h3>标识季、集</h3>
+    
+    <p>电影的话一般第几部会包含在名字里面，用数字或者是用“xxx之xxxx”之类的表达，因此不需要专门标识。</p>
+    
+    <p>比如，速度与激情和银河护卫队是直接在名称里加数字或者Vol来表示</p>
+    
+    <pre><code>Fast.And.Furious.5.2011.1080p.BluRay.x264.mkv
+    Fast.And.Furious.6.2013.1080p.BluRay.x264.mkv</code></pre>
+    
+    <pre><code>Guardians.Of.The.Galaxy.2014.1080p.BluRay.x264.mkv
+    Guardians.Of.The.Galaxy.Vol.2.2017.1080p.BluRay.x264.mkv
+    Guardians.Of.The.Galaxy.Vol.3.2023.2160p.WEB-DL.x265.mkv</code></pre>
+    
+    <p>而哈利波特的电影，就直接写在了标题里</p>
+    
+    <pre><code>Harry.Potter.And.The.Sorcerers.Stone.2001.1080p.BluRay.x264.mkv
+    Harry.Potter.And.The.Chamber.Of.Secrets.2002.1080p.BluRay.x264.mkv</code></pre>
+    
+    <p>而剧集的话，一般使用SxxExx的方式表示第几季第几季，比如<code>Oregairu.S01E01.mkv</code>表示《我的青春恋爱物语肯定有问题》的第一季第一集。</p>
+    
+    <p>除此之外，为了更加整洁，可以每一季就放在一个子文件夹下，比如</p>
+    
+    <pre><code>我的青春恋爱物语肯定有问题 (2013)/
+      Season 01/
+        Oregairu.S01E01.mkv
+        Oregairu.S01E01.srt
+        ...
+      Season 02/
+        Oregairu.S02E01.mkv
+        ...</code></pre>
+    
+    <p>两种方式都是可以被主流播放器正常识别的，因为即使不兼容Season格式，文件夹名称也通常不作为刮削的依据。</p>
+    
+    <p>不过，对于有的没有明显标识第几季的剧集比如《BanG Dream! It's MyGO!!!!!》与《BanG Dream! Ave Mujica》这样，</p>
+    
+    <p>制作组原本的意图更偏向于两者是独立的作品的，TMDB / TVDB 上也会把它们作为 <strong>两个独立条目</strong>，建议就不要抢行把它们放在一起、把《Ave Mujica》称为第二季，而是应该建立两个文件夹单独放置。</p>
+    
+    <h3>字幕</h3>
+    
+    <p>通常来讲，字幕要么是渲染或者潜入到视频里面，要么是单独的文件。如果是独立的srt/ass等字幕文件，要求和视频文件放在同一个目录下，并且除了拓展名之外名字相同，但也有一些其他的方式，具体看下面内容。</p>
+    
+    <p>最严格的标准是，要求字幕文件和视频文件的文件名完全一致（只有拓展名不一样，比如</p>
+    
+    <pre><code>Miss.Peregrine.2016.1080p.mkv
+    Miss.Peregrine.2016.1080p.srt</code></pre>
+    
+    <p>不过，多数的播放器都不会这么严格，支持加一点后缀。通常是语言后缀</p>
+    
+    <pre><code>Miss.Peregrine.2016.1080p.mkv
+    Miss.Peregrine.2016.1080p.zh.srt    → 简体中文
+    Miss.Peregrine.2016.1080p.cht.srt   → 繁体中文
+    Miss.Peregrine.2016.1080p.eng.srt   → 英文
+    Miss.Peregrine.2016.1080p.jpn.srt   → 日文</code></pre>
+    
+    <p>这个部分一般是语言标签，用来指示这个字幕是哪种语言的。播放器往往会识别之后显示有哪些语言的字幕可用。</p>
+    
+    <p>注意语言标签比较乱，通常是基于ISO 639-1/2/3（并非开发常用的IETF BCP 47标准），以及一些社区约定俗成的不太规范化的写法比如scjp表示中日双语。</p>
+    
+    <p>常见的一些语言标签如下：<br />
+    <ul><li><p>eng/en：英语</p></li><li><p>zh/chi：中文（Chinese）</p></li><li><p>chs：简体中文（Simplified Chinese）</p></li><li><p>cht：繁体中文（Traditional Chinese）</p></li><li><p>jpn/ja/jp：日语（jp是直接拿Japan代表日语，是不太规范的写法）</p></li><li><p>fra/fre/fr：法语</p></li><li><p>spa/es：西班牙语</p></li><li><p>ger/deu/de：德语</p></li></ul></p>
+    
+    <p>如果语言标签是乱写的或者有错误，可能就会直接显示这个错误的标签或者未知语言，</p>
+    
+    <p>比如<code>Miss.Peregrine.2016.1080p.abc.srt</code>可能会被识别为“Undetermined (und)”、“Subtitle Track → Track 1”之类的，或者直接用abc称呼。</p>
+</body>
+
