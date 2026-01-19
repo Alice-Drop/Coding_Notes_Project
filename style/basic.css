@@ -12,7 +12,7 @@ nav{
     height: 32px;
     background-color: rgb(245,245,247);
     opacity: 1; /* 在没有处理好毛玻璃之前，都不要开启*/
-    padding: 10px 0px;
+    padding: 10px 0;
 
     user-select: none;
 
@@ -21,6 +21,14 @@ nav{
     z-index: 1000;
 
     backdrop-filter: blur(150px);
+}
+
+#navItemPlacer{
+    margin: 0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:80%;
 }
 
 
@@ -93,7 +101,7 @@ nav{
     font-weight: 600;
 }
 
-.navLinkContanier_right{
+.navLinkContainer_right{
     display: inline-flex;
     justify-content: flex-end;
     flex-grow: 1;

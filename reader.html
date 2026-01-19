@@ -9,19 +9,36 @@
     <link rel="stylesheet" href="style/reader.css">
     <link rel="ICON" href="img/flower_icon.png"></link>
 
-    <script src="script/basic.js"></script>
     <script src="script/const.js"></script>
     <script src="script/reader.js"></script>
+
+    <script>
+        const LINKS = {
+            "通用": "articles.html",
+            "编程语言笔记": "notes.html",
+            "在线小工具": "tools.html"
+        }
+    </script>
 </head>
 <body>
-    <nav id="nav"></nav>
+    <nav>
+        <div id="navItemPlacer">
+            <img src="./img/flower_icon.png" alt="icon " height="22px" style="margin:0 5px;">
+            <a href="/index.html" class="navLink">AliceDrop知识库共享</a>
+
+            <span class="navLinkContainer_right">
+                <a href="/articles.html" class="navLink">通用</a>
+                <a href="/notes.html" class="navLink">编程语言笔记</a>
+                <a href="/tools.html" class="navLink">在线小工具</a>
+            </span>
+        </div>
+    </nav>
     
     <div id="reading_content">
         <div id="toc">
             <div id="btn_switch_toc" onclick="toc_btn_onclicked()">
                 <img src="./img/toc_unfolded.svg" alt="" height="14px" id="img_toc_btn">
                 <span>目录</span>
-                <span id="help" class="hidden"></span>
             </div>
 
             <div id="document_toc"></div><!-- 文章目录导航器内容 -->
@@ -31,12 +48,18 @@
     </div>
     
 
-    <div id="pageTail"></div>
+    <div id="pageTail">
+        <p id="p_copyright">
+            © Copyright AliceDrop 2024-2025 网页内容受
+            <a href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。
+        </p>
+
+        <p>本项目为个人项目，如果喜欢本网站，可以给
+            <a href="https://github.com/Alice-Drop/Coding_Notes_Project" target="_blank">本项目</a>
+            一个star
+        </p>
+    </div>
     
 
-    <script>
-        initBasicGUI();
-        init_reader();
-    </script>
 </body>
 </html>

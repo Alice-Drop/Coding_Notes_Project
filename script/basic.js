@@ -22,13 +22,14 @@ function initBasicGUI(){
 
 function drawNav(){
     let nav = document.getElementById("nav");
+    document.app
     nav.innerHTML = `        
     
         <div id="navItemPlacer" style="margin: 0 auto;display:flex; justify-content:space-between;align-items:center; width:80%;">    
             <img src="../../img/flower_icon.png" alt="icon " height="22px" style="margin:0 5px;">
             <a href="/index.html" class="navLink">AliceDrop知识库共享</a>
 
-            <span class="navLinkContanier_right">
+            <span class="navLinkContainer_right">
                 <a href="${getLink("通用")}" class="navLink">通用</a>
             
                 <a href="${getLink("编程语言笔记")}" class="navLink">编程语言笔记</a>
@@ -42,7 +43,7 @@ function drawNav(){
 
 function drawPageTail(){
     let page_tail = document.getElementById("pageTail");
-    page_tail.innerHTML = `<p id="p_copyright">© Copyright AliceDrop 2024-2025 网页内容受 <a href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。</p>
+    page_tail.innerHTML = `<p>一个分享知识、编程语言的学习笔记和一些小工具的网站</p> <p id="p_copyright">© Copyright AliceDrop 2024-2026 网页内容受 <a href="https://github.com/Alice-Drop/Coding_Notes_Project/blob/main/LICENSE">CC BY-NC</a> 协议保护。</p>
    
     <p>本项目为个人项目，如果喜欢本网站，可以给 <a href="https://github.com/Alice-Drop/Coding_Notes_Project" target="_blank">本项目</a> 一个star</p>
 `

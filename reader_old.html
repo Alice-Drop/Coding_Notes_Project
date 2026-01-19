@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Reader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style/basic.css">
+    <link rel="stylesheet" href="style/reader.css">
+    <link rel="ICON" href="img/flower_icon.png"></link>
+
+    <script src="script/basic.js"></script>
+    <script src="script/const.js"></script>
+    <script src="script/reader.js"></script>
+</head>
+<body>
+    <nav id="nav"></nav>
+    
+    <div id="reading_content">
+        <div id="toc">
+            <div id="btn_switch_toc" onclick="toc_btn_onclicked()">
+                <img src="./img/toc_unfolded.svg" alt="" height="14px" id="img_toc_btn">
+                <span>目录</span>
+                <span id="help" class="hidden"></span>
+            </div>
+
+            <div id="document_toc"></div><!-- 文章目录导航器内容 -->
+        </div>
+
+        <div id="document_content"></div><!-- 文章内容容器 -->
+    </div>
+    
+
+    <div id="pageTail"></div>
+    
+
+    <script>
+        initBasicGUI();
+        init_reader();
+    </script>
+</body>
+</html>
