@@ -1,6 +1,11 @@
 function init_reader(){  // 默认是通过传参获得。
     let parms = new URLSearchParams(window.location.search);
+    let DEFAULT_DOC = "/docs/Python/pythonKeyNote.html"
     let doc_href = parms.get("doc_href");
+    if (!doc_href){
+        doc_href = DEFAULT_DOC;
+        console.log(doc_href);
+    }
     load_doc(doc_href);
     // set_scale();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 
