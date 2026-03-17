@@ -6,11 +6,6 @@ function initIndex(){
         "misty.jpg": "整体氛围气质不错"
     */
 
-    page1.setAttribute("style", `
-            background-image: url("img/bg/misty2.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-    `);
 
     let div_how_are_you = document.getElementById("div_how_are_you");
     div_how_are_you.setAttribute("style", 

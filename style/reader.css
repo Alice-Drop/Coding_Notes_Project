@@ -51,6 +51,7 @@
 body{
     /*background-color: rgb(233,233,233);*/
 }
+/* todo：需要把这部分移到noteStandard并且确保reader和reader_old有正确引用 */
 
 pre{
     /* 用来控制代码块。todo:不过html里的代码块好像不太一样，未来可能要修改 */
