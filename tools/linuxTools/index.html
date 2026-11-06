@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>dd命令测试顺序写入速度</h3>
+    <p>
+# 写入8GB的测试文件（/dev/zero 作为输入）</p>
+<p>
+dd if=/dev/zero of=/tmp/test.img bs=1M count=8192 status=progress
+    </p>
+
+    <h3>测试写入速度</h3>
+    <p>
+        # 清除缓存（需要root权限）
+        </p>
+<p>
+sudo sh -c 'sync && echo 3 > /proc/sys/vm/drop_caches'
+</p>
+<p>
+# 读取测试
+</p>
+<p>
+dd if=/tmp/test.img of=/dev/null bs=1M status=progress
+    </p>
+</body>
+</html>

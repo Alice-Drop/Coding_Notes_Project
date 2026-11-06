@@ -35,6 +35,13 @@ let tools_list = [
         href: "/tools/BrowserDetail/main.html",
         icon: ""
     },
+    {
+        title: "Linux常用",
+        minimum_width: "",
+        minimum_height: "",
+        href: "/tools/linuxTools",
+        icon: ""
+    },
 
 ];
 
